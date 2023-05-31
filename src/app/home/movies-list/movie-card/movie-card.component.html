@@ -1,0 +1,30 @@
+  <div class="movie-card">
+      <a href="/movie">
+        <img class="img-fluid rounded-start poster" [src]="movie.posterimagePath" alt="image">
+      </a>
+        <ul class="card-options">
+          <li *ngIf="buttons"><button (click)="onAddToWatched(movie)"><fa-icon style="color: rgb(161, 163, 160);" [icon]="faAdd"></fa-icon></button></li>
+          <li *ngIf="buttons"><button (click)="onAddToFavorites(movie)"><fa-icon style="color: rgb(161, 163, 160);" [icon]="faLove"></fa-icon></button></li>
+          <li *ngIf="buttons"><button (click)="onAddToWatchlist(movie)"><fa-icon style="color: rgb(161, 163, 160);" [icon]="faEye"></fa-icon></button></li>
+          <li *ngIf="!buttons"><button class="delete-button" (click)="deleteMovie(movie, componentName)">❌</button></li>
+        </ul>
+      <!-- </div> -->
+    </div>
+
+  <!-- </div> -->
+  <!-- <i class="fa-duotone fa-eye fa-2xs" style="--fa-primary-color: #ffffff; --fa-primary-opacity: 0.6; --fa-secondary-color: #ffffff;"></i> -->
+
+
+
+<!-- <span class="material-symbols-outlined">favorite</span> -->
+
+
+
+<!--
+old
+
+<li *ngIf="buttons"><button (click)="onAddToWatched(movie)">➕</button></li>
+<li *ngIf="buttons"><button (click)="onAddToFavorites(movie)">❤</button></li>
+<li *ngIf="buttons"><button (click)="onAddToWatchlist(movie)">👁</button></li>
+
+-->

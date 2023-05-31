@@ -1,0 +1,53 @@
+<!-- #Trending Silder - Start -->
+<h3>Trending</h3>
+<hr>
+<div class="slider">
+  <div class="nav">
+    <button class="left" (click)="slideLeft()">left</button>
+    <button class="right" (click)="slideRight()">right</button>
+  </div>
+  <div class="slider-holder">
+    <ul class="trending slider-movies" [ngStyle]="{'left': getSlideValue()}">
+      <!-- <li *ngFor="let trendMovie of trendinMoives">
+        <img [src]="link + trendMovie.poster_path" alt="image">
+        <br>
+        <h6>{{ trendMovie.original_title }}</h6>
+      </li> -->
+      <!-- <li *ngFor="let movieEl of movies" class="slider-movie"> -->
+      <li *ngFor="let trendingMovie of trendingMoives" class="slider-movie">
+        <app-movie-card
+        [movie]="trendingMovie"
+        buttons="true"
+        ></app-movie-card>
+      </li>
+      <!-- <li *ngFor="let trendMovie of trendinMoives" class="slider-movie">
+        <app-movie-card
+        [movie]="trendMovie"
+        buttons="true"
+        ></app-movie-card>
+      </li> -->
+    </ul>
+  </div>
+</div>
+<!-- #Trending Silder - End -->
+
+
+<h3>movies-list works!</h3>
+<hr>
+<div class="">
+  <div class="list">
+    <app-movie-card
+    *ngFor="let movieEl of trendingMoives"
+    [movie]="movieEl"
+    buttons="true"
+    ></app-movie-card>
+  </div>
+</div>
+<hr>
+<!-- TMDB -->
+<!-- <div class="tmdb">
+  <button class="btn btn-success" (click)="getTMBDMovies()">TMDB Movies</button>
+  <div>
+    {{ movieName }}
+  </div>
+</div> -->

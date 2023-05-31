@@ -1,0 +1,68 @@
+.list {
+  display: grid;
+  justify-content: center;
+  /* grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); */
+  grid-template-columns: repeat(auto-fill, minmax(150px, 150px));
+  gap: 32px;
+}
+
+
+.tmdb .btn {
+  margin: 30px;
+}
+.trending {
+  gap: 30px;
+}
+.trending img {
+  width: 150px;
+}
+ul {
+  list-style: none;
+}
+
+
+
+
+/* Test */
+.slider {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+.slider .nav {
+  position: relative;
+  width: 100%;
+  height: 350px;
+}
+.slider button.left {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translate(0 ,-50%);
+}
+.slider button.right {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translate(0 ,-50%);
+}
+.slider-holder {
+  margin: 50px 0 50px 0;
+  width: 920px;
+  background-color: transparent;
+  overflow: hidden;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50% ,0);
+}
+.slider-movies {
+  display: flex;
+  position: relative;
+  /* left: -910px; */
+  align-content: center;
+  transition: 1s;
+}
+
+.slider-movie .movie-card{
+  width: 150px;
+}
