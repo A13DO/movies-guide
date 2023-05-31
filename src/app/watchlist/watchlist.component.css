@@ -1,0 +1,19 @@
+.poster {
+  width: 150px;
+  height: 190px;
+}
+ul {
+  background-color: rgba(3, 4, 20, 0.61);
+  list-style: none;
+  display: flex;
+  position: relative;
+  bottom: 20px;
+  gap: 5px;
+
+}
+.movie-card {
+  cursor: pointer;
+  position: relative;
+  width: 150px;
+  height: 190px;
+}

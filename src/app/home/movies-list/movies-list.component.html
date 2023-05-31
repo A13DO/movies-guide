@@ -1,0 +1,34 @@
+<h3>movies-list works!</h3>
+<hr>
+<div class="">
+  <div class="list">
+    <app-movie-card
+    *ngFor="let movieEl of movies"
+    [movie]="movieEl"
+    buttons="true"
+    ></app-movie-card>
+  </div>
+</div>
+<hr>
+<!-- TMDB -->
+<!-- <div class="tmdb">
+  <button class="btn btn-success" (click)="getTMBDMovies()">TMDB Movies</button>
+  <div>
+    {{ movieName }}
+  </div>
+</div> -->
+<div class="slider">
+  <div class="nav">
+    <button class="left" (click)="slideLeft()">left</button>
+    <button class="right" (click)="slideRight()">right</button>
+  </div>
+  <div class="slider-holder">
+    <ul class="trending slider-movies" [ngStyle]="{'left': getSlideValue()}">
+      <li *ngFor="let trendMovie of trendinMoives">
+        <img [src]="link + trendMovie.poster_path" alt="image">
+        <br>
+        <h6>{{ trendMovie.original_title }}</h6>
+      </li>
+    </ul>
+  </div>
+</div>
