@@ -44,12 +44,14 @@ export class MoviesListComponent implements OnInit, OnDestroy {
   TMDBMoives: any;
   // trendinMoives: any;
   trendingMoives: Movie[] = [];
+  topRatedMoives: Movie[] = [];
+  topRatedPageNum = 1;
   poster!: string;
   link: string = "https://image.tmdb.org/t/p/w220_and_h330_face/";
 
   movieName!: string;
   sub!: Subscription;
-
+  scrollPosition!: number;
   // TMDB
   // Get Trending Movie WHEN LOAD
   // to-do list
@@ -58,12 +60,18 @@ export class MoviesListComponent implements OnInit, OnDestroy {
   //  -
   //  -
   ngOnInit(): void {
+    window.addEventListener('scroll', function() {
+      // Get the current scroll position
+      var scrollRate = document.documentElement.scrollTop;
+
+      // Log the scroll position in the developer console
+      console.log('Scroll position:', scrollRate);
+    });
     // this.movies.push()
+    // =============== Trending Movies =================
     this.moviesRequests.getTrendingMovies()
     .subscribe(
       data => {
-        // this.trendinMoives = data.results;
-        // this.trendinMoives = data.results;
         // assign Trending movies to my movies data.
         for (let movie of data.results) {
           console.log(movie);
@@ -82,13 +90,103 @@ export class MoviesListComponent implements OnInit, OnDestroy {
           //   posterimagePath: this.link + movie.poster_path,
           //   MovieTime: '2h' // need edit
           // })
-          console.log("--------------------------------- From Subcribe Start---------------------------------")
-          console.log(this.trendingMoives)
-          console.log("--------------------------------- From Subcribe End---------------------------------")
+          // console.log("--------------------------------- From Subcribe Start---------------------------------")
+          // console.log(this.trendingMoives)
+          // console.log("--------------------------------- From Subcribe End---------------------------------")
         }
       }
       )
+    // =============== Top Rated Movies =================
+    //
+      // this.moviesRequests.getTopRatedMovies(this.topRatedPageNum) // pass page number
+      // .subscribe(
+      //   data => {
+      //     for (let movie of data.results) {
+      //       this.topRatedMoives.push(
+      //         {
+      //         name: movie.title,
+      //         description: movie.overview,
+      //         year: (new Date(movie.release_date)).getFullYear().toString(),
+      //         posterimagePath: this.link + movie.poster_path,
+      //         MovieTime: '2h' // need edit
+      //         }
+      //       )
+      //     }
+      //     console.log("--------------------------------- From Top Rated Start---------------------------------")
+      //     console.log(this.topRatedMoives)
+      //     console.log("--------------------------------- From Top Rated End---------------------------------")
+      //   }
+      // )
+      this.getTopRatedMoviess(this.topRatedPageNum)
     }
+    getTopRatedMoviess(topRatedPageNum: number) {
+      this.moviesRequests.getTopRatedMovies(topRatedPageNum) // pass page number
+      .subscribe(
+        data => {
+          for (let movie of data.results) {
+            this.topRatedMoives.push(
+              {
+              name: movie.title,
+              description: movie.overview,
+              year: (new Date(movie.release_date)).getFullYear().toString(),
+              posterimagePath: this.link + movie.poster_path,
+              MovieTime: '2h' // need edit
+              }
+            )
+          }
+          // console.log("--------------------------------- From Top Rated Start---------------------------------")
+          // console.log(this.topRatedMoives)
+          // console.log("--------------------------------- From Top Rated End---------------------------------")
+        }
+      )
+    }
+    topRatedPageOne() {
+      this.topRatedPageNum = 1;
+      console.log(this.topRatedPageNum)
+      this.topRatedMoives = [];
+      this.getTopRatedMoviess(this.topRatedPageNum)
+      // window.scrollTo({
+			// 	top: 619,
+			// 	behavior: 'auto'
+			// })
+    }
+    topRatedPageTwo() {
+      this.topRatedPageNum = 2;
+      var scrollRate = document.documentElement.scrollTop;
+
+      console.log(this.topRatedPageNum)
+      this.topRatedMoives = [];
+      this.getTopRatedMoviess(this.topRatedPageNum)
+    }
+    topRatedPageThree() {
+      this.topRatedPageNum = 3;
+      console.log(this.topRatedPageNum)
+      this.topRatedMoives = [];
+      this.scrollPosition =  document.documentElement.scrollTop;
+      console.log(this.scrollPosition)
+      console.log("Before")
+      // window.scrollTo(0, this.scrollPosition);
+      this.getTopRatedMoviess(this.topRatedPageNum)
+      // console.log("After")
+      // var scrollRate = document.documentElement.scrollTop;
+      // Get the current position of the scroll bar
+
+      // Refresh the page
+
+      // Set the scroll position back to where it was before refreshing
+      }
+    topRatedPageFour() {
+      this.topRatedPageNum = 4;
+      console.log(this.topRatedPageNum)
+      this.topRatedMoives = [];
+      this.getTopRatedMoviess(this.topRatedPageNum)
+    }
+
+
+
+
+
+
     pageNum: number = 0;
     slideLeft() {
     if (this.pageNum >= 1) {
@@ -120,7 +218,6 @@ export class MoviesListComponent implements OnInit, OnDestroy {
     }
     return 0;
   }
-
   ngOnDestroy(): void {
     this.sub.unsubscribe()
   }

@@ -20,24 +20,27 @@
         buttons="true"
         ></app-movie-card>
       </li>
-      <!-- <li *ngFor="let trendMovie of trendinMoives" class="slider-movie">
-        <app-movie-card
-        [movie]="trendMovie"
-        buttons="true"
-        ></app-movie-card>
-      </li> -->
     </ul>
   </div>
 </div>
 <!-- #Trending Silder - End -->
+<!-- #Comeing Soon - Start-->
+<h3>Comeing Soon</h3>
+<hr>
+<!-- #Comeing Soon - End-->
 
+<!-- Top Rated -->
+<h3>Top Rated</h3>
 
-<h3>movies-list works!</h3>
+<button id="pageOneBtn" (click)="topRatedPageOne()">1</button>
+<button id="pageTwoBtn"  (click)="topRatedPageTwo()">2</button>
+<button id="pageThreeBtn"  (click)="topRatedPageThree()">3</button>
+<button id="pageFourBtn"  (click)="topRatedPageFour()">4</button>
 <hr>
 <div class="">
   <div class="list">
     <app-movie-card
-    *ngFor="let movieEl of trendingMoives"
+    *ngFor="let movieEl of topRatedMoives"
     [movie]="movieEl"
     buttons="true"
     ></app-movie-card>
