@@ -1,6 +1,6 @@
 import { map, Subscription } from 'rxjs';
 import { MoviesRequestsService } from './../../shared/movies-requests.service';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Movie } from 'src/app/shared/movie.module';
 
 @Component({
@@ -59,7 +59,16 @@ export class MoviesListComponent implements OnInit, OnDestroy {
   //  - choose the detalis we need to be able to add movies wit my data Movie[]
   //  -
   //  -
+    @ViewChild('moviesList')
+  moviesList!: ElementRef;
+
+  fetchMovies(event: Event) {
+    event.preventDefault();
+    // your code to fetch movies from API and display them
+    this.moviesList.nativeElement.scrollTop = this.moviesList.nativeElement.scrollHeight;
+  }
   ngOnInit(): void {
+    console.log(this.moviesList)
     window.addEventListener('scroll', function() {
       // Get the current scroll position
       var scrollRate = document.documentElement.scrollTop;
@@ -175,11 +184,22 @@ export class MoviesListComponent implements OnInit, OnDestroy {
 
       // Set the scroll position back to where it was before refreshing
       }
-    topRatedPageFour() {
+    topRatedPageFour(event: Event) {
+      event.preventDefault();
       this.topRatedPageNum = 4;
       console.log(this.topRatedPageNum)
       this.topRatedMoives = [];
+      var scrollRate = document.documentElement.scrollTop;
       this.getTopRatedMoviess(this.topRatedPageNum)
+      // if (scrollRate == 619 || scrollRate !== 619) {
+      //   window.scrollTo({
+      //     top: 619,
+      //     behavior: 'auto'
+      //   })
+      // }
+      // your code to fetch movies from API and display them
+      this.moviesList.nativeElement.scrollTop = this.moviesList.nativeElement.scrollHeight;
+
     }
 
 
@@ -222,3 +242,23 @@ export class MoviesListComponent implements OnInit, OnDestroy {
     this.sub.unsubscribe()
   }
 }
+
+
+
+
+// import { Component, ViewChild, ElementRef } from '@angular/core';
+
+// @Component({
+//   selector: 'app-movies',
+//   templateUrl: './movies.component.html',
+//   styleUrls: ['./movies.component.css']
+// })
+// export class MoviesComponent {
+//   @ViewChild('moviesList') moviesList: ElementRef;
+
+//   fetchMovies(event: Event) {
+//     event.preventDefault();
+//     // your code to fetch movies from API and display them
+//     this.moviesList.nativeElement.scrollTop = this.moviesList.nativeElement.scrollHeight;
+//   }
+// }

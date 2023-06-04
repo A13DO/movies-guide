@@ -134,7 +134,22 @@ export class MoviesRequestsService {
       this.url = favoritesUrl;
     }
   }
-
+  searchForMovie(searchTerm: string) {
+    const options = {
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkNGE3YjJiN2Q4Y2U3MTE2ZjQxYWMyNjA4ZTUyZDY2NiIsInN1YiI6IjY0NjM1MmI4OGM0NGI5NzgwOGZmYjRhNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.mevgoOXkY-qBd8n97AqhpZ94OEIRprqRE4hBxN2TejI'
+      }
+    };
+    const query = encodeURIComponent(searchTerm);
+    return this.http.get<any>(`https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&language=en-US&page=1`, options)
+    // .subscribe(
+    //   movie => {
+    //     console.log('searching for:', movie);
+    //   }
+    // )
+  }
   getMoviesToCheck(url: string, store: Movie[]) {
     this.getMovies(url).subscribe(
       movies => {

@@ -35,10 +35,10 @@
 <button id="pageOneBtn" (click)="topRatedPageOne()">1</button>
 <button id="pageTwoBtn"  (click)="topRatedPageTwo()">2</button>
 <button id="pageThreeBtn"  (click)="topRatedPageThree()">3</button>
-<button id="pageFourBtn"  (click)="topRatedPageFour()">4</button>
+<button id="pageFourBtn"  (click)="topRatedPageFour($event)">4</button>
 <hr>
 <div class="">
-  <div class="list">
+  <div class="list" #moviesList>
     <app-movie-card
     *ngFor="let movieEl of topRatedMoives"
     [movie]="movieEl"
@@ -54,3 +54,12 @@
     {{ movieName }}
   </div>
 </div> -->
+
+
+
+
+
+
+
+
+

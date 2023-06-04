@@ -1,7 +1,10 @@
 <div class="container">
   <div class="header">
     <strong class="logo">Movies Guide</strong>
-    <input type="text" class="search-bar" placeholder="search">
+    <div>
+      <input type="text" #searchBar class="search-bar" placeholder="search" (keyup.enter)="search()">
+      <button type="button" class="search-btn" (click)="search()">search</button>
+    </div>
   </div>
   <ul class="links">
     <li class=""><a href="/home">Home</a></li>
