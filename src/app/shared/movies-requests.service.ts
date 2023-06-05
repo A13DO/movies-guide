@@ -1,6 +1,6 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Movie } from './movie.module';
-import { BehaviorSubject, map, of, tap } from 'rxjs';
+import { BehaviorSubject, Subject, map, of, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -11,6 +11,9 @@ export class MoviesRequestsService {
     const watchlistUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/movies.json";
     const favoritesUrl = "https://favorite-movies-f80e3-default-rtdb.firebaseio.com/favorites.json";
     const watchedUrl = "https://watched-movies-36f2a-default-rtdb.firebaseio.com/watched.json";
+
+
+
     // --------------- Watched --------------------
     this.getMovies(watchedUrl).subscribe(
       movies => {
@@ -39,7 +42,8 @@ export class MoviesRequestsService {
       return this.favoriteMovies = movies;
     })
   }
-  //
+  // subject to stream searched movies data
+  private searchResponse: Subject<any> = new Subject();
 
   // we should have all movies here to see if the new movie already exits
 
@@ -85,23 +89,10 @@ export class MoviesRequestsService {
 
   // pipe to control key in response Data
   getMovies(url: string) {
-    // const url = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/movies.json";  // Firebase add movies.json to add file
-    // send data
-    // FETCH MOVIES
     return this.http.get<Movie[]>(url)
   }
 
   deleteMovie(movie: Movie, componentName: string) {
-    // const url: string ='';
-    // logic
-
-    // #1
-    // get list of exist movies
-    // #2
-    // delete the movie
-    // #3
-    // send updated list
-
 
     // know which component we work with and get it's movie
     this.identfiyWhichComponent(componentName)
@@ -134,6 +125,9 @@ export class MoviesRequestsService {
       this.url = favoritesUrl;
     }
   }
+
+  moviesResults!: Movie[];
+  // ---------- Search ---------------
   searchForMovie(searchTerm: string) {
     const options = {
       method: 'GET',
@@ -143,13 +137,18 @@ export class MoviesRequestsService {
       }
     };
     const query = encodeURIComponent(searchTerm);
-    return this.http.get<any>(`https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&language=en-US&page=1`, options)
-    // .subscribe(
-    //   movie => {
-    //     console.log('searching for:', movie);
-    //   }
-    // )
+    // return
+    this.http.get<any>(`https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&language=en-US&page=1`, options)
+    .subscribe(
+      responseMovies => {
+        this.searchResponse.next(responseMovies.results)
+      }
+    )
   }
+  searchResults() {
+    return this.searchResponse;
+  }
+
   getMoviesToCheck(url: string, store: Movie[]) {
     this.getMovies(url).subscribe(
       movies => {
@@ -161,16 +160,8 @@ export class MoviesRequestsService {
     }
     )
   }
-  // TMDB
-  getMoviesFromTMDB() {
-    const options = {
-    headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkNGE3YjJiN2Q4Y2U3MTE2ZjQxYWMyNjA4ZTUyZDY2NiIsInN1YiI6IjY0NjM1MmI4OGM0NGI5NzgwOGZmYjRhNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.mevgoOXkY-qBd8n97AqhpZ94OEIRprqRE4hBxN2TejI'
-    }
-  };
-  return this.http.get<any>('https://api.themoviedb.org/3/movie/105?language=en-US', options)
-}
+
+// ------------ Get Trending Movies -------------
 getTrendingMovies() {
     const options = {
       method: 'GET',
@@ -181,7 +172,7 @@ getTrendingMovies() {
     };
   return this.http.get<any>('https://api.themoviedb.org/3/trending/movie/week?language=en-US', options)
   }
-  // 1 2 3
+  // ------------ Get Top Rated Movies -------------
   getTopRatedMovies(topRatedPageNum: number) {
     const options = {
       method: 'GET',

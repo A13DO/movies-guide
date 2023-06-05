@@ -8,12 +8,6 @@
   </div>
   <div class="slider-holder">
     <ul class="trending slider-movies" [ngStyle]="{'left': getSlideValue()}">
-      <!-- <li *ngFor="let trendMovie of trendinMoives">
-        <img [src]="link + trendMovie.poster_path" alt="image">
-        <br>
-        <h6>{{ trendMovie.original_title }}</h6>
-      </li> -->
-      <!-- <li *ngFor="let movieEl of movies" class="slider-movie"> -->
       <li *ngFor="let trendingMovie of trendingMoives" class="slider-movie">
         <app-movie-card
         [movie]="trendingMovie"
