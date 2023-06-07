@@ -2,6 +2,7 @@ import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular
 import { MoviesRequestsService } from '../shared/movies-requests.service';
 import { Router } from '@angular/router';
 import { Movie } from '../shared/movie.module';
+import { SearchComponent } from '../search/search.component';
 
 @Component({
   selector: 'app-header',
@@ -9,16 +10,36 @@ import { Movie } from '../shared/movie.module';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  constructor(private moviesRequests: MoviesRequestsService, private router: Router) {}
+  constructor(private moviesRequests: MoviesRequestsService,
+    private router: Router,
+    private SearchComponent: SearchComponent,
+    ) {}
   @ViewChild("searchBar") searchBar!: ElementRef<HTMLInputElement>;
   @Output('searchMoives') searchMoives = new EventEmitter<any>();
-
   search() {
     const searchTerm = this.searchBar.nativeElement.value;
-    // Search request
-    this.moviesRequests.searchForMovie(searchTerm)
-    this.router.navigate(['/search'])
+    let pageNum = 1;
+    // edit
+    this.SearchComponent.pageNumberSub.subscribe(
+        pageNumber => {
+          pageNum = pageNumber;
+          console.log(pageNum)
+        }
+      )
+    // Search request                              //edit
+    this.moviesRequests.searchForMovie(searchTerm, pageNum) // pageNumber
+    // this.router.navigate(['/search'])
+    this.router.navigate(['/search'], { queryParams: { q: searchTerm}}) //  p: "page/1"
     // show these movies in search component
   }
 
 }
+
+// get movie URL query and page #Done
+// when change page use them as params values for the new request #Done
+
+
+// able to search from URL params
+// { path: 'search/:query', component: SearchResultsComponent }
+// component: public query: string;
+// HTML: <div [(ngModel)]="query" ></div>

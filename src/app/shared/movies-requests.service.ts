@@ -1,6 +1,6 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Movie } from './movie.module';
-import { BehaviorSubject, Subject, map, of, tap } from 'rxjs';
+import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -44,6 +44,8 @@ export class MoviesRequestsService {
   }
   // subject to stream searched movies data
   private searchResponse: Subject<any> = new Subject();
+  // subject to get search pages numbers subject
+  public pageNumberSub: Subject<number> = new Subject<number>();
 
   // we should have all movies here to see if the new movie already exits
 
@@ -127,8 +129,9 @@ export class MoviesRequestsService {
   }
 
   moviesResults!: Movie[];
+
   // ---------- Search ---------------
-  searchForMovie(searchTerm: string) {
+  searchForMovie(searchTerm: string, pageNumber: number) {
     const options = {
       method: 'GET',
       headers: {
@@ -137,14 +140,24 @@ export class MoviesRequestsService {
       }
     };
     const query = encodeURIComponent(searchTerm);
+    // Page Number
+    // this.pageNumberSub.subscribe(
+    //   pageNumber => {
+    //     pageNum = pageNumber;
+    //     console.log(pageNum)
+    //   }
+    // )
     // return
-    this.http.get<any>(`https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&language=en-US&page=1`, options)
+    this.http.get<any>(`https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&language=en-US&page=${pageNumber}`, options)
     .subscribe(
       responseMovies => {
         this.searchResponse.next(responseMovies.results)
       }
     )
   }
+  // fetch but page=2
+  // solve
+  // (searchTerm, page=1)default ()
   searchResults() {
     return this.searchResponse;
   }
