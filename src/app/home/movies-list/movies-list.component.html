@@ -11,7 +11,9 @@
       <li *ngFor="let trendingMovie of trendingMoives" class="slider-movie">
         <app-movie-card
         [movie]="trendingMovie"
-        buttons="true"
+        [watchedButton]="true"
+        [watchlistButton]="true"
+        [favoriteButton]="true"
         ></app-movie-card>
       </li>
     </ul>
@@ -36,21 +38,13 @@
     <app-movie-card
     *ngFor="let movieEl of topRatedMoives"
     [movie]="movieEl"
-    buttons="true"
+    [watchedButton]="true"
+    [watchlistButton]="true"
+    [favoriteButton]="true"
     ></app-movie-card>
   </div>
 </div>
 <hr>
-<!-- TMDB -->
-<!-- <div class="tmdb">
-  <button class="btn btn-success" (click)="getTMBDMovies()">TMDB Movies</button>
-  <div>
-    {{ movieName }}
-  </div>
-</div> -->
-
-
-
 
 
 

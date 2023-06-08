@@ -3,8 +3,11 @@
   <app-movie-card
   *ngFor="let movieEl of watchedMovies"
   [movie]="movieEl"
-  [buttons]="false"
+  [watchlistButton]="true"
+  [favoriteButton]="true"
+  [deleteButton]="true"
   [componentName]="WATCHED"
   >
   </app-movie-card>
 </div>
+<!-- [buttons]="false" -->

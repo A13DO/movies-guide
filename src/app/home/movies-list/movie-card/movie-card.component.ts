@@ -13,8 +13,13 @@ import { faHeart, faPlus } from '@fortawesome/free-solid-svg-icons';
 })
 export class MovieCardComponent implements OnInit, OnDestroy{
   @Input() movie!: Movie;
-  @Input() buttons: any;
+  @Input() buttons: any = false;
   @Input() componentName!: string;
+  // with using *ngIf if the value is true the button will appear
+  @Input() watchedButton: boolean = false;
+  @Input() watchlistButton: boolean = false;
+  @Input() favoriteButton: boolean = false;
+  @Input() deleteButton: boolean = false;
   // icons
   faAdd = faPlus;
   faLove = faHeart;

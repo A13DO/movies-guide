@@ -1,17 +1,12 @@
 <h3>watchlist works!</h3>
-<div class="row">
-  <div class="col-3">
-    <!-- <div *ngFor="let movie of watchlistMovies">
-      {{ movie.name }}
-      <img [src]="movie.posterimagePath" alt="">
-    </div> -->
+  <div class="list">
     <app-movie-card
     *ngFor="let movie of watchlistMovies"
     [movie]="movie"
-    [buttons]="false"
+    [watchedButton]="true"
+    [favoriteButton]="true"
+    [deleteButton]="true"
     [componentName]="WATCHLIST"
     >
     </app-movie-card>
   </div>
-</div>
-

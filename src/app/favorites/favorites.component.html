@@ -1,11 +1,11 @@
 <p>favorites works!</p>
-<div class="row">
-  <div class="col-3 movie-card">
+  <div class="list">
     <app-movie-card
     *ngFor="let movieEl of favoriteMovies"
     [movie]="movieEl"
-    [buttons]="false"
+    [watchedButton]="true"
+    [watchlistButton]="true"
+    [deleteButton]="true"
     [componentName]="FAVORITE"
     ></app-movie-card>
   </div>
-</div>
