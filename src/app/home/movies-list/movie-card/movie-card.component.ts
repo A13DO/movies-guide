@@ -5,6 +5,7 @@ import { MoviesListComponent } from '../movies-list.component';
 import { Subscription } from 'rxjs';
 import { faEye } from '@fortawesome/free-regular-svg-icons';
 import { faHeart, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
 // import
 @Component({
   selector: 'app-movie-card',
@@ -13,7 +14,6 @@ import { faHeart, faPlus } from '@fortawesome/free-solid-svg-icons';
 })
 export class MovieCardComponent implements OnInit, OnDestroy{
   @Input() movie!: Movie;
-  @Input() buttons: any = false;
   @Input() componentName!: string;
   // with using *ngIf if the value is true the button will appear
   @Input() watchedButton: boolean = false;
@@ -24,7 +24,7 @@ export class MovieCardComponent implements OnInit, OnDestroy{
   faAdd = faPlus;
   faLove = faHeart;
   faEye = faEye;
-  constructor(private watchlistService: MoviesRequestsService) {}
+  constructor(private router: Router,private watchlistService: MoviesRequestsService) {}
   // Firebase add movies.json to add file
 
   watchedUrl = "https://watched-movies-36f2a-default-rtdb.firebaseio.com/watched.json"
@@ -66,8 +66,12 @@ export class MovieCardComponent implements OnInit, OnDestroy{
           item?.remove()
       }}
       )
-
-  }
+    }
+    goToMoviePage() {
+      this.router.navigate(["movie", this.movie.name], {state: {id: this.movie.id}})
+      console.log("Go To: " + this.movie.name + " Page")
+      console.log("Go To: " + this.movie.id + " Page")
+    }
   ngOnDestroy() {
     this.mySub.unsubscribe()
   }

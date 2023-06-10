@@ -1,35 +1,32 @@
 .list {
   display: grid;
   justify-content: center;
-  /* grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); */
-  grid-template-columns: repeat(auto-fill, minmax(150px, 150px));
+  /* grid-template-columns: repeat(auto-fill, minmax(150px, 150px)); */
+  grid-template-columns: repeat(auto-fill, minmax(120px, 120px));
   gap: 32px;
 
 }
 
 
-.tmdb .btn {
-  margin: 30px;
-}
-.trending {
-  gap: 30px;
-}
-.trending img {
-  width: 150px;
-}
 ul {
   list-style: none;
 }
 
 
-
-
-/* Test */
 .slider {
   display: flex;
   justify-content: space-between;
   position: relative;
 }
+.slider .trending {
+  gap: 30px;
+}
+
+:host ::ng-deep .slider app-movie-card .movie-card {
+  /* in silder only */
+  width: 150px;
+}
+
 .slider .nav {
   position: relative;
   width: 100%;

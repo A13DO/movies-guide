@@ -41,15 +41,11 @@ body {
 .movie-card {
   cursor: pointer;
   position: relative;
-  /* width: 150px;
-  height: 190px; */
   transition: 0.2s;
-  width: 150px;
+  /* width: 150px; */
+  /* Testing ====================== */
+  width: 120px;
 }
-/* .button {
-  border: 0;
-  background-color: none;
-} */
 
 .movie-card::after {
   content: '';

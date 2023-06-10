@@ -15,7 +15,10 @@ const routes: Routes = [
   {path: 'watchlist', component: WatchlistComponent},
   {path: 'favorites', component: FavoritesComponent},
   {path: 'movie', component: MovieDetailsPageComponent},
-  {path: 'search', component: SearchComponent}
+  {path: 'search', component: SearchComponent},
+  {path: 'search/:searchMovie', component: MovieDetailsPageComponent},
+  // For Movie Details
+  {path: 'movie/:movie', component: MovieDetailsPageComponent}
 ];
 
 @NgModule({

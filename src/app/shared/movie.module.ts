@@ -3,6 +3,7 @@
 
 export class Movie {
   public name: string;
+  public id: number;
   public overview: string;
   public year: string;
   public posterimagePath: string;
@@ -10,6 +11,7 @@ export class Movie {
 
   constructor(
   name: string,
+  id: number,
   overview: string,
   year: string,
   posterimagePath: string,
@@ -17,6 +19,7 @@ export class Movie {
   )
   {
     this.name = name;
+    this.id = id;
     this.overview = overview;
     this.year = year;
     this.posterimagePath = posterimagePath;

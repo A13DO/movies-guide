@@ -12,6 +12,7 @@ export class MoviesListComponent implements OnInit, OnDestroy {
   movies: Movie[] = [
     {
       name: 'Blade Runner 2046',
+      id: 1,
       overview: '',
       year: '2017',
       posterimagePath: 'https://m.media-amazon.com/images/M/MV5BNzA1Njg4NzYxOV5BMl5BanBnXkFtZTgwODk5NjU3MzI@._V1_QL75_UX380_CR0,0,380,562_.jpg',
@@ -19,6 +20,7 @@ export class MoviesListComponent implements OnInit, OnDestroy {
     },
     {
       name: 'Taxi Driver',
+      id: 2,
       overview: '',
       year: '1976',
       posterimagePath: 'https://m.media-amazon.com/images/M/MV5BM2M1MmVhNDgtNmI0YS00ZDNmLTkyNjctNTJiYTQ2N2NmYzc2XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg',
@@ -26,6 +28,7 @@ export class MoviesListComponent implements OnInit, OnDestroy {
     },
     {
       name: 'Whiplash',
+      id: 3,
       overview: '',
       year: '2017',
       posterimagePath: 'https://i.etsystatic.com/36067604/r/il/4355d2/4230665308/il_fullxfull.4230665308_r13v.jpg',
@@ -34,6 +37,7 @@ export class MoviesListComponent implements OnInit, OnDestroy {
     ,
     {
       name: 'Her',
+      id: 4,
       overview: '',
       year: '2013',
       posterimagePath: 'https://alternativemovieposters.com/wp-content/uploads/2015/08/her.jpg',
@@ -86,6 +90,7 @@ export class MoviesListComponent implements OnInit, OnDestroy {
           console.log(movie);
           this.trendingMoives.push({
             name: movie.title,
+            id: movie.id,
             overview: movie.overview,
             year: (new Date(movie.release_date)).getFullYear().toString(),
             posterimagePath: this.link + movie.poster_path,
@@ -125,6 +130,7 @@ export class MoviesListComponent implements OnInit, OnDestroy {
             this.topRatedMoives.push(
               {
               name: movie.title,
+              id: movie.id,
               overview: movie.overview,
               year: (new Date(movie.release_date)).getFullYear().toString(),
               posterimagePath: this.link + movie.poster_path,

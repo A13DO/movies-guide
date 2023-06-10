@@ -1,7 +1,6 @@
-  <div class="movie-card">
-      <a href="/movie">
+  <div class="movie-card" (click)="goToMoviePage()">
         <img class="img-fluid rounded-start poster" [src]="movie.posterimagePath" alt="image">
-      </a>
+
         <ul class="card-options">
           <!-- Testing - Start -->
           <li *ngIf="watchedButton"><button (click)="onAddToWatched(movie)"><fa-icon style="color: rgb(161, 163, 160);" [icon]="faAdd"></fa-icon></button></li>
