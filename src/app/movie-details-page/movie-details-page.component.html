@@ -1,8 +1,27 @@
 <p>movie-details-page works!</p>
+<div class="container">
+  <img class="backdrop" [src]="movieInfo.backdrop_path" alt="image">
+  <div class="movie-info">
+    <img class="poster" [src]="movieInfo.poster_path" alt="image">
+    <div class="description">
+      <h4>{{ MovieName }}</h4>
+      <p><strong>{{ movieInfo.tagline }}</strong></p>
+      <p class="overview">{{ movieInfo.overview }}</p>
+      <p>Rate: {{ movieInfo.vote_average }}</p>
+      <p>Time: {{ movieInfo.release_date }}m</p>
+      <p>Time: {{ movieInfo.runtime }}m</p>
+      <div class="cast">
 
-
-<h4>{{ MovieName }}</h4>
-<p>img</p>
-<!-- <p class="description">{{ movieDetails.overview }}</p> -->
-<p>Rate: {{ movieInfo.popularity }}</p>
-<p>Time: {{ movieInfo.runtime }}m</p>
+      </div>
+      <div class="genres">
+        <p>GENRES</p>
+        <p *ngFor="let genre of movieInfo.genres">
+          {{ genre.name }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <div *ngFor="let movieImage of movieImages">
+  <img class="poster" [src]="movieImage.file_path" alt="image">
+</div> -->

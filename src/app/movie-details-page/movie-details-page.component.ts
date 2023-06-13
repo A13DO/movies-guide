@@ -18,9 +18,12 @@ export class MovieDetailsPageComponent implements OnInit {
     ) {}
 movie!: Movie;
 movieInfo: any = [];
+movieImages: any = [];
 MovieName!: string;
 MovieId!: string;
-
+link: string = "https://image.tmdb.org/t/p/w220_and_h330_face/";
+backdropLink: string = "https://www.themoviedb.org/t/p/original/";
+posterImage!: string;
 ngOnInit(): void {
 
   // this.movie = {
@@ -37,14 +40,27 @@ ngOnInit(): void {
   console.log(this.MovieId)
 
   // to get details Name => Id    // GetMovieDetails(Id)
-  this.requestService.getMovieDetails(this.MovieId).subscribe(
+  this.requestService.getMovieDetails(this.MovieId)
+  .subscribe(
     movieDetails => {
+      // fix the image link
+      movieDetails.poster_path = this.link + movieDetails.poster_path;
+      movieDetails.backdrop_path = this.backdropLink + movieDetails.backdrop_path;
       this.movieInfo = movieDetails;
       console.log(movieDetails)
     }
   )
+  this.requestService.getMovieImages(this.MovieId)
+  .subscribe(
+    movieImages => {
+      // movieImages.backdrops.file_path = this.link + movieImages.backdrops.file_path;
+      this.movieImages = movieImages.backdrops;
+      // for (let movieImg of movieImages.backdrops) {
+      //   console.log(movieImg.file_path)
+      // }
+    }
+  )
   // now we can use the movie name => to get the movie details and show it in the page
-
 }
 }
 
@@ -83,3 +99,6 @@ ngOnInit(): void {
 
   // window.history.state
 // to get state params
+
+
+// use params in search

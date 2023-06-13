@@ -16,7 +16,9 @@ export class HeaderComponent {
     ) {}
   @ViewChild("searchBar") searchBar!: ElementRef<HTMLInputElement>;
   @Output('searchMoives') searchMoives = new EventEmitter<any>();
+  // search click event
   search() {
+    // search value
     const searchTerm = this.searchBar.nativeElement.value;
     let pageNum = 1;
     // edit
@@ -29,7 +31,9 @@ export class HeaderComponent {
     // Search request                              //edit
     this.moviesRequests.searchForMovie(searchTerm, pageNum) // pageNumber
     // this.router.navigate(['/search'])
-    this.router.navigate(['/search'], { queryParams: { q: searchTerm}}) //  p: "page/1"
+    // this.router.navigate(['/search'], { queryParams: { q: searchTerm}}) //  p: "page/1"
+    // search/:searchMovie/:page
+    this.router.navigate(['/search', searchTerm, pageNum])
     // show these movies in search component
   }
 

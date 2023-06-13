@@ -16,7 +16,7 @@ const routes: Routes = [
   {path: 'favorites', component: FavoritesComponent},
   {path: 'movie', component: MovieDetailsPageComponent},
   {path: 'search', component: SearchComponent},
-  {path: 'search/:searchMovie', component: MovieDetailsPageComponent},
+  {path: 'search/:searchMovie/:page', component: SearchComponent},
   // For Movie Details
   {path: 'movie/:movie', component: MovieDetailsPageComponent}
 ];

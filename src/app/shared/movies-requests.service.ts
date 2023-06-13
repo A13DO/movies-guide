@@ -45,7 +45,7 @@ export class MoviesRequestsService {
   // subject to stream searched movies data
   private searchResponse: Subject<any> = new Subject();
   // subject to get search pages numbers subject
-  public pageNumberSub: Subject<number> = new Subject<number>();
+  // public pageNumberSub: Subject<number> = new Subject<number>();
 
   // we should have all movies here to see if the new movie already exits
 
@@ -207,6 +207,16 @@ getTrendingMovies() {
       }
     };
     return this.http.get<any>(`https://api.themoviedb.org/3/movie/${movie}?language=en-US`, options)
+  }
+  getMovieImages(movieId: string) {
+    const options = {
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkNGE3YjJiN2Q4Y2U3MTE2ZjQxYWMyNjA4ZTUyZDY2NiIsInN1YiI6IjY0NjM1MmI4OGM0NGI5NzgwOGZmYjRhNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.mevgoOXkY-qBd8n97AqhpZ94OEIRprqRE4hBxN2TejI'
+      }
+    };
+    return this.http.get<any>(`https://api.themoviedb.org/3/movie/${movieId}/images`, options)
   }
 }
 // Fight Club id:550

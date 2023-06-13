@@ -1,0 +1,28 @@
+.container {
+  position: relative;
+}
+.backdrop {
+  position: absolute;
+  width: 100%;
+  top: -122px;
+  z-index: -10;
+}
+.movie-info {
+  position: absolute;
+  display: flex;
+  z-index: 10;
+  /* top: 471px; */
+  top: 300px;
+}
+.poster {
+  width: 230;
+  margin: 0 50px 0 0;
+}
+.description {
+  display: flex;
+  flex-direction: column;
+}
+.genres {
+  display: flex;
+  gap: 15px;
+}
