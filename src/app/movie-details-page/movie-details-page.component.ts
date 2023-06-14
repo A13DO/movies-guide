@@ -19,8 +19,10 @@ export class MovieDetailsPageComponent implements OnInit {
 movie!: Movie;
 movieInfo: any = [];
 movieImages: any = [];
+fullTrailerLink: any;
 MovieName!: string;
 MovieId!: string;
+trailerLink: string = "https://www.youtube.com/watch?v=";
 link: string = "https://image.tmdb.org/t/p/w220_and_h330_face/";
 backdropLink: string = "https://www.themoviedb.org/t/p/original/";
 posterImage!: string;
@@ -50,16 +52,31 @@ ngOnInit(): void {
       console.log(movieDetails)
     }
   )
-  this.requestService.getMovieImages(this.MovieId)
+  this.requestService.getMovieTrailer(this.MovieId)
   .subscribe(
-    movieImages => {
-      // movieImages.backdrops.file_path = this.link + movieImages.backdrops.file_path;
-      this.movieImages = movieImages.backdrops;
-      // for (let movieImg of movieImages.backdrops) {
-      //   console.log(movieImg.file_path)
-      // }
+    trailerResponse => {
+      for(let trailer of trailerResponse.results) {
+        if (trailer.type == "Trailer" && trailer.site == "YouTube" && trailer.name == "Official Trailer") {
+          this.fullTrailerLink= this.trailerLink + trailer.key;
+          console.log(trailer)
+          console.log(this.fullTrailerLink)
+        }
+      }
+      // this.fullTrailerLink = this.trailerLink + trailerResponse.key;
+      // console.log(this.trailerLink)
     }
   )
+  // -- Testing --
+  // this.requestService.getMovieImages(this.MovieId)
+  // .subscribe(
+  //   movieImages => {
+  //     // movieImages.backdrops.file_path = this.link + movieImages.backdrops.file_path;
+  //     this.movieImages = movieImages.backdrops;
+  //     // for (let movieImg of movieImages.backdrops) {
+  //     //   console.log(movieImg.file_path)
+  //     // }
+  //   }
+  // )
   // now we can use the movie name => to get the movie details and show it in the page
 }
 }

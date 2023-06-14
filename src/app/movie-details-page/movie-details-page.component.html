@@ -8,7 +8,7 @@
       <p><strong>{{ movieInfo.tagline }}</strong></p>
       <p class="overview">{{ movieInfo.overview }}</p>
       <p>Rate: {{ movieInfo.vote_average }}</p>
-      <p>Time: {{ movieInfo.release_date }}m</p>
+      <p>release: {{ movieInfo.release_date }}m</p>
       <p>Time: {{ movieInfo.runtime }}m</p>
       <div class="cast">
 
@@ -18,6 +18,10 @@
         <p *ngFor="let genre of movieInfo.genres">
           {{ genre.name }}
         </p>
+      </div>
+      <a class="trailer-link" [href]="fullTrailerLink" target="_blank">Trailer</a>
+      <div class="cast">
+
       </div>
     </div>
   </div>

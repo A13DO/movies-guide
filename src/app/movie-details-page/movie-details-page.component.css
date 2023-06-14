@@ -26,3 +26,10 @@
   display: flex;
   gap: 15px;
 }
+.trailer-link {
+  text-decoration: none;
+  border: 1px solid white;
+  border-radius: 5px;
+  width: fit-content;
+  padding: 5px;
+}
