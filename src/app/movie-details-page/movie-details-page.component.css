@@ -7,16 +7,26 @@
   top: -122px;
   z-index: -10;
 }
+/* .backdrop::after {
+  content: "";
+  position: relative;
+  height: 100%;
+  width: 100%;
+  z-index: 99999;
+  background-color: blue;
+} */
 .movie-info {
   position: absolute;
   display: flex;
   z-index: 10;
   /* top: 471px; */
   top: 300px;
+  align-items: flex-start;
 }
 .poster {
-  width: 230;
+  width: 230px;
   margin: 0 50px 0 0;
+  /* height: 100%; */
 }
 .description {
   display: flex;
@@ -32,4 +42,51 @@
   border-radius: 5px;
   width: fit-content;
   padding: 5px;
+}
+
+
+.cast {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  max-width: 400px;
+  margin-top: 20px;
+}
+.cast .person {
+  background-color: #22282f;
+  color: #bbb5aa;
+  padding: 4px;
+  border-radius: 5px;
+  width: fit-content;
+  font-size: 13px;
+  word-wrap: break-word;
+  cursor: pointer;
+  /* Testing */
+  position: relative;
+
+}
+.cast .person:hover {
+  color: #bde8ff;
+}
+
+
+
+.character-name {
+  display: none;
+  position: absolute;
+  top: -35px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: #fff;
+  padding: 4px;
+  /* word-wrap: normal; */
+  border-radius: 4px;
+  /* text-wrap: nowrap; */
+  overflow-wrap: break-word;
+  width: fit-content;
+}
+
+.actor-name:hover + .character-name {
+  display: block;
 }

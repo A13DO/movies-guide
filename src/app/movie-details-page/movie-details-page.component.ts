@@ -18,6 +18,8 @@ export class MovieDetailsPageComponent implements OnInit {
     ) {}
 movie!: Movie;
 movieInfo: any = [];
+directorName!: string;
+movieCast: any = [];
 movieImages: any = [];
 fullTrailerLink: any;
 MovieName!: string;
@@ -64,6 +66,24 @@ ngOnInit(): void {
       }
       // this.fullTrailerLink = this.trailerLink + trailerResponse.key;
       // console.log(this.trailerLink)
+    }
+  )
+  this.requestService.getMovieCredits(this.MovieId).subscribe(
+    creditsResponse => {
+      this.movieCast = creditsResponse.cast;
+      console.log(this.movieCast);
+      // Get the cast
+      // for (let person of creditsResponse.cast) {
+      //   console.log(`${person.name} as ${person.character}`)
+      // }
+      // Get the Director
+      for (let person of creditsResponse.crew) {
+        if (person.job ==  "Director") {
+          this.directorName = person.name;
+          console.log(person.name)
+        }
+      }
+      // job = "Director"
     }
   )
   // -- Testing --

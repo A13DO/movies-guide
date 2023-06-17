@@ -4,15 +4,15 @@
   <div class="movie-info">
     <img class="poster" [src]="movieInfo.poster_path" alt="image">
     <div class="description">
-      <h4>{{ MovieName }}</h4>
+      <div>
+        <h4>{{ MovieName }}</h4>
+        <p>Director by: <strong>{{ directorName }}</strong></p>
+      </div>
       <p><strong>{{ movieInfo.tagline }}</strong></p>
       <p class="overview">{{ movieInfo.overview }}</p>
       <p>Rate: {{ movieInfo.vote_average }}</p>
       <p>release: {{ movieInfo.release_date }}m</p>
       <p>Time: {{ movieInfo.runtime }}m</p>
-      <div class="cast">
-
-      </div>
       <div class="genres">
         <p>GENRES</p>
         <p *ngFor="let genre of movieInfo.genres">
@@ -21,11 +21,15 @@
       </div>
       <a class="trailer-link" [href]="fullTrailerLink" target="_blank">Trailer</a>
       <div class="cast">
-
+        <div class="person" *ngFor="let person of movieCast.slice(0, 30)">
+          <span class="actor-name">{{ person.name }}</span>
+          <span class="character-name">{{ person.character }}</span>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
 <!-- <div *ngFor="let movieImage of movieImages">
   <img class="poster" [src]="movieImage.file_path" alt="image">
 </div> -->
