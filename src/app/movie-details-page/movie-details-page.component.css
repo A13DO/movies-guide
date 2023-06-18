@@ -1,20 +1,16 @@
 .container {
   position: relative;
 }
+
+.header{
+  background-color: transparent;
+}
 .backdrop {
   position: absolute;
   width: 100%;
   top: -122px;
   z-index: -10;
 }
-/* .backdrop::after {
-  content: "";
-  position: relative;
-  height: 100%;
-  width: 100%;
-  z-index: 99999;
-  background-color: blue;
-} */
 .movie-info {
   position: absolute;
   display: flex;
@@ -36,21 +32,16 @@
   display: flex;
   gap: 15px;
 }
-.trailer-link {
-  text-decoration: none;
-  border: 1px solid white;
-  border-radius: 5px;
-  width: fit-content;
-  padding: 5px;
-}
-
-
 .cast {
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
   max-width: 400px;
-  margin-top: 20px;
+  margin-top: 10px;
+}
+.cast-line {
+  margin: 0;
+  max-width: 400px;
 }
 .cast .person {
   background-color: #22282f;
@@ -77,16 +68,74 @@
   top: -35px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #333;
-  color: #fff;
+  /* background-color: #333; */
+  background-color: #394756;
+  color: #b1cadf;
   padding: 4px;
   /* word-wrap: normal; */
   border-radius: 4px;
-  /* text-wrap: nowrap; */
-  overflow-wrap: break-word;
-  width: fit-content;
+  text-wrap: nowrap;
+  /* overflow-wrap: break-word; */
 }
-
-.actor-name:hover + .character-name {
+.character-name::after {
+  content: "";
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  border: 6px solid;
+  border-color: #676562 transparent transparent transparent;
+  /* border-color: #adc4d8 transparent transparent transparent; */
+  /* #394756 #adc4d8 */
+  transform: translate(-50%, 0);
+}
+.person:hover > .character-name {
   display: block;
 }
+
+.options {
+  margin: 80px 0 0 35px;
+  min-width: 200px;
+  height: 170px;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background-color: #394756;
+  border-radius: 5px;
+}
+.options .buttons {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+.trailer-link {
+  text-decoration: none;
+  background-color: #22282f;
+  font-size: 14px;
+  color: #bbb5aa;
+  border-radius: 5px;
+  width: fit-content;
+  padding: 5px;
+  align-self: center;
+}
+
+.option-btn {
+  background-color: #22282f;
+  color: #bbb5aa;
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+}
+
+
+
+
+/*
+// Image
+position: absolute;
+width: 100%;
+top: -188px;
+z-index: -10;
+
+    */

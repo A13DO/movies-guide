@@ -1,5 +1,5 @@
-  <div class="movie-card" (click)="goToMoviePage()">
-        <img class="img-fluid rounded-start poster" [src]="movie.posterimagePath" alt="image">
+  <div class="movie-card">
+        <img (click)="goToMoviePage()" class="img-fluid poster" [src]="movie.posterimagePath" alt="image">
 
         <ul class="card-options">
           <!-- Testing - Start -->
