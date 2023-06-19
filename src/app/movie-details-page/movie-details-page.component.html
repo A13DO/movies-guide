@@ -28,7 +28,7 @@
       <hr class="cast-line">
       <div class="cast">
         <div class="person" *ngFor="let person of movieCast.slice(0, 30)">
-          <span class="actor-name">{{ person.name }}</span>
+          <span class="actor-name" (click)="goToPersonPage($event)">{{ person.name }}</span>
           <span class="character-name">{{ person.character }}</span>
         </div>
       </div>

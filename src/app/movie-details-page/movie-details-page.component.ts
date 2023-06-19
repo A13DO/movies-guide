@@ -135,6 +135,19 @@ ngOnInit(): void {
     }
   });
 }
+// ----------- Testing - Start -----------
+goToPersonPage(event: any) {
+  // console.log(event.target.innerText)
+  for (let person of this.movieCast.slice(0, 30)) {
+    if (person.name == event.target.innerText) {
+      console.log("Name: " + person.name + " Id: " + person.id)
+      this.router.navigate(["/people", person.name], {state: {id: person.id}});
+    }
+  }
+}
+// ----------- Testing - End -----------
+
+
 // Silder
 
 pageNum: number = 0;

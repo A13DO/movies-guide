@@ -81,6 +81,10 @@
   display: flex;
   gap: 15px;
 }
+a {
+  text-decoration: none;
+  color: inherit;
+}
 .cast {
   display: flex;
   flex-wrap: wrap;
@@ -103,8 +107,9 @@
   cursor: pointer;
   /* Testing */
   position: relative;
-
+  text-wrap: nowrap;
 }
+
 .cast .person:hover {
   color: #bde8ff;
 }

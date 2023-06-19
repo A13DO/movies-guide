@@ -138,9 +138,6 @@ export class MoviesListComponent implements OnInit, OnDestroy {
               }
             )
           }
-          // console.log("--------------------------------- From Top Rated Start---------------------------------")
-          // console.log(this.topRatedMoives)
-          // console.log("--------------------------------- From Top Rated End---------------------------------")
         }
       )
     }

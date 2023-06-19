@@ -6,6 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { WatchedComponent } from './watched/watched.component';
 import { SearchComponent } from './search/search.component';
+import { PersonDetailsComponent } from './person-details/person-details.component';
 
 const routes: Routes = [
   {path: '', redirectTo: "home", pathMatch: "full"},
@@ -18,7 +19,8 @@ const routes: Routes = [
   {path: 'search', component: SearchComponent},
   {path: 'search/:searchMovie/:page', component: SearchComponent},
   // For Movie Details
-  {path: 'movie/:movie', component: MovieDetailsPageComponent}
+  {path: 'movie/:movie', component: MovieDetailsPageComponent},
+  {path: 'people/:person', component: PersonDetailsComponent}
 ];
 
 @NgModule({
