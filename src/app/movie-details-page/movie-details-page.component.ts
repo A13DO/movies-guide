@@ -1,7 +1,7 @@
 import { MoviesRequestsService } from './../shared/movies-requests.service';
 import { Component, OnInit } from '@angular/core';
 import { Movie } from '../shared/movie.module';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -21,6 +21,7 @@ movieInfo: any = [];
 directorName!: string;
 movieCast: any = [];
 movieImages: any = [];
+recommendedMovies: Movie[] = [];
 fullTrailerLink: any;
 MovieName!: string;
 MovieId!: string;
@@ -98,7 +99,20 @@ ngOnInit(): void {
   this.requestService.getMovieRecommendations(this.MovieId)
   .subscribe(
     recMovies => {
-      console.log(recMovies)
+
+      for (let movie of recMovies.results) {
+        if (movie.poster_path !== null) {
+        this.recommendedMovies.push({
+          name: movie.title,
+          id: movie.id,
+          overview: movie.overview,
+          year: (new Date(movie.release_date)).getFullYear().toString(),
+          posterimagePath: this.posterLink + movie.poster_path,
+          MovieTime: '2h' // need edit
+        })
+      }
+    }
+    console.log(recMovies.results)
     }
   )
   this.filmPoster = document.querySelector('.poster');
@@ -114,8 +128,46 @@ ngOnInit(): void {
       this.modal.style.display = 'none';
     }
   });
+  // Reload
+  this.router.events.subscribe(event => {
+    if (event instanceof NavigationEnd) {
+      location.reload();
+    }
+  });
 }
-MovieRecommendations!: any;
+// Silder
+
+pageNum: number = 0;
+slideLeft() {
+if (this.pageNum >= 1) {
+  this.pageNum -= 1;
+  this.getSlideValue()
+  console.log(this.pageNum)
+  console.log("LEFT")
+}
+
+}
+slideRight() {
+if (this.pageNum < 3) {
+  this.pageNum += 1;
+  this.getSlideValue()
+  console.log(this.pageNum)
+  console.log("RIGHT")
+}
+}
+getSlideValue() {
+if (this.pageNum == 1) {
+
+  return '-56.5rem';
+} else if (this.pageNum == 2) {
+
+  return '-113rem';
+} else if (this.pageNum == 3) {
+
+  return '-169rem';
+}
+return 0;
+}
 
 }
 // I HAVE THE ID #DONE

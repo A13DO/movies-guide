@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
   templateUrl: './movie-card.component.html',
   styleUrls: ['./movie-card.component.css']
 })
-export class MovieCardComponent implements OnInit, OnDestroy{
+export class MovieCardComponent implements OnDestroy{
   @Input() movie!: Movie;
   @Input() componentName!: string;
   // with using *ngIf if the value is true the button will appear
@@ -32,10 +32,6 @@ export class MovieCardComponent implements OnInit, OnDestroy{
   favoritesUrl = "https://favorite-movies-f80e3-default-rtdb.firebaseio.com/favorites.json"
   mySub: Subscription = new Subscription;
   savedMovies: Movie[] = [];
-
-  ngOnInit(): void {
-    console.log(this.movie)
-  }
   WATCHED = "watched"
   WATCHLIST = "watchlist"
   FAVORITE = "favorite"

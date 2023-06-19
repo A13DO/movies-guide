@@ -44,7 +44,6 @@
 .poster {
   width: 220px;
   margin: 0 50px 0 0;
-  /* height: 100%; */
   cursor: pointer;
 }
 .modal {
@@ -87,7 +86,7 @@
   flex-wrap: wrap;
   gap: 5px;
   max-width: 400px;
-  margin-top: 10px;
+  margin: 10px 0px 20px 0px;
 }
 .cast-line {
   margin: 0;
@@ -110,8 +109,6 @@
   color: #bde8ff;
 }
 
-
-
 .character-name {
   display: none;
   position: absolute;
@@ -124,7 +121,7 @@
   padding: 4px;
   /* word-wrap: normal; */
   border-radius: 4px;
-  text-wrap: nowrap;
+  /* text-wrap: nowrap; */
   /* overflow-wrap: break-word; */
 }
 .character-name::after {
@@ -189,3 +186,65 @@ top: -188px;
 z-index: -10;
 
     */
+
+
+
+
+    /* Slider */
+
+    ul {
+      list-style: none;
+    }
+
+
+    .slider {
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+    }
+    .slider .trending {
+      gap: 30px;
+    }
+
+    :host ::ng-deep .slider app-movie-card .movie-card {
+      /* in silder only */
+      width: 150px;
+    }
+
+    .slider .nav {
+      position: absolute;
+      width: 100%;
+      height: 350px;
+    }
+    .slider button.left {
+      position: absolute;
+      left: -12%;
+      top: 50%;
+      transform: translate(0 ,-50%);
+    }
+    .slider button.right {
+      position: absolute;
+      right: -25%;
+      top: 50%;
+      transform: translate(0 ,-50%);
+    }
+    .slider-holder {
+      margin: 50px 0 50px 0;
+      width: 920px;
+      background-color: transparent;
+      overflow: hidden;
+      position: absolute;
+      left: 55%;
+      transform: translate(-50% ,0);
+    }
+    .slider-movies {
+      display: flex;
+      position: relative;
+      /* left: -910px; */
+      align-content: center;
+      transition: 1s;
+    }
+
+    .slider-movie .movie-card{
+      width: 150px;
+    }

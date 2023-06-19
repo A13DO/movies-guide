@@ -32,6 +32,37 @@
           <span class="character-name">{{ person.character }}</span>
         </div>
       </div>
+      <h6>SIMILAR FILMS</h6>
+      <hr class="cast-line">
+      <div class="similar-films slider">
+          <div class="nav">
+            <button class="left" (click)="slideLeft()">left</button>
+            <button class="right" (click)="slideRight()">right</button>
+          </div>
+          <div class="slider-holder">
+            <ul class="trending slider-movies" [ngStyle]="{'left': getSlideValue()}">
+              <li *ngFor="let recMovie of recommendedMovies" class="slider-movie">
+                <app-movie-card
+                [movie]="recMovie"
+                [watchedButton]="true"
+                [watchlistButton]="true"
+                [favoriteButton]="true"
+                ></app-movie-card>
+              </li>
+            </ul>
+          </div>
+        <!-- <app-movie-card
+        *ngFor="let recMovie of recommendedMovies"
+        [movie]="recMovie"
+        [watchedButton]="true"
+        [watchlistButton]="true"
+        [favoriteButton]="true"
+        ></app-movie-card> -->
+
+
+
+
+      </div>
     </div>
     <div class="options">
       <div class="buttons">
