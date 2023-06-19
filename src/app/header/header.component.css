@@ -6,13 +6,23 @@
   position: relative;
   margin-bottom: 80px;
 }
+/* Test */
+.holder {
+  background-color: #1d232a;
+  position: relative;
+  width: 100%;
+  /* border-radius: 8px; */
+  /* padding: 20px; */
+}
 .header {
+  position: relative;
   display: flex;
   align-items: center;
   padding: 20px;
-  background-color: black;
+  background-color: #1d232a;
   justify-content: space-between;
   border-radius: 8px;
+
 }
 .logo {
 color: white;

@@ -25,9 +25,15 @@ fullTrailerLink: any;
 MovieName!: string;
 MovieId!: string;
 trailerLink: string = "https://www.youtube.com/watch?v=";
-link: string = "https://image.tmdb.org/t/p/w220_and_h330_face/";
+posterLink: string = "https://image.tmdb.org/t/p/w220_and_h330_face/";
+fullSPosterlink: string = "https://image.tmdb.org/t/p/w500/";
 backdropLink: string = "https://www.themoviedb.org/t/p/original/";
 posterImage!: string;
+filmPoster!: any;
+modal!: any;
+modalImage!: any;
+exitButton!: any;
+
 ngOnInit(): void {
 
   // this.movie = {
@@ -48,7 +54,9 @@ ngOnInit(): void {
   .subscribe(
     movieDetails => {
       // fix the image link
-      movieDetails.poster_path = this.link + movieDetails.poster_path;
+      this.fullSPosterlink = this.fullSPosterlink + movieDetails.poster_path;
+      console.log(this.fullSPosterlink)
+      movieDetails.poster_path = this.posterLink + movieDetails.poster_path;
       movieDetails.backdrop_path = this.backdropLink + movieDetails.backdrop_path;
       this.movieInfo = movieDetails;
       console.log(movieDetails)
@@ -68,7 +76,8 @@ ngOnInit(): void {
       // console.log(this.trailerLink)
     }
   )
-  this.requestService.getMovieCredits(this.MovieId).subscribe(
+  this.requestService.getMovieCredits(this.MovieId)
+  .subscribe(
     creditsResponse => {
       this.movieCast = creditsResponse.cast;
       console.log(this.movieCast);
@@ -86,21 +95,29 @@ ngOnInit(): void {
       // job = "Director"
     }
   )
-  // -- Testing --
-  // this.requestService.getMovieImages(this.MovieId)
-  // .subscribe(
-  //   movieImages => {
-  //     // movieImages.backdrops.file_path = this.link + movieImages.backdrops.file_path;
-  //     this.movieImages = movieImages.backdrops;
-  //     // for (let movieImg of movieImages.backdrops) {
-  //     //   console.log(movieImg.file_path)
-  //     // }
-  //   }
-  // )
-  // now we can use the movie name => to get the movie details and show it in the page
-}
-}
+  this.requestService.getMovieRecommendations(this.MovieId)
+  .subscribe(
+    recMovies => {
+      console.log(recMovies)
+    }
+  )
+  this.filmPoster = document.querySelector('.poster');
+  this.modal = document.querySelector('.modal');
+  this.modalImage = document.querySelector('.modal-image');
+  this.exitButton = document.querySelector('.exit-button');
 
+    this.filmPoster.addEventListener('click', () => {
+      this.modal.style.display = 'flex';
+    });
+  this.modal.addEventListener('click', (event: { target: any; }) => {
+    if (event.target === this.modal || event.target === this.exitButton) {
+      this.modal.style.display = 'none';
+    }
+  });
+}
+MovieRecommendations!: any;
+
+}
 // I HAVE THE ID #DONE
 // next: GEEEEETTTT MORRRRRRRRE IIINNNFFFFOOOOO
 // note

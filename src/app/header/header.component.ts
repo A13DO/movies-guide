@@ -30,9 +30,7 @@ export class HeaderComponent {
       )
     // Search request                              //edit
     this.moviesRequests.searchForMovie(searchTerm, pageNum) // pageNumber
-    // this.router.navigate(['/search'])
-    // this.router.navigate(['/search'], { queryParams: { q: searchTerm}}) //  p: "page/1"
-    // search/:searchMovie/:page
+
     this.router.navigate(['/search', searchTerm, pageNum])
     // show these movies in search component
   }

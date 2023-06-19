@@ -238,8 +238,23 @@ getTrendingMovies() {
     };
     return this.http.get<any>(`https://api.themoviedb.org/3/movie/${movieId}/credits?language=en-US`, options)
   }
+  getMovieRecommendations(movieId: string) {
+    const options = {
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkNGE3YjJiN2Q4Y2U3MTE2ZjQxYWMyNjA4ZTUyZDY2NiIsInN1YiI6IjY0NjM1MmI4OGM0NGI5NzgwOGZmYjRhNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.mevgoOXkY-qBd8n97AqhpZ94OEIRprqRE4hBxN2TejI'
+      }
+    };
+    return this.http.get<any>(`https://api.themoviedb.org/3/movie/${movieId}/recommendations?language=en-US&page=1`, options)
+  }
 }
 // Fight Club id:550
 // ('https://api.themoviedb.org/3/movie/550/credits?language=en-US', options) cast
 // ('https://api.themoviedb.org/3/movie/550/videos?language=en-US', options) trailer
 // https://api.themoviedb.org/3/movie/73/recommendations?language=en-US&page=1 recommendations
+
+
+
+// person movies //person_id
+// 'https://api.themoviedb.org/3/person/7467/movie_credits?language=en-US'

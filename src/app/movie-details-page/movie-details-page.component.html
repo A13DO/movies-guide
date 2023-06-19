@@ -1,7 +1,13 @@
 <div class="container">
-  <img class="backdrop" [src]="movieInfo.backdrop_path" alt="image">
+  <div class="backdrop-holder">
+    <img class="backdrop" [src]="movieInfo.backdrop_path" alt="image">
+  </div>
   <div class="movie-info">
     <img class="poster" [src]="movieInfo.poster_path" alt="image">
+    <div class="modal">
+      <img [src]="fullSPosterlink" class="modal-image">
+      <span class="exit-button">X</span>
+    </div>
     <div class="description">
       <div>
         <h4>{{ MovieName }}</h4>
