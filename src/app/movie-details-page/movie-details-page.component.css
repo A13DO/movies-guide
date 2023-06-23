@@ -180,7 +180,9 @@ a {
   border: none;
 }
 
-
+.director-name {
+  cursor: pointer;
+}
 
 
 /*
@@ -241,6 +243,7 @@ z-index: -10;
       position: absolute;
       left: 55%;
       transform: translate(-50% ,0);
+      padding-top: 5px;
     }
     .slider-movies {
       display: flex;

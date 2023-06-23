@@ -20,6 +20,7 @@ movie!: Movie;
 movieInfo: any = [];
 directorName!: string;
 movieCast: any = [];
+movieCrew: any = [];
 movieImages: any = [];
 recommendedMovies: Movie[] = [];
 fullTrailerLink: any;
@@ -81,6 +82,7 @@ ngOnInit(): void {
   .subscribe(
     creditsResponse => {
       this.movieCast = creditsResponse.cast;
+      this.movieCrew = creditsResponse.crew;
       console.log(this.movieCast);
       // Get the cast
       // for (let person of creditsResponse.cast) {
@@ -108,7 +110,7 @@ ngOnInit(): void {
           overview: movie.overview,
           year: (new Date(movie.release_date)).getFullYear().toString(),
           posterimagePath: this.posterLink + movie.poster_path,
-          MovieTime: '2h' // need edit
+          rating: movie.vote_average
         })
       }
     }
@@ -135,10 +137,26 @@ ngOnInit(): void {
     }
   });
 }
+reloadPage() {
+  this.router.events.subscribe(event => {
+    if (event instanceof NavigationEnd) {
+      location.reload();
+    }
+  });
+}
 // ----------- Testing - Start -----------
 goToPersonPage(event: any) {
   // console.log(event.target.innerText)
   for (let person of this.movieCast.slice(0, 30)) {
+    if (person.name == event.target.innerText) {
+      console.log("Name: " + person.name + " Id: " + person.id)
+      this.router.navigate(["/people", person.name], {state: {id: person.id}});
+    }
+    // else directorName
+  }
+}
+goToDirectorPage(event: any) {
+  for (let person of this.movieCrew) {
     if (person.name == event.target.innerText) {
       console.log("Name: " + person.name + " Id: " + person.id)
       this.router.navigate(["/people", person.name], {state: {id: person.id}});

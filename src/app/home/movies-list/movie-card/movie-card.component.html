@@ -1,5 +1,5 @@
   <div class="movie-card">
-        <img (click)="goToMoviePage()" class="img-fluid poster" [src]="movie.posterimagePath" alt="image">
+        <img [routerLink]="['/movie', movie.name]" [state]="{id: movie.id}" class="img-fluid poster" [src]="movie.posterimagePath" alt="image">
 
         <ul class="card-options">
           <!-- Testing - Start -->

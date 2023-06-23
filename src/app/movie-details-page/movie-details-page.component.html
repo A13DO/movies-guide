@@ -11,7 +11,7 @@
     <div class="description">
       <div>
         <h4>{{ MovieName }}</h4>
-        <p>Director by: <strong>{{ directorName }}</strong></p>
+        <p>Director by: <strong class="director-name" (click)="goToDirectorPage($event)">{{ directorName }}</strong></p>
       </div>
       <p><strong>{{ movieInfo.tagline }}</strong></p>
       <p class="overview">{{ movieInfo.overview }}</p>
@@ -67,13 +67,13 @@
     <div class="options">
       <div class="buttons">
         <button class="watched-button option-btn">
-          add
+          ➕
         </button>
         <button class="favorite-button option-btn">
-          add
+          ♥
         </button>
         <button class="watchlist-button option-btn">
-          add
+          👁
         </button>
       </div>
       <hr>

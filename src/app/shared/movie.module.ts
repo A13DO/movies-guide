@@ -7,7 +7,8 @@ export class Movie {
   public overview: string;
   public year: string;
   public posterimagePath: string;
-  public MovieTime: string;
+  public rating: number;
+  public popularity?: number;
 
   constructor(
   name: string,
@@ -15,7 +16,8 @@ export class Movie {
   overview: string,
   year: string,
   posterimagePath: string,
-  MovieTime: string
+  rating: number,
+  popularity?: number,
   )
   {
     this.name = name;
@@ -23,6 +25,7 @@ export class Movie {
     this.overview = overview;
     this.year = year;
     this.posterimagePath = posterimagePath;
-    this.MovieTime = MovieTime;
+    this.rating = rating;
+    this.popularity = rating;
   }
 }

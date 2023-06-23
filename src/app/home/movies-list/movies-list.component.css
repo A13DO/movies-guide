@@ -52,6 +52,7 @@ ul {
   position: absolute;
   left: 50%;
   transform: translate(-50% ,0);
+  padding-top: 5px;
 }
 .slider-movies {
   display: flex;
