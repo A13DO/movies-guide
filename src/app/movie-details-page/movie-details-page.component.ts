@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Movie } from '../shared/movie.module';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-movie-details-page',
@@ -14,7 +15,8 @@ export class MovieDetailsPageComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private requestService: MoviesRequestsService
+    private requestService: MoviesRequestsService,
+    private sanitizer: DomSanitizer
     ) {}
 movie!: Movie;
 movieInfo: any = [];
@@ -24,6 +26,7 @@ movieCrew: any = [];
 movieImages: any = [];
 recommendedMovies: Movie[] = [];
 fullTrailerLink: any;
+embedLink: any;
 MovieName!: string;
 MovieId!: string;
 trailerLink: string = "https://www.youtube.com/watch?v=";
@@ -64,20 +67,21 @@ ngOnInit(): void {
       console.log(movieDetails)
     }
   )
-  this.requestService.getMovieTrailer(this.MovieId)
-  .subscribe(
-    trailerResponse => {
-      for(let trailer of trailerResponse.results) {
-        if (trailer.type == "Trailer" && trailer.site == "YouTube" && trailer.name == "Official Trailer") {
-          this.fullTrailerLink= this.trailerLink + trailer.key;
-          console.log(trailer)
-          console.log(this.fullTrailerLink)
-        }
-      }
-      // this.fullTrailerLink = this.trailerLink + trailerResponse.key;
-      // console.log(this.trailerLink)
-    }
-  )
+  // ====================== Testing ======================
+
+  // this.requestService.getMovieTrailer(this.MovieId)
+  // .subscribe(
+  //   trailerResponse => {
+  //     for(let trailer of trailerResponse.results) {
+  //       if (trailer.type == "Trailer" && trailer.site == "YouTube" && trailer.name == "Official Trailer") {
+  //         this.fullTrailerLink= this.trailerLink + trailer.key;
+  //         console.log(trailer)
+  //         console.log(this.fullTrailerLink)
+  //       }
+  //     }
+  //   }
+  // )
+  // ====================== Testing ======================
   this.requestService.getMovieCredits(this.MovieId)
   .subscribe(
     creditsResponse => {
@@ -165,7 +169,24 @@ goToDirectorPage(event: any) {
 }
 // ----------- Testing - End -----------
 
-
+showTrailer() {
+  this.requestService.getMovieTrailer(this.MovieId)
+  .subscribe(
+    trailerResponse => {
+      for(let trailer of trailerResponse.results) {
+        console.log(trailer)
+        if (trailer.type == "Trailer" && trailer.site == "YouTube") { // && trailer.name == "Official Trailer"
+          this.embedLink = this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${trailer.key}`);
+        }
+      }
+      console.log(this.embedLink)
+    }
+  )
+}
+// onCloseTrailer()
+onCloseTrailer() {
+  this.embedLink = null;
+}
 // Silder
 
 pageNum: number = 0;

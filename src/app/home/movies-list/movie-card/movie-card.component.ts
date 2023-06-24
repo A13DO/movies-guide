@@ -65,6 +65,7 @@ export class MovieCardComponent implements OnDestroy{
     }
     goToMoviePage() {
       this.router.navigate(["movie", this.movie.name], {state: {id: this.movie.id}})
+      // [routerLink]="['/movie', movie.name]" [state]="{id: movie.id}"
       console.log("Go To: " + this.movie.name + " Page")
       console.log("Go To: " + this.movie.id + " Page")
     }

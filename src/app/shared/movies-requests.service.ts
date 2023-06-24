@@ -270,10 +270,11 @@ getTrendingMovies() {
   }
 }
 // Fight Club id:550
+// https://api.themoviedb.org/3/search/person?query=christian%20bale&include_adult=false&language=en-US&page=1 search for person
+// films cast, crew
 // ('https://api.themoviedb.org/3/movie/550/credits?language=en-US', options) cast
 // ('https://api.themoviedb.org/3/movie/550/videos?language=en-US', options) trailer
 // https://api.themoviedb.org/3/movie/73/recommendations?language=en-US&page=1 recommendations
-
 
 
 // person movies //person_id

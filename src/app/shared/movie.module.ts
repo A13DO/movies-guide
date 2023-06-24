@@ -9,6 +9,7 @@ export class Movie {
   public posterimagePath: string;
   public rating: number;
   public popularity?: number;
+  public directorName?: string;
 
   constructor(
   name: string,
@@ -18,6 +19,7 @@ export class Movie {
   posterimagePath: string,
   rating: number,
   popularity?: number,
+  directorName?: string
   )
   {
     this.name = name;
@@ -27,5 +29,6 @@ export class Movie {
     this.posterimagePath = posterimagePath;
     this.rating = rating;
     this.popularity = rating;
+    this.directorName = directorName;
   }
 }

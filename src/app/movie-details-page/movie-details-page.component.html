@@ -51,16 +51,6 @@
               </li>
             </ul>
           </div>
-        <!-- <app-movie-card
-        *ngFor="let recMovie of recommendedMovies"
-        [movie]="recMovie"
-        [watchedButton]="true"
-        [watchlistButton]="true"
-        [favoriteButton]="true"
-        ></app-movie-card> -->
-
-
-
 
       </div>
     </div>
@@ -77,12 +67,13 @@
         </button>
       </div>
       <hr>
-      <a class="trailer-link" [href]="fullTrailerLink" target="_blank">Trailer</a>
+      <!-- <a class="trailer-link" [href]="fullTrailerLink" target="_blank">Trailer</a> -->
+      <button class="trailer-link" (click)="showTrailer()">Trailer</button>
     </div>
-
+    <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/5muQK7CuFtY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
   </div>
 </div>
-
+<app-movie-trailer *ngIf="embedLink" [trailerLink]="embedLink" (close)="onCloseTrailer()"></app-movie-trailer>
 <!-- <div *ngFor="let movieImage of movieImages">
   <img class="poster" [src]="movieImage.file_path" alt="image">
 </div> -->

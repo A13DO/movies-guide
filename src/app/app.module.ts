@@ -15,6 +15,7 @@ import { MovieDetailsPageComponent } from './movie-details-page/movie-details-pa
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SearchComponent } from './search/search.component';
 import { PersonDetailsComponent } from './person-details/person-details.component';
+import { MovieTrailerComponent } from './movie-details-page/movie-trailer/movie-trailer.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { PersonDetailsComponent } from './person-details/person-details.componen
     WatchedComponent,
     MovieDetailsPageComponent,
     SearchComponent,
-    PersonDetailsComponent
+    PersonDetailsComponent,
+    MovieTrailerComponent
   ],
   imports: [
     BrowserModule,
