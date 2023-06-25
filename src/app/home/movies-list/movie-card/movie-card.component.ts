@@ -38,6 +38,16 @@ export class MovieCardComponent implements OnDestroy{
   onAddToWatched(movie: Movie) {
     // Send Http Request
     this.watchlistService.saveMovies(movie, this.watchedUrl, this.WATCHED)
+    // ================= icons - Start ================
+      let iconButton = document.querySelector(".button-icon");
+      // iconButton?
+      console.log(iconButton)
+      document.addEventListener("click", function (e) {
+        if ((e.target as HTMLElement).classList.contains("button-icon")) {
+          console.log(e.target as HTMLElement)
+        }
+      })
+    // ================= icons - End ==================
   }
   onAddToWatchlist(movie: Movie) {
     // Send Http Request
@@ -63,6 +73,7 @@ export class MovieCardComponent implements OnDestroy{
       }}
       )
     }
+
     goToMoviePage() {
       this.router.navigate(["movie", this.movie.name], {state: {id: this.movie.id}})
       // [routerLink]="['/movie', movie.name]" [state]="{id: movie.id}"
@@ -74,19 +85,3 @@ export class MovieCardComponent implements OnDestroy{
   }
 }
 
-
-
-// #1
-// add new data base for favorites and watched
-
-// #2
-// change watchlist.service to sharedRequests.service | and make dynamic and clear
-
-// #3
-// try to add getMovies() in watchlist component and others instead of service constructor (and sure to bind the data to service to check on exists movies)
-
-// #4
-// set watched (add it's database and add requests functions and watched button)
-
-// #5
-// add deleteMovie() function

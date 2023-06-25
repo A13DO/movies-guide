@@ -67,21 +67,7 @@ ngOnInit(): void {
       console.log(movieDetails)
     }
   )
-  // ====================== Testing ======================
 
-  // this.requestService.getMovieTrailer(this.MovieId)
-  // .subscribe(
-  //   trailerResponse => {
-  //     for(let trailer of trailerResponse.results) {
-  //       if (trailer.type == "Trailer" && trailer.site == "YouTube" && trailer.name == "Official Trailer") {
-  //         this.fullTrailerLink= this.trailerLink + trailer.key;
-  //         console.log(trailer)
-  //         console.log(this.fullTrailerLink)
-  //       }
-  //     }
-  //   }
-  // )
-  // ====================== Testing ======================
   this.requestService.getMovieCredits(this.MovieId)
   .subscribe(
     creditsResponse => {
@@ -175,7 +161,9 @@ showTrailer() {
     trailerResponse => {
       for(let trailer of trailerResponse.results) {
         console.log(trailer)
-        if (trailer.type == "Trailer" && trailer.site == "YouTube") { // && trailer.name == "Official Trailer"
+        if (trailer.type == "Trailer" && trailer.site == "YouTube" && trailer.name.includes("Official Trailer")) {
+          this.embedLink = this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${trailer.key}`);
+        } else if (trailer.type == "Trailer" && trailer.site == "YouTube") {
           this.embedLink = this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${trailer.key}`);
         }
       }
