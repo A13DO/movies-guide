@@ -2,12 +2,40 @@
         <img [routerLink]="['/movie', movie.name]" [state]="{id: movie.id}" class="img-fluid poster" [src]="movie.posterimagePath" alt="image">
 
         <ul class="card-options">
-          <!-- Testing - Start -->
-          <li *ngIf="watchedButton"><button (click)="onAddToWatched(movie)"><fa-icon class="button-icon" style="color: rgb(161, 163, 160);" [icon]="faAdd"></fa-icon></button></li>
-          <li *ngIf="favoriteButton"><button (click)="onAddToFavorites(movie)"><fa-icon class="button-icon" style="color: rgb(161, 163, 160);" [icon]="faLove"></fa-icon></button></li>
-          <li *ngIf="watchlistButton"><button (click)="onAddToWatchlist(movie)"><fa-icon class="button-icon" style="color: rgb(161, 163, 160);" [icon]="faEye"></fa-icon></button></li>
+          <!-- onAddToWatched -->
+          <li *ngIf="watchedButton">
+            <button (click)="onAddToWatched(movie)">
+              <fa-icon
+              class="button-icon"
+              [ngClass]="{ 'green-color' : watchedToggleClass }"
+              style="color: rgb(161, 163, 160);"
+              [icon]="faAdd">
+              </fa-icon>
+            </button>
+          </li>
+          <!-- onAddToFavorites -->
+          <li *ngIf="favoriteButton">
+            <button (click)="onAddToFavorites(movie)">
+              <fa-icon
+              class="button-icon"
+              [ngClass]="{ 'red-color' : favoriteToggleClass }"
+              style="color: rgb(161, 163, 160);"
+              [icon]="faLove">
+              </fa-icon>
+            </button>
+          </li>
+          <!-- onAddToWatchlist -->
+          <li *ngIf="watchlistButton">
+            <button (click)="onAddToWatchlist(movie)">
+              <fa-icon
+              class="button-icon"
+              [ngClass]="{ 'blue-color' : watchlistToggleClass }"
+              style="color: rgb(161, 163, 160);"
+              [icon]="faEye">
+              </fa-icon>
+            </button>
+          </li>
           <li *ngIf="deleteButton"><button class="delete-button" (click)="deleteMovie(movie, componentName)">❌</button></li>
-          <!-- Testing - End -->
           <!-- Old -->
           <!-- <li *ngIf="buttons"><button (click)="onAddToWatched(movie)"><fa-icon style="color: rgb(161, 163, 160);" [icon]="faAdd"></fa-icon></button></li>
           <li *ngIf="buttons"><button (click)="onAddToFavorites(movie)"><fa-icon style="color: rgb(161, 163, 160);" [icon]="faLove"></fa-icon></button></li>

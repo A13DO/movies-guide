@@ -12,7 +12,11 @@ export class MoviesRequestsService {
     const favoritesUrl = "https://favorite-movies-f80e3-default-rtdb.firebaseio.com/favorites.json";
     const watchedUrl = "https://watched-movies-36f2a-default-rtdb.firebaseio.com/watched.json";
 
-
+    interface MovieWatchlist {
+      isWatched: boolean;
+      isFavorited: boolean;
+      isInWatchlist: boolean;
+    }
 
     // --------------- Watched --------------------
     this.getMovies(watchedUrl).subscribe(
@@ -64,10 +68,13 @@ export class MoviesRequestsService {
     const WATCHED = "watched"
     if (store === WATCHED) {
       this.savedMovies = this.watchedMovies
+      newMovie.movieStatus = true;
     } else if (store === WATCHLIST) {
       this.savedMovies = this.watchlistMovies
+      newMovie.movieStatus = true;
     } else if (store === FAVORITE) {
       this.savedMovies = this.favoriteMovies
+      newMovie.movieStatus = true;
     }
 
     // -----------------------------------
@@ -141,12 +148,6 @@ export class MoviesRequestsService {
     };
     const query = encodeURIComponent(searchTerm);
     // Page Number
-    // this.pageNumberSub.subscribe(
-    //   pageNumber => {
-    //     pageNum = pageNumber;
-    //     console.log(pageNum)
-    //   }
-    // )
     // return
     this.http.get<any>(`https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&language=en-US&page=${pageNumber}`, options)
     .subscribe(

@@ -56,13 +56,18 @@
     </div>
     <div class="options">
       <div class="buttons">
-        <button class="watched-button option-btn">
-          ➕
+        <button class="watched-button option-btn" (click)="addToWatched()">
+          <fa-icon
+          class="button-icon"
+          style="color: rgb(161, 163, 160);"
+          [icon]="faAdd">
+        </fa-icon>
+        <!-- [ngClass]="{ 'green-color' : watchedToggleClass }" -->
         </button>
-        <button class="favorite-button option-btn">
+        <button class="favorite-button option-btn" (click)="addToFavorites()">
           ♥
         </button>
-        <button class="watchlist-button option-btn">
+        <button class="watchlist-button option-btn" (click)="addToWatchlist()">
           👁
         </button>
       </div>

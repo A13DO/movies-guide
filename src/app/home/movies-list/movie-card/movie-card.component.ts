@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
   templateUrl: './movie-card.component.html',
   styleUrls: ['./movie-card.component.css']
 })
-export class MovieCardComponent implements OnDestroy{
+export class MovieCardComponent implements OnInit, OnDestroy{
   @Input() movie!: Movie;
   @Input() componentName!: string;
   // with using *ngIf if the value is true the button will appear
@@ -24,45 +24,93 @@ export class MovieCardComponent implements OnDestroy{
   faAdd = faPlus;
   faLove = faHeart;
   faEye = faEye;
-  constructor(private router: Router,private watchlistService: MoviesRequestsService) {}
+  constructor(private router: Router,private requestService: MoviesRequestsService) {}
   // Firebase add movies.json to add file
 
   watchedUrl = "https://watched-movies-36f2a-default-rtdb.firebaseio.com/watched.json"
   watchlistUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/movies.json"
   favoritesUrl = "https://favorite-movies-f80e3-default-rtdb.firebaseio.com/favorites.json"
+  // Get From FireBase
+  watchedToggleClass: boolean = false;
+  favoriteToggleClass: boolean = false;
+  watchlistToggleClass: boolean = false;
+  // ================= Testing - Start =================
+  ngOnInit(): void {
+  //   // Get Watched Status
+  //   this.requestService.getMovies(this.watchedUrl)
+  //   .subscribe(
+  //     watchedMovies => {
+  //       for (let movie of watchedMovies) {
+  //         console.log(movie.movieStatus)
+  //         if (movie.movieStatus == true) {
+  //           this.watchedToggleClass = true;
+  //         }
+  //       }
+  //     }
+  //   )
+  //   // Get Watchlist Status
+  //   this.requestService.getMovies(this.watchlistUrl)
+  //   .subscribe(
+  //     watchlistMovies => {
+  //       for (let movie of watchlistMovies) {
+  //         if (movie.movieStatus == true) {
+  //           this.watchlistToggleClass = true;
+  //         }
+  //       }
+  //     }
+  //   )
+  //   // Get Favorite Status
+  //   this.requestService.getMovies(this.favoritesUrl)
+  //   .subscribe(
+  //     favoriteMovies => {
+  //       for (let movie of favoriteMovies) {
+  //         if (movie.movieStatus == true) {
+  //           this.favoriteToggleClass = true;
+  //         }
+  //       }
+  //     }
+  //   )
+  }
+  // ----- no delete, movie card or movies-list (where i fetch movie)
+  // ================= Testing - End ====================
+
+
   mySub: Subscription = new Subscription;
   savedMovies: Movie[] = [];
   WATCHED = "watched"
   WATCHLIST = "watchlist"
   FAVORITE = "favorite"
+
   onAddToWatched(movie: Movie) {
     // Send Http Request
-    this.watchlistService.saveMovies(movie, this.watchedUrl, this.WATCHED)
-    // ================= icons - Start ================
-      let iconButton = document.querySelector(".button-icon");
-      // iconButton?
-      console.log(iconButton)
-      document.addEventListener("click", function (e) {
-        if ((e.target as HTMLElement).classList.contains("button-icon")) {
-          console.log(e.target as HTMLElement)
-        }
-      })
-    // ================= icons - End ==================
+    this.requestService.saveMovies(movie, this.watchedUrl, this.WATCHED);
+    // toggle icon
+    const componentName = "favorite";
+
+    (this.watchedToggleClass? (this.watchedToggleClass = false, this.requestService.deleteMovie(movie, componentName)) : this.watchedToggleClass = true); // error deletes wherever the movie
   }
   onAddToWatchlist(movie: Movie) {
     // Send Http Request
-    this.watchlistService.saveMovies(movie, this.watchlistUrl, this.WATCHLIST)
+    this.requestService.saveMovies(movie, this.watchlistUrl, this.WATCHLIST);
+    // toggle icon
+    const componentName = "watchlist";
+    (this.watchlistToggleClass? (this.watchlistToggleClass = false, this.requestService.deleteMovie(movie, componentName)) : this.watchlistToggleClass = true);
+    // on-click => add
+    // off-click => remove (when reload or at same time)
+    // --- add when this.watchlistToggleClass = false, (delete movie)
   }
   onAddToFavorites(movie: Movie) {
     // Send Http Request
-    this.watchlistService.saveMovies(movie, this.favoritesUrl, this.FAVORITE)
+    this.requestService.saveMovies(movie, this.favoritesUrl, this.FAVORITE);
+    // toggle icon
+    const componentName = "watched";
+    (this.favoriteToggleClass? (this.favoriteToggleClass = false, this.requestService.deleteMovie(movie, componentName)) : this.favoriteToggleClass = true);
   }
   deleteMovie(movie: Movie, componentName: string) {
     console.log(movie)
     console.log("Component Name: " + componentName)
     // remove from
-    this.watchlistService.deleteMovie(movie, componentName)
-
+    this.requestService.deleteMovie(movie, componentName)
 
     // remove from page
     document.addEventListener("click", function (e) {

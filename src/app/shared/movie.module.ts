@@ -10,7 +10,7 @@ export class Movie {
   public rating: number;
   public popularity?: number;
   public directorName?: string;
-
+  public movieStatus?: boolean;
   constructor(
   name: string,
   id: number,
@@ -18,6 +18,7 @@ export class Movie {
   year: string,
   posterimagePath: string,
   rating: number,
+  movieStatus: boolean = false,
   popularity?: number,
   directorName?: string
   )
@@ -30,5 +31,15 @@ export class Movie {
     this.rating = rating;
     this.popularity = rating;
     this.directorName = directorName;
+    this.movieStatus = movieStatus;
   }
 }
+
+
+
+// movieStatus: Partial<MovieStatus> = {},
+// this.movieStatus = {
+//   isWatched: movieStatus.isWatched || false,
+//   isFavorited: movieStatus.isFavorited || false,
+//   isInWatchlist: movieStatus.isInWatchlist || false,
+// };

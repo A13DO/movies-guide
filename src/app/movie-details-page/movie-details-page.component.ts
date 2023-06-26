@@ -4,6 +4,8 @@ import { Movie } from '../shared/movie.module';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { DomSanitizer } from '@angular/platform-browser';
+import { faEye } from '@fortawesome/free-regular-svg-icons';
+import { faHeart, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-movie-details-page',
@@ -17,7 +19,10 @@ export class MovieDetailsPageComponent implements OnInit {
     private router: Router,
     private requestService: MoviesRequestsService,
     private sanitizer: DomSanitizer
-    ) {}
+  ) {}
+  faAdd = faPlus;
+  faLove = faHeart;
+  faEye = faEye;
 movie!: Movie;
 movieInfo: any = [];
 directorName!: string;
@@ -38,11 +43,17 @@ filmPoster!: any;
 modal!: any;
 modalImage!: any;
 exitButton!: any;
+WATCHED = "watched"
+WATCHLIST = "watchlist"
+FAVORITE = "favorite"
+watchedUrl = "https://watched-movies-36f2a-default-rtdb.firebaseio.com/watched.json"
+watchlistUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/movies.json"
+favoritesUrl = "https://favorite-movies-f80e3-default-rtdb.firebaseio.com/favorites.json"
 
+// -----------
+currentMovie: any = {};
 ngOnInit(): void {
 
-  // this.movie = {
-  // }
 
   // http://localhost:4200/movie/drive
   // #name
@@ -60,14 +71,21 @@ ngOnInit(): void {
     movieDetails => {
       // fix the image link
       this.fullSPosterlink = this.fullSPosterlink + movieDetails.poster_path;
-      console.log(this.fullSPosterlink)
+      console.log(movieDetails)
       movieDetails.poster_path = this.posterLink + movieDetails.poster_path;
       movieDetails.backdrop_path = this.backdropLink + movieDetails.backdrop_path;
       this.movieInfo = movieDetails;
       console.log(movieDetails)
+      // assgin movie to currentMovie: Movie control buttons (watched, favorites, watchlist);
+      this.currentMovie.name = movieDetails.title;
+      this.currentMovie.id = movieDetails.id;
+      this.currentMovie.overview = movieDetails.overview;
+      this.currentMovie.rating = movieDetails.vote_average;
+      this.currentMovie.year = movieDetails.release_date;
+      this.currentMovie.posterimagePath = movieDetails.poster_path;
+      console.log(this.currentMovie)
     }
   )
-
   this.requestService.getMovieCredits(this.MovieId)
   .subscribe(
     creditsResponse => {
@@ -91,7 +109,6 @@ ngOnInit(): void {
   this.requestService.getMovieRecommendations(this.MovieId)
   .subscribe(
     recMovies => {
-
       for (let movie of recMovies.results) {
         if (movie.poster_path !== null) {
         this.recommendedMovies.push({
@@ -127,6 +144,23 @@ ngOnInit(): void {
     }
   });
 }
+
+// ================= Buttons ====================
+// + in NgOnit get movie status like movie-card and show button status
+addToWatched() {
+  // add to watched database
+  this.requestService.saveMovies(this.currentMovie, this.watchedUrl, this.WATCHED);
+  // (this.watchedToggleClass? (this.watchedToggleClass = false, this.requestService.deleteMovie(movie, componentName)) : this.watchedToggleClass = true);
+}
+addToWatchlist() {
+  // add to watchlist database
+  this.requestService.saveMovies(this.currentMovie, this.watchlistUrl, this.WATCHLIST);
+}
+addToFavorites() {
+  // add to favorites database
+  this.requestService.saveMovies(this.currentMovie, this.favoritesUrl, this.FAVORITE);
+}
+// ================= Buttons ====================
 reloadPage() {
   this.router.events.subscribe(event => {
     if (event instanceof NavigationEnd) {

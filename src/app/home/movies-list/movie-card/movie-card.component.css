@@ -74,3 +74,16 @@ img {
 .movie-card:hover .card-options {
   display: flex;
 }
+
+/* #00e054 */
+button .green-color {
+  color: #00e054 !important;
+}
+/* #ff8101 */
+button .red-color {
+  color: red !important;
+}
+/* #40bcf4 */
+button .blue-color {
+  color: #40bcf4 !important;
+}
