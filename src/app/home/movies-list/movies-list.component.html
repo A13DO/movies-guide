@@ -2,10 +2,13 @@
 <h3>Trending</h3>
 <hr>
 <div class="slider">
-  <div class="nav">
-    <button class="left" (click)="slideLeft()">left</button>
-    <button class="right" (click)="slideRight()">right</button>
-  </div>
+  <!-- <div class="nav"> -->
+    <!-- <i class="fa-regular fa-chevron-left"></i> -->
+    <!-- <button class="left" (click)="slideLeft()">left</button> -->
+    <!-- <button class="right" (click)="slideRight()">right</button> -->
+  <!-- </div> -->
+  <i class="fa-solid fa-chevron-left left" (click)="slideLeft()"></i>
+  <i class="fa-solid fa-chevron-right right" (click)="slideRight()"></i>
   <div class="slider-holder">
     <ul class="trending slider-movies" [ngStyle]="{'left': getSlideValue()}">
       <li *ngFor="let trendingMovie of trendingMoives" class="slider-movie">

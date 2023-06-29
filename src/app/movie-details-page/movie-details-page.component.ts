@@ -267,17 +267,16 @@ if (this.pageNum < 3) {
 }
 }
 getSlideValue() {
-if (this.pageNum == 1) {
+  if (this.pageNum == 1) {
+    return '-55.3rem';
+  } else if (this.pageNum == 2) {
 
-  return '-56.5rem';
-} else if (this.pageNum == 2) {
+    return '-111.6rem';
+  } else if (this.pageNum == 3) {
 
-  return '-113rem';
-} else if (this.pageNum == 3) {
-
-  return '-169rem';
-}
-return 0;
+    return '-167.8rem';
+  }
+  return '1rem';
 }
 
 }

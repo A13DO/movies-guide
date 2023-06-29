@@ -1,7 +1,6 @@
 import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { MoviesRequestsService } from '../shared/movies-requests.service';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { Movie } from '../shared/movie.module';
+import { NavigationEnd, Router } from '@angular/router';
 import { SearchComponent } from '../search/search.component';
 
 @Component({
@@ -13,7 +12,6 @@ export class HeaderComponent implements OnInit{
   constructor(
     private moviesRequests: MoviesRequestsService,
     private router: Router,
-    private route: ActivatedRoute,
     private SearchComponent: SearchComponent,
     ) {}
   @ViewChild("searchBar") searchBar!: ElementRef<HTMLInputElement>;
@@ -25,7 +23,8 @@ export class HeaderComponent implements OnInit{
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
       // const regex = /(\/\w+)\/(\w+)(\/?)/;
-      const regex = /(\/\w+)(\/([\w%:]+)?(?:\/(\w+))?)?$/;
+      // const regex = /(\/\w+)(\/([\w%:]+)?(?:\/(\w+))?)?$/;
+      const regex = /^(\/movie)\/.+$/;
       this.currenturl = event.url;
       console.log(this.currenturl)
       const matches = this.currenturl.match(regex);
@@ -36,14 +35,6 @@ export class HeaderComponent implements OnInit{
       }
   })
   }
-  // const str = '/movie/Drive';
-  // const matches = str.match(regex);
-
-  // if (matches) {
-  //   const word = matches[1];
-  //   console.log(word); // Output: "Drive"
-  // }
-
 
 
   // search click event

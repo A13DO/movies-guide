@@ -233,6 +233,7 @@ z-index: -10;
       display: flex;
       justify-content: space-between;
       position: relative;
+      left: -15px;
     }
     .slider .trending {
       gap: 30px;
@@ -242,31 +243,31 @@ z-index: -10;
       /* in silder only */
       width: 150px;
     }
-
-    .slider .nav {
+    .slider i {
       position: absolute;
-      width: 100%;
-      height: 350px;
-    }
-    .slider button.left {
-      position: absolute;
-      left: -12%;
+      font-size: 26px;
       top: 50%;
       transform: translate(0 ,-50%);
+      z-index: 99;
+      cursor: pointer;
     }
-    .slider button.right {
-      position: absolute;
-      right: -25%;
-      top: 50%;
-      transform: translate(0 ,-50%);
+    .slider i.left {
+      left: -4%;
     }
+    .slider i.right {
+      right: -4%;
+    }
+    .slider i:hover {
+      color: #5c6179;
+    }
+    /* Responsive ######needed */
     .slider-holder {
       margin: 50px 0 50px 0;
-      width: 920px;
+      width: 900px;
       background-color: transparent;
       overflow: hidden;
-      position: absolute;
-      left: 55%;
+      position: relative;
+      left: 50%;
       transform: translate(-50% ,0);
       padding-top: 5px;
     }
@@ -276,15 +277,14 @@ z-index: -10;
       /* left: -910px; */
       align-content: center;
       transition: 1s;
+      left: 15px;
+      margin: 0px;
+      padding: 0px;
     }
-
+    /* left: -55.2rem; */
     .slider-movie .movie-card{
       width: 150px;
     }
-
-
-
-
 
 /* #00e054 */
 button .green-color {

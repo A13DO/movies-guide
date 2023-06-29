@@ -37,13 +37,13 @@ export class MoviesListComponent implements OnInit, OnDestroy {
     this.moviesList.nativeElement.scrollTop = this.moviesList.nativeElement.scrollHeight;
   }
   ngOnInit(): void {
-    window.addEventListener('scroll', function() {
-      // Get the current scroll position
-      var scrollRate = document.documentElement.scrollTop;
+    // window.addEventListener('scroll', function() {
+    //   // Get the current scroll position
+    //   var scrollRate = document.documentElement.scrollTop;
 
-      // Log the scroll position in the developer console
-      console.log('Scroll position:', scrollRate);
-    });
+    //   // Log the scroll position in the developer console
+    //   console.log('Scroll position:', scrollRate);
+    // });
     // this.movies.push()
     // =============== Trending Movies =================
     this.moviesRequests.getTrendingMovies()
@@ -162,16 +162,15 @@ export class MoviesListComponent implements OnInit, OnDestroy {
   }
   getSlideValue() {
     if (this.pageNum == 1) {
-
-      return '-56.5rem';
+      return '-55.3rem';
     } else if (this.pageNum == 2) {
 
-      return '-113rem';
+      return '-111.6rem';
     } else if (this.pageNum == 3) {
 
-      return '-169rem';
+      return '-167.8rem';
     }
-    return 0;
+    return '1rem';
   }
   ngOnDestroy(): void {
     // this.sub.unsubscribe()

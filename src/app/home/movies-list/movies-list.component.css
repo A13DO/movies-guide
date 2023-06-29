@@ -26,30 +26,30 @@ ul {
   /* in silder only */
   width: 150px;
 }
-
-.slider .nav {
-  position: relative;
-  width: 100%;
-  height: 350px;
-}
-.slider button.left {
+.slider i {
   position: absolute;
-  left: 0;
+  font-size: 26px;
   top: 50%;
   transform: translate(0 ,-50%);
+  z-index: 99;
+  cursor: pointer;
 }
-.slider button.right {
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translate(0 ,-50%);
+.slider i.left {
+  left: 12%;
 }
+.slider i.right {
+  right: 12%;
+}
+.slider i:hover {
+  color: #5c6179;
+}
+/* Responsive ######needed */
 .slider-holder {
   margin: 50px 0 50px 0;
-  width: 920px;
+  width: 900px;
   background-color: transparent;
   overflow: hidden;
-  position: absolute;
+  position: relative;
   left: 50%;
   transform: translate(-50% ,0);
   padding-top: 5px;
@@ -60,8 +60,11 @@ ul {
   /* left: -910px; */
   align-content: center;
   transition: 1s;
+  left: 15px;
+  margin: 0px;
+  padding: 0px;
 }
-
+/* left: -55.2rem; */
 .slider-movie .movie-card{
   width: 150px;
 }

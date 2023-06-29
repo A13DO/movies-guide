@@ -26,17 +26,40 @@
 }
 .logo {
 color: white;
+cursor: pointer;
 }
-.search-bar {
+.search-holder {
+  display: flex;
+  gap: 10px;
+}
+.bar-holder {
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: #14162b;
+}
+.bar-holder .search-icon {
+  color: #5c6179 !important;
+}
+.search-icon::placeholder {
+  color: #5c6179 !important;
+}
+.search-icon::-webkit-input-placeholder {
+  color: #5c6179 !important;
+}
+.bar-holder .search-bar {
   height: 25px;
   padding: 12px 12px;
   border-radius: 8px;
   border: none;
-  background-color: #252c36;
+  background-color: #14162b;
   color: #807769;
-  border: #4d4d4d 1px solid;
+  color: #5c6179 !important;
+  /* border: #4d4d4d 1px solid;*/
+
 }
-.search-bar:focus {
+.bar-holder .search-bar:focus {
   outline: none;
 }
 .search-btn {
@@ -60,6 +83,7 @@ color: white;
   transform: translate(-50%, 0%);
   color: #cedbe7;
 }
+/* #5c6179 search h 40px */
 /* Header in Movie Details Page */
 .style-2 {
   background-color: transparent !important;
@@ -94,10 +118,12 @@ color: white;
 } */
 a {
   text-decoration: none;
+}
+.links .link a {
   color: #aaa59d;
 
 }
-a::after {
+.links .link a::after {
   content: "";
   position: relative;
   bottom: -10px;
@@ -112,15 +138,11 @@ a::after {
   opacity: 0;
   display: block;
 }
-a:hover::after{
+.links .link a:hover::after{
   opacity: 1;
 }
-a:hover {
+.links .link a:hover {
   color: rgb(77, 201, 255);
-}
-
-a:active {
-  color: black;
 }
 
 /* .row {
