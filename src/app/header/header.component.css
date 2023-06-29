@@ -58,6 +58,27 @@ color: white;
   top: 90px;
   position: absolute;
   transform: translate(-50%, 0%);
+  color: #cedbe7;
+}
+/* Header in Movie Details Page */
+.style-2 {
+  background-color: transparent !important;
+}
+.style-2 > .container > .header {
+  background-color: transparent !important;
+}
+.style-2 > .container > .links {
+  left: 42% !important;
+  top: 22px !important;
+}
+.style-2 > .container > .links::after {
+  display: none !important;
+}
+.style-2 > .container > .links > li > a {
+  text-decoration: none;
+  color: #cedbe7;
+  text-transform: uppercase;
+  font-weight: bolder;
 }
 .links::after {
   content: "";
@@ -83,7 +104,7 @@ a::after {
   height: 3px;
   width: 100%;
   /* background-color: rgb(0 188 70); */
-  background-color: white;
+  background-color: rgb(77, 201, 255);
   left: 50%;
   transform: translate(-50%, 0%);
   transition: 0.5s;

@@ -9,11 +9,11 @@
       <span class="exit-button">X</span>
     </div>
     <div class="description">
-      <div>
-        <h4>{{ MovieName }}</h4>
+      <div class="title-holder">
+        <h3 class="movie-name">{{ MovieName }}</h3>
         <p>Director by: <strong class="director-name" (click)="goToDirectorPage($event)">{{ directorName }}</strong></p>
       </div>
-      <p><strong>{{ movieInfo.tagline }}</strong></p>
+      <p class="tagline"><strong>{{ movieInfo.tagline }}</strong></p>
       <p class="overview">{{ movieInfo.overview }}</p>
       <p>Rate: {{ movieInfo.vote_average }}</p>
       <p>release: {{ movieInfo.release_date }}m</p>

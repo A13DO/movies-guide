@@ -37,7 +37,6 @@ export class MoviesListComponent implements OnInit, OnDestroy {
     this.moviesList.nativeElement.scrollTop = this.moviesList.nativeElement.scrollHeight;
   }
   ngOnInit(): void {
-    console.log(this.moviesList)
     window.addEventListener('scroll', function() {
       // Get the current scroll position
       var scrollRate = document.documentElement.scrollTop;

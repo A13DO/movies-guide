@@ -4,6 +4,8 @@
 
 .container {
   position: relative;
+  /* Testing ============================= */
+  color: #b0aba0;
 }
 
 :host ::ng-deep app-header .header{
@@ -12,7 +14,7 @@
 .backdrop-holder {
   position: absolute;
   width: 100%;
-  top: -122px;
+  top: -148px;
   z-index: -10;
 }
 .backdrop {
@@ -70,9 +72,30 @@
   cursor: pointer;
 }
 
+.title-holder {
+ display: flex;
+ align-items: center;
+ gap: 10px;
+}
+.title-holder .movie-name {
+  color: white;
+}
+.title-holder p {
+  margin: 0;
+}
+.title-holder .director-name {
+  cursor: pointer;
+  color: #9bbdd0;
+}
+.title-holder .director-name:hover {
+  cursor: pointer;
+  color: #41a6d2;
+}
 
 
-
+.tagline {
+  text-transform: uppercase;
+}
 .description {
   display: flex;
   flex-direction: column;
@@ -187,11 +210,6 @@ a {
   align-items: center;
   justify-content: center;
 }
-.director-name {
-  cursor: pointer;
-}
-
-
 /*
 // Image
 position: absolute;
