@@ -100,15 +100,18 @@ export class MoviesRequestsService {
   getMovies(url: string) {
     return this.http.get<Movie[]>(url)
   }
-
+  draftList: any[] = [];
   deleteMovie(movie: Movie, componentName: string) {
 
     // know which component we work with and get it's movie
     this.identfiyWhichComponent(componentName)
-    // delete the movie
-    this.savedMovies = this.savedMovies.filter((moviee) =>
-      moviee.name !== movie.name
-      )
+    // add the movies i want to delete to one list
+    this.draftList.push(movie)
+    console.log(this.draftList)
+    // delete the movies
+    for (let m of this.draftList) {
+      this.savedMovies = this.savedMovies.filter((moviee) => moviee.name !== m.name)
+    }
     console.log(this.savedMovies)
     this.http.put(this.url, this.savedMovies).subscribe()
   }
