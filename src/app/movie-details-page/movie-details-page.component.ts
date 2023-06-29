@@ -52,6 +52,10 @@ favoritesUrl = "https://favorite-movies-f80e3-default-rtdb.firebaseio.com/favori
 
 // -----------
 currentMovie: any = {};
+// Get From FireBase
+watchedToggleClass!: boolean;
+favoriteToggleClass!: boolean;
+watchlistToggleClass!: boolean;
 ngOnInit(): void {
 
 
@@ -143,22 +147,59 @@ ngOnInit(): void {
       location.reload();
     }
   });
+// ================= Get Watched Status ====================
+  this.requestService.getMovies(this.watchedUrl)
+  .subscribe(
+    watchedMovies => {
+    // Check if movie exists in watched movies
+    for (let movie of watchedMovies) {
+    movie.id == this.currentMovie.id ? this.watchedToggleClass = true : this.watchedToggleClass = false;
+    };
+    }
+  )
+// ================= Get Watchlist Status ==================
+  this.requestService.getMovies(this.watchlistUrl)
+  .subscribe(
+    watchlistMovies => {
+    // Check if movie exists in watchlist movies
+      for (let movie of watchlistMovies) {
+        movie.id == this.currentMovie.id ? this.watchlistToggleClass = true : this.watchlistToggleClass = false;
+      }
+    }
+  )
+// ================= Get Favorite Status ====================
+  this.requestService.getMovies(this.favoritesUrl)
+  .subscribe(
+    favoriteMovies => {
+    // Check if movie exists in favorite movies
+      for (let movie of favoriteMovies) {
+        movie.id == this.currentMovie.id ? this.favoriteToggleClass = true : this.favoriteToggleClass = false;
+      }
+    }
+  )
 }
 
 // ================= Buttons ====================
-// + in NgOnit get movie status like movie-card and show button status
 addToWatched() {
   // add to watched database
   this.requestService.saveMovies(this.currentMovie, this.watchedUrl, this.WATCHED);
-  // (this.watchedToggleClass? (this.watchedToggleClass = false, this.requestService.deleteMovie(movie, componentName)) : this.watchedToggleClass = true);
+  // toggle
+  const componentName = this.WATCHED;
+  (this.watchedToggleClass? (this.watchedToggleClass = false, this.requestService.deleteMovie(this.currentMovie, componentName)) : this.watchedToggleClass = true);
 }
 addToWatchlist() {
   // add to watchlist database
   this.requestService.saveMovies(this.currentMovie, this.watchlistUrl, this.WATCHLIST);
+  // toggle
+  const componentName = this.WATCHLIST;
+  (this.watchlistToggleClass? (this.watchlistToggleClass = false, this.requestService.deleteMovie(this.currentMovie, componentName)) : this.watchlistToggleClass = true);
 }
 addToFavorites() {
   // add to favorites database
   this.requestService.saveMovies(this.currentMovie, this.favoritesUrl, this.FAVORITE);
+  // toggle
+  const componentName = this.FAVORITE;
+  (this.favoriteToggleClass? (this.favoriteToggleClass = false, this.requestService.deleteMovie(this.currentMovie, componentName)) : this.favoriteToggleClass = true);
 }
 // ================= Buttons ====================
 reloadPage() {
@@ -168,7 +209,6 @@ reloadPage() {
     }
   });
 }
-// ----------- Testing - Start -----------
 goToPersonPage(event: any) {
   // console.log(event.target.innerText)
   for (let person of this.movieCast.slice(0, 30)) {
@@ -176,7 +216,6 @@ goToPersonPage(event: any) {
       console.log("Name: " + person.name + " Id: " + person.id)
       this.router.navigate(["/people", person.name], {state: {id: person.id}});
     }
-    // else directorName
   }
 }
 goToDirectorPage(event: any) {
@@ -187,8 +226,6 @@ goToDirectorPage(event: any) {
     }
   }
 }
-// ----------- Testing - End -----------
-
 showTrailer() {
   this.requestService.getMovieTrailer(this.MovieId)
   .subscribe(

@@ -175,11 +175,18 @@ a {
 .option-btn {
   background-color: #22282f;
   color: #bbb5aa;
-  padding: 5px;
   border-radius: 5px;
   border: none;
+  width: 35px;
+  height: 35px;
 }
-
+.option-btn fa-icon {
+  color: rgb(161, 163, 160);
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .director-name {
   cursor: pointer;
 }

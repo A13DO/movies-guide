@@ -85,9 +85,9 @@ export class MovieCardComponent implements OnInit, OnDestroy{
     // Send Http Request
     this.requestService.saveMovies(movie, this.watchedUrl, this.WATCHED);
     // toggle icon
-    const componentName = "favorite";
+    const componentName = "watched";
 
-    (this.watchedToggleClass? (this.watchedToggleClass = false, this.requestService.deleteMovie(movie, componentName)) : this.watchedToggleClass = true); // error deletes wherever the movie
+    (this.watchedToggleClass? (this.watchedToggleClass = false, this.requestService.deleteMovie(movie, componentName)) : this.watchedToggleClass = true); // error the movie deletes wherever the movie
   }
   onAddToWatchlist(movie: Movie) {
     // Send Http Request
@@ -103,7 +103,7 @@ export class MovieCardComponent implements OnInit, OnDestroy{
     // Send Http Request
     this.requestService.saveMovies(movie, this.favoritesUrl, this.FAVORITE);
     // toggle icon
-    const componentName = "watched";
+    const componentName = "favorite";
     (this.favoriteToggleClass? (this.favoriteToggleClass = false, this.requestService.deleteMovie(movie, componentName)) : this.favoriteToggleClass = true);
   }
   deleteMovie(movie: Movie, componentName: string) {
