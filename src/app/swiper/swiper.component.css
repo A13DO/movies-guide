@@ -1,0 +1,22 @@
+/* .swiper {
+  width: 600px;
+  height: 300px;
+} */
+
+swiper-container {
+  width: 750px;
+}
+swiper-slide {
+  width: 120px;
+}
+swiper-slide img {
+  width: 100%;
+}
+:host ::ng-deep app-movie-card .movie-card {
+  /* in silder only */
+  width: 120px !important;
+}
+:host ::ng-deep app-movie-card {
+  /* in silder only */
+  width: 120px!important;
+}

@@ -1,0 +1,25 @@
+ul {
+  padding: 0;
+}
+
+.movie-section {
+  display: flex;
+  flex-direction: row;
+}
+.details .title {
+  display: flex;
+  align-items: center;
+}
+.details .title .name {
+  font-size: 17px;
+  margin: 0 10px 0px 30px
+}
+.details .title .year {
+  color: #b0aba0;
+}
+
+.details .overview {
+  margin: 30px;
+  color: #b0aba0;
+
+}

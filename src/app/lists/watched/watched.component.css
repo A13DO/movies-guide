@@ -1,0 +1,14 @@
+.list {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fill, minmax(115px, 115px));
+  /* grid-template-columns: repeat(auto-fill, 115px); */
+  gap: 32px;
+}
+:host ::ng-deep app-movie-card .movie-card {
+  width: 115px;
+}
+:host ::ng-deep app-nav-menu .nav-menu{
+  left: 0;
+  background-color: red;
+}

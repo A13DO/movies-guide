@@ -1,0 +1,51 @@
+.details {
+  display: flex;
+  flex-direction: row;
+}
+.details .movies {
+  flex-basis: 70%;
+}
+:host ::ng-deep app-movie-card .movie-card {
+  width: 120px;
+}
+img {
+  width: 120px;
+}
+.beforeName {
+  color: rgb(132 127 119);
+  width: fit-content;
+  padding: 0;
+  margin: 0;
+}
+.line {
+  width: 70%;
+}
+.list {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 120px));
+  gap: 32px;
+}
+
+
+
+
+
+
+
+/* right */
+.personDetails {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  padding: 0 30px;
+  align-items: center;
+}
+.profilePic {
+  width: 250px ;
+  padding: 30px;
+}
+
+.biography {
+  font-size: 14px;
+}

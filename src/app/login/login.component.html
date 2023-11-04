@@ -1,0 +1,22 @@
+<div class="container">
+  <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+    <label for="email">Email</label>
+    <input
+    class="form-control"
+    name="email"
+    type="email"
+    email
+    required
+    ngModel
+    >
+    <label for="password">Password</label>
+    <input
+    class="form-control"
+    name="password"
+    type="password"
+    required
+    ngModel
+    >
+    <button class="btn" type="submit">Log In</button>
+  </form>
+</div>

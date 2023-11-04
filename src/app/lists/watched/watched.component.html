@@ -1,0 +1,14 @@
+<p>Watched</p>
+<hr>
+<div class="list">
+  <app-movie-card
+  *ngFor="let movieEl of watchedMovies"
+  [movie]="movieEl"
+  [watchlistButton]="true"
+  [favoriteButton]="true"
+  [deleteButton]="true"
+  [componentName]="WATCHED"
+  >
+  </app-movie-card>
+</div>
+<app-loading></app-loading>

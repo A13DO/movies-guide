@@ -1,0 +1,26 @@
+<div class="container">
+  <p>results for "{{ searchParam['searchMovie'] }}"</p>
+  <hr>
+  <ul>
+    <li *ngFor="let searchMovie of searchMovies">
+      <div class="movie-section">
+        <app-movie-card
+        [movie]="searchMovie"
+        [watchedButton]="true"
+        [watchlistButton]="true"
+        [favoriteButton]="true"
+        ></app-movie-card>
+        <div class="details">
+          <div class="title">
+            <div class="name">{{ searchMovie.name }}</div>
+            <div class="year">{{ searchMovie.year }}</div>
+          </div>
+          <p class="overview">{{ searchMovie.overview }}</p>
+          <!-- <p>directed by: </p> -->
+        </div>
+      </div>
+      <hr>
+    </li>
+  </ul>
+</div>
+<app-loading></app-loading>

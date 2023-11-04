@@ -1,0 +1,89 @@
+body {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+/* .movie-card {
+  position: absolute;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+
+} */
+img {
+  min-height: 180px;
+}
+.rating {
+  position: absolute;
+}
+/* .poster { */
+  /*
+  width: 150px;
+  height: 190px;
+  */
+/* } */
+.card-options {
+  background-color: rgba(3, 4, 20, 0.61);
+  list-style: none;
+  gap: 5px;
+  margin: 0;
+  padding: 0;
+  /* postion */
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  justify-content: space-evenly;
+  z-index: 999;
+  /* display: flex; */
+  display: none;
+}
+
+.card-options button {
+  border-radius: 0;
+  background: none;
+  border: none;
+}
+.movie-card {
+  cursor: pointer;
+  position: relative;
+  transition: 0.2s;
+  /* width: 150px; */
+  /* Testing ====================== */
+  width: 120px;
+}
+img {
+  z-index: 2;
+}
+.movie-card::after {
+  content: '';
+  position: absolute;
+  width: calc(100% + 6px);
+  height: calc(100% + 6px);
+  left: 50%;
+  top: -3px;
+  transform: translate(-50%, 0);
+  border: 3px green solid;
+  opacity: 0;
+  transition: 0.3s;
+  z-index: -10;
+}
+.movie-card:hover::after {
+  opacity: 1;
+}
+.movie-card:hover .card-options {
+  display: flex;
+}
+
+/* #00e054 */
+button .green-color {
+  color: #00e054 !important;
+}
+/* #ff8101 */
+button .red-color {
+  color: red !important;
+}
+/* #40bcf4 */
+button .blue-color {
+  color: #40bcf4 !important;
+}

@@ -1,0 +1,24 @@
+<div class="container">
+  <div>
+    <p class="beforeName">FILMS STARRING</p>
+    <h4 class="name">{{urlParams.person}}</h4>
+  </div>
+  <hr class="line">
+  <div class="details">
+    <div class="movies list">
+      <app-movie-card
+      *ngFor="let personMovie of personMovies"
+      [movie]="personMovie"
+      [watchedButton]="true"
+      [watchlistButton]="true"
+      [favoriteButton]="true"
+      ></app-movie-card>
+    </div>
+    <div class="personDetails">
+      <img class="profilePic" [src]="profilePic" alt="image">
+      <p class="biography">{{ personDetails.biography }}</p>
+    </div>
+  </div>
+</div>
+<app-loading></app-loading>
+
