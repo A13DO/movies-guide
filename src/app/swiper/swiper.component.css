@@ -4,11 +4,12 @@
 } */
 
 swiper-container {
-  width: 750px;
+  width: 660px;
+  padding: 20px;
 }
-swiper-slide {
-  width: 120px;
-}
+/* swiper-slide  app-movie-card{
+  max-width: 120px;
+} */
 swiper-slide img {
   width: 100%;
 }
@@ -20,3 +21,8 @@ swiper-slide img {
   /* in silder only */
   width: 120px!important;
 }
+swiper-container swiper-slide:first-child {
+  margin-left: 15px !important;
+}
+
+

@@ -9,7 +9,7 @@
     <!-- #Trending Silder - Start -->
     <h3>Trending</h3>
     <!-- <hr> -->
-    <!-- <div class="slider">
+    <!-- <div class="sliders">
       <i class="fa-solid fa-chevron-left left" (click)="slideLeft()"></i>
       <i class="fa-solid fa-chevron-right right" (click)="slideRight()"></i>
       <div class="slider-holder">
@@ -27,7 +27,11 @@
         </ul>
       </div>
     </div> -->
-    <app-swiper [movies]="trendingMoives"></app-swiper>
+    <app-swiper
+    [movies]="trendingMoives"
+    (backdrop)="changeBackdrop($event)"
+    (defaultBackdrop)="onMouseLeave()"
+    ></app-swiper>
     <!-- #Trending Silder - End -->
     <!-- #Comeing Soon - Start-->
     <h3>Comeing Soon</h3>

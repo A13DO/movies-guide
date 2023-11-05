@@ -1,34 +1,25 @@
+<!-- navigation ="true" -->
 <swiper-container
- navigation ="true"
+[navigation]="{
+  prevEl: 'prev-btn',
+  nextEl: 'next-btn'
+}"
  pagination = "true"
  [slidesPerView]= "4"
  [slidesPerGroup]= "4"
  speed="1000"
  >
- <!-- [spaceBetween]="30" -->
-  <swiper-slide *ngFor="let movie of SliderMovies">
-    <app-movie-card [movie]="movie"></app-movie-card>
+ <!-- [spaceBetween]="25" -->
+  <swiper-slide  *ngFor="let movie of SliderMovies">
+    <app-movie-card
+    [movie]="movie"
+    [watchedButton]="true"
+    [watchlistButton]="true"
+    [favoriteButton]="true"
+    (mouseenter)="showImage($event)"
+    (mouseleave)="onMouseLeave()"
+    ></app-movie-card>
   </swiper-slide>
-  <!-- <swiper-slide><img src="https://m.media-amazon.com/images/I/61qCgQZyhOL._AC_UF894,1000_QL80_.jpg" alt=""></swiper-slide>
-  <swiper-slide><img src="https://m.media-amazon.com/images/I/61qCgQZyhOL._AC_UF894,1000_QL80_.jpg" alt=""></swiper-slide>
-  <swiper-slide><img src="https://m.media-amazon.com/images/I/61qCgQZyhOL._AC_UF894,1000_QL80_.jpg" alt=""></swiper-slide>
-  <swiper-slide><img src="https://visualprint-store.com/cdn/shop/products/oKPdkHo7v8o24gFJyJMV1U6Guhy.jpg?v=1666659642" alt=""></swiper-slide>
-  <swiper-slide><img src="https://visualprint-store.com/cdn/shop/products/oKPdkHo7v8o24gFJyJMV1U6Guhy.jpg?v=1666659642" alt=""></swiper-slide>
-  <swiper-slide><img src="https://visualprint-store.com/cdn/shop/products/oKPdkHo7v8o24gFJyJMV1U6Guhy.jpg?v=1666659642" alt=""></swiper-slide>
-  <swiper-slide><img src="https://visualprint-store.com/cdn/shop/products/oKPdkHo7v8o24gFJyJMV1U6Guhy.jpg?v=1666659642" alt=""></swiper-slide>
-  <swiper-slide><img src="https://i.pinimg.com/736x/09/40/9e/09409ee8f8235de402120bd8a4ceb1a9.jpg" alt=""></swiper-slide>
-  <swiper-slide><img src="https://i.pinimg.com/736x/09/40/9e/09409ee8f8235de402120bd8a4ceb1a9.jpg" alt=""></swiper-slide>
-  <swiper-slide><img src="https://i.pinimg.com/736x/09/40/9e/09409ee8f8235de402120bd8a4ceb1a9.jpg" alt=""></swiper-slide>
-  <swiper-slide><img src="https://i.pinimg.com/736x/09/40/9e/09409ee8f8235de402120bd8a4ceb1a9.jpg" alt=""></swiper-slide>
-  <swiper-slide><img src="https://i.pinimg.com/736x/09/40/9e/09409ee8f8235de402120bd8a4ceb1a9.jpg" alt=""></swiper-slide>
-  <swiper-slide><img src="https://i.pinimg.com/736x/09/40/9e/09409ee8f8235de402120bd8a4ceb1a9.jpg" alt=""></swiper-slide>
-  <swiper-slide><img src="https://m.media-amazon.com/images/I/61qCgQZyhOL._AC_UF894,1000_QL80_.jpg" alt=""></swiper-slide>
-  <swiper-slide><img src="https://visualprint-store.com/cdn/shop/products/oKPdkHo7v8o24gFJyJMV1U6Guhy.jpg?v=1666659642" alt=""></swiper-slide>
-  <swiper-slide><img src="https://i.pinimg.com/736x/09/40/9e/09409ee8f8235de402120bd8a4ceb1a9.jpg" alt=""></swiper-slide>
-  <swiper-slide><img src="https://i.pinimg.com/736x/09/40/9e/09409ee8f8235de402120bd8a4ceb1a9.jpg" alt=""></swiper-slide>
-  <swiper-slide><img src="https://i.pinimg.com/736x/09/40/9e/09409ee8f8235de402120bd8a4ceb1a9.jpg" alt=""></swiper-slide>
-  <swiper-slide><img src="https://i.pinimg.com/736x/09/40/9e/09409ee8f8235de402120bd8a4ceb1a9.jpg" alt=""></swiper-slide>
-  <swiper-slide><img src="https://i.pinimg.com/736x/09/40/9e/09409ee8f8235de402120bd8a4ceb1a9.jpg" alt=""></swiper-slide>
-  <swiper-slide><img src="https://i.pinimg.com/736x/09/40/9e/09409ee8f8235de402120bd8a4ceb1a9.jpg" alt=""></swiper-slide> -->
-
+  <div class="prev-btn" prevEl></div>
+  <div class="next-btn" nextEl></div>
 </swiper-container>
