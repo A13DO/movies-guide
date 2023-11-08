@@ -41,10 +41,6 @@
     <!-- Top Rated -->
     <h3>Top Rated</h3>
 
-    <button id="pageOneBtn" (click)="topRatedPageOne()">1</button>
-    <button id="pageTwoBtn"  (click)="topRatedPageTwo()">2</button>
-    <button id="pageThreeBtn"  (click)="topRatedPageThree()">3</button>
-    <button id="pageFourBtn"  (click)="topRatedPageFour($event)">4</button>
     <hr>
     <div class="">
       <div class="list" #moviesList>
@@ -58,5 +54,13 @@
       </div>
     </div>
     <hr>
+    <div class="pagination">
+      <button id="pervPageBtn"  (click)="pervPage()" [disabled]="(topRatedPageNum == 1)">&lt;</button>
+      <button id="pageOneBtn" (click)="topRatedPageOne()" [ngStyle]="{'backgroundColor': topRatedPageNum == 1 ? '#1d232a' : 'transparent'}">1</button>
+      <button id="pageTwoBtn"  (click)="topRatedPageTwo()" [ngStyle]="{'backgroundColor': topRatedPageNum == 2 ? '#1d232a' : 'transparent'}">2</button>
+      <button id="pageThreeBtn"  (click)="topRatedPageThree()" [ngStyle]="{'backgroundColor': topRatedPageNum == 3 ? '#1d232a' : 'transparent'}">3</button>
+      <button id="pageFourBtn"  (click)="topRatedPageFour($event)" [ngStyle]="{'backgroundColor': topRatedPageNum == 4 ? '#1d232a' : 'transparent'}">4</button>
+      <button id="nextPageBtn"  (click)="nextPage()" [disabled]="(topRatedPageNum == 4)">&gt;</button>
+    </div>
   </div>
 </div>

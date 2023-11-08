@@ -11,8 +11,16 @@ body {
 
 } */
 img {
-  min-height: 180px;
+  min-height: 120px;
+ }
+
+@media (max-width: 933px) {
+  img {
+    min-height: auto;
+    width: 62%;
+  }
 }
+
 .rating {
   position: absolute;
 }
@@ -87,3 +95,5 @@ button .red-color {
 button .blue-color {
   color: #40bcf4 !important;
 }
+
+

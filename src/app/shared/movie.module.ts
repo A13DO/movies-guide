@@ -28,7 +28,7 @@ export class Movie {
     this.overview = overview;
     this.year = year;
     this.posterimagePath = posterimagePath;
-    this.rating = rating;
+    this.rating = parseFloat(rating.toFixed(1));
     this.popularity = rating;
     this.backdropimagePath = backdropimagePath;
     this.directorName = directorName;

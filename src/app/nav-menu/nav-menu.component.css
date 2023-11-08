@@ -26,6 +26,12 @@
   }
 }
 
+/* @media (max-width: 800px) {
+  .links {
+    display: block;
+  }
+} */
+
 
 .links {
   display: flex;

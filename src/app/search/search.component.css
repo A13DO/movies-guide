@@ -23,3 +23,22 @@ ul {
   color: #b0aba0;
 
 }
+
+
+.pagination {
+  margin: 10px 0px 20px 0px;
+}
+.pagination > button {
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  color: white;
+  border: 1px solid #1d232a;
+  padding: 5px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+.pagination > button:disabled {
+  color: #213836;
+}

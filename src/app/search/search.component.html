@@ -1,4 +1,12 @@
 <div class="container">
+  <div class="pagination">
+    <button id="pervPageBtn"  (click)="pervPage()" [disabled]="(PageNum == 1)">&lt;</button>
+    <button id="pageOneBtn" (click)="PageOne()" [ngStyle]="{'backgroundColor': PageNum == 1 ? '#1d232a' : 'transparent'}">1</button>
+    <button id="pageTwoBtn"  (click)="PageTwo()" [ngStyle]="{'backgroundColor': PageNum == 2 ? '#1d232a' : 'transparent'}">2</button>
+    <button id="pageThreeBtn"  (click)="PageThree()" [ngStyle]="{'backgroundColor': PageNum == 3 ? '#1d232a' : 'transparent'}">3</button>
+    <button id="pageFourBtn"  (click)="PageFour()" [ngStyle]="{'backgroundColor': PageNum == 4 ? '#1d232a' : 'transparent'}">4</button>
+    <button id="nextPageBtn"  (click)="nextPage()" [disabled]="(PageNum == 4)">&gt;</button>
+  </div>
   <p>results for "{{ searchParam['searchMovie'] }}"</p>
   <hr>
   <ul>
@@ -22,5 +30,13 @@
       <hr>
     </li>
   </ul>
+  <div class="pagination">
+    <button id="pervPageBtn"  (click)="pervPage()" [disabled]="(PageNum == 1)">&lt;</button>
+    <button id="pageOneBtn" (click)="PageOne()" [ngStyle]="{'backgroundColor': PageNum == 1 ? '#1d232a' : 'transparent'}">1</button>
+    <button id="pageTwoBtn"  (click)="PageTwo()" [ngStyle]="{'backgroundColor': PageNum == 2 ? '#1d232a' : 'transparent'}">2</button>
+    <button id="pageThreeBtn"  (click)="PageThree()" [ngStyle]="{'backgroundColor': PageNum == 3 ? '#1d232a' : 'transparent'}">3</button>
+    <button id="pageFourBtn"  (click)="PageFour()" [ngStyle]="{'backgroundColor': PageNum == 4 ? '#1d232a' : 'transparent'}">4</button>
+    <button id="nextPageBtn"  (click)="nextPage()" [disabled]="(PageNum == 4)">&gt;</button>
+  </div>
 </div>
 <app-loading></app-loading>

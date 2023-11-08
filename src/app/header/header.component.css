@@ -149,6 +149,27 @@ a {
     display: none;
   }
 }
+@media (max-width: 800px) {
+  .links {
+    top: 100px;
+  }
+  .search-bar {
+    display: none;
+  }
+  .bar-holder {
+    background-color: transparent
+  }
+}
+
+.search-icon:checked .search-bar {
+  display: block;
+}
+
+
+
+
+
+
 
 /* .row {
   background-color: transparent;

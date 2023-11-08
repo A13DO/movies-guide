@@ -55,7 +55,7 @@ export class MoviesListComponent implements OnInit, OnDestroy {
             year: (new Date(movie.release_date)).getFullYear().toString(),
             posterimagePath: this.link + movie.poster_path,
             backdropimagePath: this.bdLink + movie.backdrop_path,
-            rating: movie.vote_average,
+            rating: parseFloat(movie.vote_average.toFixed(1)),
           })
         }
       }
@@ -128,7 +128,14 @@ export class MoviesListComponent implements OnInit, OnDestroy {
     // your code to fetch movies from API and display them
     this.moviesList.nativeElement.scrollTop = this.moviesList.nativeElement.scrollHeight;
   }
-
+  pervPage() {
+    this.topRatedPageNum--;
+    this.getTopRatedMoviess(this.topRatedPageNum);
+  }
+  nextPage() {
+    this.topRatedPageNum++;
+    this.getTopRatedMoviess(this.topRatedPageNum);
+  }
 
   pageNum: number = 0;
   slideLeft() {

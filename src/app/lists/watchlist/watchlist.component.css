@@ -23,3 +23,8 @@ ul {
   width: 150px;
   height: 190px;
 }
+@media (max-width: 991px) {
+  .list {
+    grid-template-columns: repeat(auto-fill, minmax(70px, 74px));
+  }
+}

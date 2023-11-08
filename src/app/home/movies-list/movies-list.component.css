@@ -44,7 +44,22 @@
   gap: 32px;
 
 }
+@media (max-width: 991px) {
+  .list {
+    grid-template-columns: repeat(auto-fill, minmax(70px, 74px));
+  }
+  .page-holder {
+    top: -535px !important;
+  }
+  .backdrop {
+    height: 40% !important;
+  }
+}
 
+:host ::ng-deep .list app-movie-card img {
+  min-height: 120px;
+  width: 60%;
+}
 
 ul {
   list-style: none;
@@ -116,3 +131,26 @@ ul {
 .slider-movie .movie-card{
   width: 150px;
 }
+
+.page-holder hr {
+  margin: 10px 0 20px 0;
+}
+.pagination {
+  margin: 10px 0px 0px 20px;
+}
+.pagination > button {
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  color: white;
+  border: 1px solid #1d232a;
+  padding: 5px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+
+}
+.pagination > button:disabled {
+  color: #213836;
+}
+/* Slider */

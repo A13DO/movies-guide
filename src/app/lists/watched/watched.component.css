@@ -12,3 +12,8 @@
   left: 0;
   background-color: red;
 }
+@media (max-width: 991px) {
+  .list {
+    grid-template-columns: repeat(auto-fill, minmax(70px, 74px));
+  }
+}
