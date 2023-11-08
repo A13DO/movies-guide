@@ -54,11 +54,15 @@
   .backdrop {
     height: 40% !important;
   }
+  :host ::ng-deep .list app-movie-card img {
+    min-height: 120px;
+    width: 60%;
+  }
 }
 
 :host ::ng-deep .list app-movie-card img {
   min-height: 120px;
-  width: 60%;
+  width:90%;
 }
 
 ul {

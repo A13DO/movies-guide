@@ -85,7 +85,7 @@ ngOnInit(): void {
       this.currentMovie.id = movieDetails.id;
       this.currentMovie.overview = movieDetails.overview;
       this.currentMovie.rating = movieDetails.vote_average;
-      this.currentMovie.year = movieDetails.release_date;
+      this.currentMovie.year = (new Date(movieDetails.release_date)).getFullYear().toString();
       this.currentMovie.posterimagePath = movieDetails.poster_path;
       console.log(this.currentMovie)
     }
@@ -119,7 +119,7 @@ ngOnInit(): void {
           name: movie.title,
           id: movie.id,
           overview: movie.overview,
-          year: (new Date(movie.release_date)).getFullYear().toString(),
+          year: movie.release_date,
           posterimagePath: this.posterLink + movie.poster_path,
           rating: movie.vote_average
         })
@@ -280,35 +280,13 @@ getSlideValue() {
 }
 
 }
-// I HAVE THE ID #DONE
-// next: GEEEEETTTT MORRRRRRRRE IIINNNFFFFOOOOO
-// note
-
-
-// when we click on movie (Blade Runner for exmple) we get it's name and navigate to http://localhost:4200/movie/bladerunner
-// and send the movie id with the name
-// the id
-// => to get rate, time, popularity
-// => cast
-// => more info...
-
-
-
-// <a [routerLink]=['users', 10, "anna"]></a> // navigate to users/10/anna
 
 
 
 
 
 
-// this.MovieName = this.route.snapshot.params['movie']; // drive
-// or
 
-// this.myRoute.params.subscribe(
-//   (params: Params) => {
-//     this.MovieName = params["movie"];
-//    }
-// ); (better)
 
 
 

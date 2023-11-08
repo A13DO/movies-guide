@@ -56,10 +56,25 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 10;
+  color: white;
+}
+.link a::after {
+  content: "";
+  width: 0;
+  height: 100%;
+  background-color: #394756;
+  position: absolute;
+  left: -22px;
+  top: 0px;
+  z-index: -10;
+  transition: 0.3s;
+  transform: skewX(-43deg) rotate(0deg);
 }
 
-
-
+.links a:hover::after {
+	width: 99%;
+}
 
 
 * {
@@ -82,6 +97,7 @@ a:hover {
 	color: #5BCDC3;
 	text-decoration: none;
 }
+
 
 a:active {
 	color: #000;

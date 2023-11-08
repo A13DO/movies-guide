@@ -3,7 +3,10 @@
     <img class="backdrop" [src]="movieInfo.backdrop_path" alt="image">
   </div>
   <div class="movie-info">
-    <img class="poster" [src]="movieInfo.poster_path" alt="image">
+    <div class="holder">
+      <img class="poster" [src]="movieInfo.poster_path" alt="image">
+
+    </div>
     <div class="modal">
       <img [src]="fullSPosterlink" class="modal-image">
       <span class="exit-button">X</span>
@@ -12,15 +15,16 @@
       <div class="title-holder">
         <!-- <h3 class="movie-name">{{ MovieName }}</h3> -->
         <h3 class="movie-name">{{ movieInfo.title }}</h3>
+        <p class="release-date">{{ currentMovie.year }}</p>
         <p>Director by: <strong class="director-name" (click)="goToDirectorPage($event)">{{ directorName }}</strong></p>
       </div>
       <p class="tagline"><strong>{{ movieInfo.tagline }}</strong></p>
       <p class="overview">{{ movieInfo.overview }}</p>
       <p>Rate: {{ movieInfo.vote_average }}</p>
-      <p>release: {{ movieInfo.release_date }}m</p>
-      <p>Time: {{ movieInfo.runtime }}m</p>
+      <!-- <p>release: {{ currentMovie.year }}</p> -->
+      <p>Time: {{ movieInfo.runtime }} mins</p>
       <div class="genres">
-        <p>GENRES</p>
+        <p>GENRES:</p>
         <p *ngFor="let genre of movieInfo.genres">
           {{ genre.name }}
         </p>
@@ -35,25 +39,6 @@
       </div>
       <h6>SIMILAR FILMS</h6>
       <hr class="cast-line">
-      <!-- <div class="similar-films slider">
-          <div class="nav">
-            <button class="left" (click)="slideLeft()">left</button>
-            <button class="right" (click)="slideRight()">right</button>
-          </div>
-          <div class="slider-holder">
-            <ul class="trending slider-movies" [ngStyle]="{'left': getSlideValue()}">
-              <li *ngFor="let recMovie of recommendedMovies" class="slider-movie">
-                <app-movie-card
-                [movie]="recMovie"
-                [watchedButton]="true"
-                [watchlistButton]="true"
-                [favoriteButton]="true"
-                ></app-movie-card>
-              </li>
-            </ul>
-          </div>
-      </div> -->
-      <!-- ============================== -->
       <div class="similar-films slider">
         <i class="fa-solid fa-chevron-left left" (click)="slideLeft()"></i>
         <i class="fa-solid fa-chevron-right right" (click)="slideRight()"></i>
@@ -112,8 +97,3 @@
 </div>
 <app-movie-trailer *ngIf="embedLink" [trailerLink]="embedLink" (close)="onCloseTrailer()"></app-movie-trailer>
 <app-loading></app-loading>
-
-<!-- <app-movie-trailer *ngIf="embedLink"  (close)="onCloseTrailer()"></app-movie-trailer> -->
-<!-- <div *ngFor="let movieImage of movieImages">
-  <img class="poster" [src]="movieImage.file_path" alt="image">
-</div> -->

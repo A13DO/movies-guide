@@ -93,7 +93,9 @@
   color: #41a6d2;
 }
 
-
+.release-date {
+  color: #9bbdd0;
+}
 .tagline {
   text-transform: uppercase;
 }
