@@ -17,27 +17,20 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { MovieCardModule } from './home/movies-list/movie-card/movie-card.module';
 import { LoadingModule } from './loading/loading.module';
-import { SwiperComponent } from './swiper/swiper.component';
 import { SwiperModule } from './swiper/swiper.module';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    // WatchlistComponent,
     HeaderComponent,
     MoviesListComponent,
-    // MovieCardComponent,
-    // FavoritesComponent,
-    // WatchedComponent,
-    // MovieDetailsPageComponent,
-    // MovieTrailerComponent,
     SearchComponent,
     PersonDetailsComponent,
     NavMenuComponent,
-    // LoadingComponent,
     LoginComponent,
-    // SwiperComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +40,12 @@ import { SwiperModule } from './swiper/swiper.module';
     FormsModule,
     LoadingModule,
     MovieCardModule,
-    SwiperModule
+    BrowserAnimationsModule,
+    SwiperModule,
+    ToastrModule.forRoot({
+      timeOut: 2000,
+      positionClass: 'toast-top-left'
+    }),
   ],
   providers: [SearchComponent, HttpInterceptproviders],
   bootstrap: [AppComponent],

@@ -12,20 +12,19 @@ export class WatchlistComponent implements OnInit, OnDestroy{
   // i need store to watchlist movies
   constructor(private watchlistService: MoviesRequestsService) {}
   watchlistMovies: any;
-  mySub: Subscription = new Subscription;
+  Sub: Subscription = new Subscription;
   watchlistUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/movies.json"
   WATCHLIST = "watchlist"
   ngOnInit() {
     console.log('Hello From Watchlist')
-    this.mySub =
+    this.Sub =
     this.watchlistService.getMovies(this.watchlistUrl).subscribe(
       movies => {
-        this.watchlistMovies = movies
-      console.log(movies)
+      this.watchlistMovies = movies;
     })
   }
   ngOnDestroy() {
-    this.mySub.unsubscribe()
+    this.Sub.unsubscribe()
   }
   // subscribe to show watchlist content
 }

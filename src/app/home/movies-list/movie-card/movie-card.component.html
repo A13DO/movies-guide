@@ -1,7 +1,6 @@
   <div class="movie-card">
     <span class="rating">{{ movie.rating }}</span>
     <img [routerLink]="['/movie', movie.name]" [state]="{id: movie.id}" class="img-fluid poster" [src]="movie.posterimagePath" alt="image">
-
         <ul class="card-options">
           <!-- onAddToWatched -->
           <li *ngIf="watchedButton">
@@ -37,22 +36,8 @@
             </button>
           </li>
           <li *ngIf="deleteButton"><button class="delete-button" (click)="deleteMovie(movie, componentName)">❌</button></li>
-          <!-- Old -->
-          <!-- <li *ngIf="buttons"><button (click)="onAddToWatched(movie)"><fa-icon style="color: rgb(161, 163, 160);" [icon]="faAdd"></fa-icon></button></li>
-          <li *ngIf="buttons"><button (click)="onAddToFavorites(movie)"><fa-icon style="color: rgb(161, 163, 160);" [icon]="faLove"></fa-icon></button></li>
-          <li *ngIf="buttons"><button (click)="onAddToWatchlist(movie)"><fa-icon style="color: rgb(161, 163, 160);" [icon]="faEye"></fa-icon></button></li>
-          <li *ngIf="!buttons"><button class="delete-button" (click)="deleteMovie(movie, componentName)">❌</button></li> -->
         </ul>
-      <!-- </div> -->
+        <div class="disable-cover"></div>
     </div>
 
 
-
-<!--
-old
-
-<li *ngIf="buttons"><button (click)="onAddToWatched(movie)">➕</button></li>
-<li *ngIf="buttons"><button (click)="onAddToFavorites(movie)">❤</button></li>
-<li *ngIf="buttons"><button (click)="onAddToWatchlist(movie)">👁</button></li>
-
--->

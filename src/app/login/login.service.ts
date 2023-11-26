@@ -43,36 +43,20 @@ export class LoginService {
       }
     ).pipe(
       tap(res => {
-        this.User.next(res);
         window.localStorage.setItem("isSignedIn", "true");
+        this.User.next(res);
+        this.router.navigate(["/home"]);
+        window.location.reload()
         }
       )
     )
-    // signInWithEmailAndPassword(auth, email, password)
-    // .then((userCredential) => {
-    //   // Signed in
-    //   const user = userCredential.user;
-    //   this.isSignedIn.next(true);
-    //   console.log(this.isSignedIn);
-    //   console.log(user);
 
-    //   this.router.navigate(["/home"]);
-
-    //   return true;
-    // })
-    // .catch((error) => {
-    //   const errorCode = error.code;
-    //   if (errorCode == 'auth/invalid-login-credentials') {
-    //     alert('Email or password not valid!');
-    //   }
-    //   return false;
-    // });
   }
   signOut() {
     signOut(auth).then(() => {
       this.isSignedIn.next(false);
-      window.localStorage.setItem("isSignedIn", "false");
-      console.log(this.isSignedIn);
+      window.localStorage.removeItem("isSignedIn");
+      window.location.reload()
     }
     ).catch()
   }

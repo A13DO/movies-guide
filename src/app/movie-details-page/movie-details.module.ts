@@ -14,7 +14,7 @@ const routes: Routes = [
     path: "",
     component: MovieDetailsPageComponent,
     children: [
-      {path: ":movie", component: MovieDetailsPageComponent}
+      {path: ":movie", component: MovieDetailsPageComponent},
     ]
   }
 ]
@@ -23,7 +23,7 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     MovieDetailsPageComponent,
-    MovieTrailerComponent
+    MovieTrailerComponent,
   ],
   imports: [
     RouterModule.forChild(routes),
@@ -31,7 +31,7 @@ const routes: Routes = [
     HttpClientModule,
     FontAwesomeModule,
     LoadingModule,
-    MovieCardModule
+    MovieCardModule,
   ]
 })
 

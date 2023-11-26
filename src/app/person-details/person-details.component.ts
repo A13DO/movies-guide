@@ -50,7 +50,7 @@ export class PersonDetailsComponent implements OnInit {
               overview: castMovie.overview,
               year: (new Date(castMovie.release_date)).getFullYear().toString(),
               posterimagePath: this.path + castMovie.poster_path,
-              rating: castMovie.vote_average
+              rating: parseFloat(castMovie.vote_average.toFixed(1))
             })
           }
           this.personMovies.sort((a, b) => b.rating - a.rating);

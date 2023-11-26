@@ -37,7 +37,7 @@ export class SearchComponent implements OnInit{
             overview: searchMovie.overview,
             year: (new Date(searchMovie.release_date)).getFullYear().toString(),
             posterimagePath: this.path + searchMovie.poster_path,
-            rating: searchMovie.vote_average
+            rating: parseFloat(searchMovie.vote_average.toFixed(1))
           })
         }
         console.log(searchMovies)

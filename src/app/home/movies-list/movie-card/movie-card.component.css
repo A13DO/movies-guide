@@ -42,7 +42,7 @@ img {
   left: 50%;
   transform: translate(-50%, 0);
   justify-content: space-evenly;
-  z-index: 999;
+  z-index: 100;
   /* display: flex; */
   display: none;
 }
@@ -97,3 +97,17 @@ button .blue-color {
 }
 
 
+.disable-cover {
+  display: none;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.461);
+  position: absolute;
+  top: 0;
+  z-index: 200;
+}
+
+.disable {
+  cursor: not-allowed;
+  display: block;
+}

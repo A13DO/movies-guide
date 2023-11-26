@@ -37,10 +37,23 @@
     <h3>Comeing Soon</h3>
     <hr>
     <!-- #Comeing Soon - End-->
+    <div class="">
+      <div class="list" #moviesList>
+        <app-movie-card
+        *ngFor="let movieEl of upcomingMoives"
+        [movie]="movieEl"
+        [watchedButton]="true"
+        [watchlistButton]="true"
+        [favoriteButton]="true"
+        [watchedStatus]="watchedIds && watchedIds.includes(movieEl.id) ? true : false"
+        [favoriteStatus]="favoriteIds && favoriteIds.includes(movieEl.id) ? true : false"
+        [watchlistStatus]="watchlistIds && watchlistIds.includes(movieEl.id) ? true : false"
+        ></app-movie-card>
+      </div>
+    </div>
 
     <!-- Top Rated -->
     <h3>Top Rated</h3>
-
     <hr>
     <div class="">
       <div class="list" #moviesList>
@@ -50,7 +63,11 @@
         [watchedButton]="true"
         [watchlistButton]="true"
         [favoriteButton]="true"
+        [watchedStatus]="watchedIds && watchedIds.includes(movieEl.id) ? true : false"
+        [favoriteStatus]="favoriteIds && favoriteIds.includes(movieEl.id) ? true : false"
+        [watchlistStatus]="watchlistIds && watchlistIds.includes(movieEl.id) ? true : false"
         ></app-movie-card>
+
       </div>
     </div>
     <hr>

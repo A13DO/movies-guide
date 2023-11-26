@@ -10,6 +10,9 @@ export class Movie {
   public popularity?: number;
   public directorName?: string;
   public movieStatus?: boolean;
+  public isWatched?: boolean;
+  public isFavorite?: boolean;
+  public isWatchList?: boolean;
   constructor(
   name: string,
   id: number,
@@ -19,8 +22,10 @@ export class Movie {
   rating: number,
   movieStatus: boolean = false,
   backdropimagePath?: string,
-  popularity?: number,
-  directorName?: string
+  directorName?: string,
+  isWatched?: boolean,
+  isFavorite?: boolean,
+  isWatchList?: boolean
   )
   {
     this.name = name;
@@ -33,6 +38,9 @@ export class Movie {
     this.backdropimagePath = backdropimagePath;
     this.directorName = directorName;
     this.movieStatus = movieStatus;
+    this.isWatched = isWatched;
+    this.isFavorite = isFavorite;
+    this.isWatchList = isWatchList;
   }
 }
 

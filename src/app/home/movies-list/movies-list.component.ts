@@ -3,19 +3,32 @@ import { map, Subscription } from 'rxjs';
 import { MoviesRequestsService } from './../../shared/movies-requests.service';
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 
+
 @Component({
   selector: 'app-movies-list',
   templateUrl: './movies-list.component.html',
   styleUrls: ['./movies-list.component.css']
 })
 export class MoviesListComponent implements OnInit, OnDestroy {
+  watchedIds!: number[];
+  favoriteIds!: number[];
+  watchlistIds!: number[];
+
   constructor(private moviesRequests: MoviesRequestsService) {}
   TMDBMoives: any;
+  watchedUrl = "https://watched-movies-36f2a-default-rtdb.firebaseio.com/watched.json"
+  watchlistUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/movies.json"
+  favoritesUrl = "https://favorite-movies-f80e3-default-rtdb.firebaseio.com/favorites.json"
   // trendinMoives: any;
   trendingMoives: Movie[] = [];
   topRatedMoives: Movie[] = [];
+  upcomingMoives: Movie[] = [];
+  watchlistMoives: Movie[] = [];
   topRatedPageNum = 1;
   poster!: string;
+  watchedToggleClass!: boolean;
+  watchlistToggleClass!: boolean;
+  favoriteToggleClass!: boolean;
   link: string = "https://image.tmdb.org/t/p/w220_and_h330_face/";
   bdLink: string = "https://image.tmdb.org/t/p/original/";
   backdropDiv: any ;
@@ -27,8 +40,6 @@ export class MoviesListComponent implements OnInit, OnDestroy {
   // to-do list
   //  - we need to know the push mehod we use to add to Moive[]
   //  - choose the detalis we need to be able to add movies wit my data Movie[]
-  //  -
-  //  -
   @ViewChild('moviesList')
   moviesList!: ElementRef;
 
@@ -38,8 +49,51 @@ export class MoviesListComponent implements OnInit, OnDestroy {
     this.moviesList.nativeElement.scrollTop = this.moviesList.nativeElement.scrollHeight;
   }
   ngOnInit(): void {
+        // Get Watched Status
+        this.moviesRequests.getMovies(this.watchedUrl)
+        .subscribe(
 
-    console.log(this.backdropDiv);
+          watchedMovies => {
+          if (watchedMovies) {
+            this.watchedIds = watchedMovies.map(obj => obj.id);
+            console.log(this.watchedIds);
+          } else if (!watchedMovies) {
+            // this.watchedIds = [];
+            console.log('The array is null or undefined.');
+          }
+          }
+        )
+        // Get Favorite Status
+        this.moviesRequests.getMovies(this.favoritesUrl)
+        .subscribe(
+          favoriteMovies => {
+            // favoriteMovies = [];
+            if (favoriteMovies) {
+              this.favoriteIds = favoriteMovies.map(obj => obj.id);
+              console.log(this.favoriteIds);
+            } else if (!favoriteMovies){
+              // this.favoriteIds = [];
+              console.log('The array is null or undefined.');
+            }
+          }
+        )
+        // Get Watchlist Status
+        this.moviesRequests.getMovies(this.watchlistUrl)
+        .subscribe(
+          watchlistMovies => {
+            // watchlistMovies = [];
+
+            if (watchlistMovies) {
+              this.watchlistIds = watchlistMovies.map(obj => obj.id);
+              console.log(this.watchlistIds);
+            } else if (!watchlistMovies){
+              // this.watchlistIds = [];
+              console.log('The array is null or undefined.');
+            };
+          }
+        )
+    this.getUpcomingMovies(1);
+    // console.log(this.backdropDiv);
 
     // this.backdropDiv = ;
     let scrollMovie = document.getElementById("");
@@ -58,6 +112,8 @@ export class MoviesListComponent implements OnInit, OnDestroy {
             rating: parseFloat(movie.vote_average.toFixed(1)),
           })
         }
+        console.log(this.trendingMoives);
+
       }
     )
     this.getTopRatedMoviess(this.topRatedPageNum)
@@ -71,6 +127,29 @@ export class MoviesListComponent implements OnInit, OnDestroy {
   onMouseLeave() {
       this.backdropDiv.style.backgroundImage = `url("https://wallpapers.com/images/hd/mysterious-officer-k-blade-runner-2049-4k-ugzq0o6fnr4xsfnw.jpg")`;
   }
+  getUpcomingMovies(upcomingPageNum: number) {
+      this.moviesRequests.getUpcomingMovies(upcomingPageNum) // pass page number
+    .subscribe(
+        data => {
+
+          for (let movie of data.results) {
+            this.upcomingMoives.push(
+            {
+            name: movie.title,
+            id: movie.id,
+            overview: movie.overview,
+            year: (new Date(movie.release_date)).getFullYear().toString(),
+            posterimagePath: this.link + movie.poster_path,
+            rating: parseFloat(movie.vote_average.toFixed(1)) // need edit
+            }
+          )
+        }
+        // console.log("COMING: ", this.upcomingMoives);
+
+        }
+      )
+    }
+  // Get Top Rated Movies
   getTopRatedMoviess(topRatedPageNum: number) {
       this.moviesRequests.getTopRatedMovies(topRatedPageNum) // pass page number
     .subscribe(
@@ -78,12 +157,12 @@ export class MoviesListComponent implements OnInit, OnDestroy {
           for (let movie of data.results) {
             this.topRatedMoives.push(
               {
-              name: movie.title,
+            name: movie.title,
             id: movie.id,
             overview: movie.overview,
             year: (new Date(movie.release_date)).getFullYear().toString(),
             posterimagePath: this.link + movie.poster_path,
-            rating: movie.vote_average // need edit
+            rating: parseFloat(movie.vote_average.toFixed(1))// need edit
             }
           )
         }
@@ -118,6 +197,7 @@ export class MoviesListComponent implements OnInit, OnDestroy {
       // window.scrollTo(0, this.scrollPosition);
       this.getTopRatedMoviess(this.topRatedPageNum)
       }
+
   topRatedPageFour(event: Event) {
     event.preventDefault();
     this.topRatedPageNum = 4;

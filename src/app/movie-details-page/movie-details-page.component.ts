@@ -121,7 +121,7 @@ ngOnInit(): void {
           overview: movie.overview,
           year: movie.release_date,
           posterimagePath: this.posterLink + movie.poster_path,
-          rating: movie.vote_average
+          rating: parseFloat(movie.vote_average.toFixed(1))
         })
       }
     }

@@ -32,9 +32,10 @@ export class HeaderComponent implements OnInit{
     let localStatus = window.localStorage.getItem("isSignedIn");
     if ( localStatus == "true") {
       this.isSignedIn = true;
-    } else if ( localStatus == "true") {
+    } else if (!localStatus) {
       this.isSignedIn = false;
     }
+    console.log(this.isSignedIn);
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
       // const regex = /(\/\w+)\/(\w+)(\/?)/;
@@ -44,7 +45,7 @@ export class HeaderComponent implements OnInit{
       console.log(this.currenturl)
       const matches = this.currenturl.match(regex);
       this.currentRoute = matches?.[1];
-      console.log(this.currentRoute)
+      // console.log(this.currentRoute)
       this.ifMovieRoute = this.currentRoute == "/movie"
       }
   })
@@ -60,13 +61,6 @@ export class HeaderComponent implements OnInit{
     // search value
     const searchTerm = this.searchBar.nativeElement.value;
     let pageNum = 1;
-    // edit
-    // this.SearchComponent.pageNumberSub.subscribe(
-    //     pageNumber => {
-    //       pageNum = pageNumber;
-    //       console.log(pageNum)
-    //     }
-    //   )
     // Search request                              //edit
     this.moviesRequests.searchForMovie(searchTerm, pageNum) // pageNumber
 

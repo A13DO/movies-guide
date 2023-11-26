@@ -12,6 +12,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.holder = document.querySelector(".page-holder") as HTMLInputElement;
     this.holder.style.left = "0"
+    document.body.style.overflowX = 'hidden';
   }
   getMenuStatus(status: any) {
     this.menuStatus = status;

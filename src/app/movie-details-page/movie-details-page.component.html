@@ -24,7 +24,7 @@
       <!-- <p>release: {{ currentMovie.year }}</p> -->
       <p>Time: {{ movieInfo.runtime }} mins</p>
       <div class="genres">
-        <p>GENRES:</p>
+        <p>GENRES</p>
         <p *ngFor="let genre of movieInfo.genres">
           {{ genre.name }}
         </p>
@@ -56,8 +56,6 @@
         </div>
       </div>
       <!-- ============================== -->
-
-
 
 
 
@@ -97,3 +95,7 @@
 </div>
 <app-movie-trailer *ngIf="embedLink" [trailerLink]="embedLink" (close)="onCloseTrailer()"></app-movie-trailer>
 <app-loading></app-loading>
+
+<span class="material-icons">
+
+  </span>

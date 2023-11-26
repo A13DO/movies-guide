@@ -4,6 +4,7 @@ import { Swiper } from 'swiper';
 // import function to register Swiper custom elements
 import { register } from 'swiper/element/bundle';
 import { Movie } from '../shared/movie.module';
+import { MoviesRequestsService } from '../shared/movies-requests.service';
 // register Swiper custom elements
 register();
 
@@ -13,25 +14,70 @@ register();
   styleUrls: ['./swiper.component.css']
 })
 export class SwiperComponent implements OnInit {
+  constructor(private moviesRequests: MoviesRequestsService) {}
 
+
+  watchedIds!: number[];
+  favoriteIds!: number[];
+  watchlistIds!: number[];
 
   SliderMovies!: Movie[];
   @Input() movies!: Movie[];
   @Output() backdrop: EventEmitter<any> = new EventEmitter();
   @Output() defaultBackdrop: EventEmitter<any> = new EventEmitter();
+  idArray: any;
+  watchedUrl = "https://watched-movies-36f2a-default-rtdb.firebaseio.com/watched.json";
+  favoritesUrl = "https://favorite-movies-f80e3-default-rtdb.firebaseio.com/favorites.json";
+  watchlistUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/movies.json";
   // backdropDiv: any;
   ngOnInit(): void {
     this.SliderMovies = this.movies;
+        // Get Watched Status
+        this.moviesRequests.getMovies(this.watchedUrl)
+        .subscribe(
+          watchedMovies => {
+            if (watchedMovies) {
+              this.watchedIds = watchedMovies.map(obj => obj.id);
+              console.log('watchedIds initialized:', this.watchedIds);
+            } else{
+              // this.watchedIds = []
+              console.log('The array is null or undefined.');
+          }
+          }
+        )
+        // Get Favorite Status
+        this.moviesRequests.getMovies(this.favoritesUrl)
+        .subscribe(
+          favoriteMovies => {
+            if (favoriteMovies) {
+              this.favoriteIds = favoriteMovies.map(obj => obj.id);
+              // console.log(this.favoriteIds);
+            } else if (!favoriteMovies){
+              this.favoriteIds = [];
+              console.log('The array is null or undefined.');
+            }
+          }
+        )
+        // Get Watchlist Status
+        this.moviesRequests.getMovies(this.watchlistUrl)
+        .subscribe(
+          watchlistMovies => {
+            if (watchlistMovies) {
+              this.watchlistIds = watchlistMovies.map(obj => obj.id);
+              // console.log(this.watchlistIds);
+            } else if (!watchlistMovies){
+              this.watchlistIds = [];
+              console.log('The array is null or undefined.');
+            };
+          }
+        )
   }
   showImage(event: Event) {
     let imgDiv = ((event.target as HTMLElement).children[0].getElementsByClassName("poster")[0]) as HTMLElement;
     // assign poster
     this.SliderMovies.find( (movie) => {
       if (movie.posterimagePath == imgDiv.getAttribute("src")) {
-        console.log(imgDiv.getAttribute("src"));
-        // backgroundImage shloud be backdropDiv.url
         this.backdrop.emit(movie.backdropimagePath)
-        // this.backdrop.style.backgroundImage = `url(${movie.backdropimagePath})`;
       }
     });
   }

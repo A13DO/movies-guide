@@ -15,14 +15,14 @@ export class NavMenuComponent implements OnInit{
   ngOnInit() {
     this.route.params.subscribe(
       params => {
-        console.log(params)
+        // console.log(params)
       }
     )
     this.toggleBtn = document.getElementById("gnavi")  as HTMLInputElement;
     this.menu = document.querySelector(".nav-menu") as HTMLInputElement;
     let navMenuStatus = window.localStorage.getItem("nav-menu-status");
-    console.log(this.menu)
-    console.log(navMenuStatus)
+    // console.log(this.menu)
+    // console.log(navMenuStatus)
 
     if (navMenuStatus == "true") {
       this.toggleBtn?.classList.add("nav-open");
