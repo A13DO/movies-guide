@@ -8,27 +8,22 @@ This is a web application for movie enthusiasts to keep track of their favorite 
 - [Technologies Used](#technologies-used)
 - [Getting Started](#getting-started)
 - [Usage](#usage)
-- [Contributing](#contributing)
 - [License](#license)
 
 ## Features
-
-- Home page with a list of popular movies
-- Search for movies by title
-- View movie details, including synopsis, cast, crew, and ratings
-- Watch trailers for movies
-- Create watchlists and mark movies as watched
-- View favorite movies and watched movies
+- Home page with a list of popular movies.
+- Search for movies by title.
+- View movie details, including cast, crew, and ratings.
+- Watch trailers for movies.
+- Add Movies to watchlists, watched list, favorites.
 
 ## Technologies Used
-
-- Angular
-- TypeScript
-- HTML/CSS
 - Bootstrap
 - Font Awesome
 - The Movie Database API
 - Firebase
+- Swiper
+- ngx-toastr
 
 ## Getting Started
 
