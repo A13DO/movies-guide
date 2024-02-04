@@ -8,12 +8,6 @@ swiper-container {
   padding: 20px;
 }
 
-@media (max-width: 800px) {
-  swiper-container {
-    width: 100%;
-    padding: 20px;
-  }
-}
 /* swiper-slide  app-movie-card{
   max-width: 120px;
 } */
@@ -22,7 +16,7 @@ swiper-slide img {
 }
 :host ::ng-deep app-movie-card .movie-card {
   /* in silder only */
-  width: 120px !important;
+  width: 120px ;
 }
 :host ::ng-deep app-movie-card {
   /* in silder only */
@@ -33,3 +27,31 @@ swiper-container swiper-slide:first-child {
 }
 
 
+@media (max-width: 767px) {
+  swiper-container {
+    width: 100%;
+    padding: 20px;
+  }
+  :host ::ng-deep app-movie-card .movie-card {
+    /* in silder only */
+    width: 155px;
+  }
+}
+@media (max-width: 933px) {
+  :host ::ng-deep app-movie-card .movie-card {
+    /* in silder only */
+    width: 155px;
+  }
+}
+
+
+/* Add any custom styles for your Swiper container and slides */
+.swiper-container {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  background-size: cover;
+  background-position: center;
+}

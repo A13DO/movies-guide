@@ -13,7 +13,7 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './movie-card.component.html',
   styleUrls: ['./movie-card.component.css']
 })
-export class MovieCardComponent implements OnInit, OnChanges,OnDestroy{
+export class MovieCardComponent implements OnInit, OnChanges, OnDestroy{
   @Input() movie!: Movie;
   @Input() componentName!: string;
   // with using *ngIf if the value is true the button will appear
@@ -32,25 +32,35 @@ export class MovieCardComponent implements OnInit, OnChanges,OnDestroy{
   // Firebase add movies.json to add file
   startTime: any;
   endTime: any;
-  watchedUrl = "https://watched-movies-36f2a-default-rtdb.firebaseio.com/watched.json"
-  watchlistUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/movies.json"
-  favoritesUrl = "https://favorite-movies-f80e3-default-rtdb.firebaseio.com/favorites.json"
+  // watchedUrl = "https://watched-movies-36f2a-default-rtdb.firebaseio.com/watched.json"
+  watchedUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/watched.json"
+  watchlistUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/watchlist.json"
+  favoritesUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/favorites.json"
+  // favoritesUrl = "https://favorite-movies-f80e3-default-rtdb.firebaseio.com/favorites.json"
   // Get From FireBase
   watchedToggleClass: boolean = false;
   favoriteToggleClass: boolean = false;
   watchlistToggleClass: boolean = false;
-
+  checkIfNotSignedIn() {
+    let isSignedIn = window.localStorage.getItem("isSignedIn");
+    if (!isSignedIn) {
+      this.watchedToggleClass = false;
+      this.watchlistToggleClass = false;
+      this.favoriteToggleClass = false;
+    }
+  }
 
   ngOnInit(): void {
-  if (this.watchedStatus == true) {
-    this.watchedToggleClass = true;
-  }
-  if (this.favoriteStatus == true) {
-    this.favoriteToggleClass = true;
-  }
-  if (this.watchlistStatus == true) {
-    this.watchlistToggleClass = true;
-  }
+    if (this.watchedStatus == true) {
+      this.watchedToggleClass = true;
+    }
+    if (this.favoriteStatus == true) {
+      this.favoriteToggleClass = true;
+    }
+    if (this.watchlistStatus == true) {
+      this.watchlistToggleClass = true;
+    }
+    this.checkIfNotSignedIn()
   }
   ngOnChanges(changes: SimpleChanges) {
     // Called whenever an input property changes
@@ -69,6 +79,7 @@ export class MovieCardComponent implements OnInit, OnChanges,OnDestroy{
         }
       }
     }
+  this.checkIfNotSignedIn()
   }
 
   mySub: Subscription = new Subscription;
@@ -78,33 +89,57 @@ export class MovieCardComponent implements OnInit, OnChanges,OnDestroy{
   FAVORITE = "favorite"
 
   onAddToWatched(movie: Movie) {
-    movie.isWatched = true;
-    console.log(movie);
-    // Send Http Request
-    this.requestService.saveMovies(movie, this.watchedUrl, this.WATCHED);
-    // toggle icon
-    const componentName = "watched";
-    // this.toastr.success(`${movie.name} Added To Watched List!`);
-    (this.watchedToggleClass? (this.watchedToggleClass = false, this.requestService.deleteMovie(movie, componentName)) : this.watchedToggleClass = true); // error the movie deletes wherever the movie
+    let isSignedIn = window.localStorage.getItem("isSignedIn");
+    if (isSignedIn == "true") {
+      // movie.isWatched = true;
+      const componentName = "watched";
+      // toggle
+      if (this.watchedToggleClass) {
+        this.watchedToggleClass = false;
+        this.requestService.deleteMovie(movie, componentName);
+      } else {
+        this.watchedToggleClass = true;
+        // Send Http Request
+        this.requestService.saveMovies(movie, this.watchedUrl, this.WATCHED);
+      }
+    } else if (!isSignedIn) {
+      this.router.navigate(["/login"]);
+    }
   }
   onAddToWatchlist(movie: Movie) {
-    movie.isWatchList = true;
-    console.log(movie);
-    // Send Http Request
-    this.requestService.saveMovies(movie, this.watchlistUrl, this.WATCHLIST);
-    // toggle icon
-    const componentName = "watchlist";
-    (this.watchlistToggleClass? (this.watchlistToggleClass = false, this.requestService.deleteMovie(movie, componentName)) : this.watchlistToggleClass = true);
-
+    let isSignedIn = window.localStorage.getItem("isSignedIn");
+    if (isSignedIn == "true") {
+      movie.isWatchList = true;
+      const componentName = "watchlist";
+      // toggle
+      if (this.watchlistToggleClass) {
+        this.watchlistToggleClass = false;
+        this.requestService.deleteMovie(movie, componentName);
+      } else if (this.watchlistToggleClass == false){
+        this.watchlistToggleClass = true;
+        // Send Http Request
+        this.requestService.saveMovies(movie, this.watchlistUrl, this.WATCHLIST);
+      }
+    } else if (!isSignedIn) {
+      this.router.navigate(["/login"]);
+    }
   }
   onAddToFavorites(movie: Movie) {
-    movie.isFavorite = true;
-    // Send Http Request
-    this.requestService.saveMovies(movie, this.favoritesUrl, this.FAVORITE);
-    // toggle icon
-    const componentName = "favorite";
-
-    (this.favoriteToggleClass? (this.favoriteToggleClass = false, this.requestService.deleteMovie(movie, componentName)) : this.favoriteToggleClass = true);
+    let isSignedIn = window.localStorage.getItem("isSignedIn");
+    if (isSignedIn == "true") {
+      movie.isFavorite = true;
+      const componentName = "favorite";
+      // toggle
+      if (this.favoriteToggleClass) {
+        this.favoriteToggleClass = false;
+        this.requestService.deleteMovie(movie, componentName);
+      } else {
+        this.favoriteToggleClass = true;
+        this.requestService.saveMovies(movie, this.favoritesUrl, this.FAVORITE);
+      }
+    } else if (!isSignedIn) {
+      this.router.navigate(["/login"]);
+    }
   }
   deleteMovie(movie: Movie, componentName: string) {
     console.log(movie)

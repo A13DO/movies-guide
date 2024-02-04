@@ -1,17 +1,19 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Movie } from './movie.module';
-import { Subject } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { Subject, exhaustMap, take, throwError } from 'rxjs';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
+import { LoginService } from '../login/login.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MoviesRequestsService {
-  constructor(private http: HttpClient, private toastr: ToastrService ) {
-    const watchlistUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/movies.json";
-    const favoritesUrl = "https://favorite-movies-f80e3-default-rtdb.firebaseio.com/favorites.json";
-    const watchedUrl = "https://watched-movies-36f2a-default-rtdb.firebaseio.com/watched.json";
+  constructor(private http: HttpClient, private toastr: ToastrService, private loginService: LoginService ) {
+    const watchlistUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/watchlist.json";
+    const watchedUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/watched.json";
+    const favoritesUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/favorites.json";
+
 
     interface MovieWatchlist {
       isWatched: boolean;
@@ -59,28 +61,30 @@ export class MoviesRequestsService {
   // we need fetched movies ###########
   saveMovies(newMovie: Movie, url: string, store: string) {
     // -----------------------------------
+    const idToken = window.localStorage.getItem("idToken");
     // check where we store the data
     const WATCHLIST = "watchlist"
     const FAVORITE = "favorite"
     const WATCHED = "watched"
+    let msgName;
     if (store === WATCHED) {
-      this.savedMovies = this.watchedMovies
-      this.toastr.success(`${newMovie.name} Added To Watched!`);
+      this.savedMovies = this.watchedMovies;
+      msgName = "Watched";
       newMovie.movieStatus = true;
     } else if (store === WATCHLIST) {
-      this.savedMovies = this.watchlistMovies
-      this.toastr.success(`${newMovie.name} Added To Watchlist!`);
+      this.savedMovies = this.watchlistMovies;
+      msgName = "Watchlist";
       newMovie.movieStatus = true;
     } else if (store === FAVORITE) {
-      this.savedMovies = this.favoriteMovies
-      this.toastr.success(`${newMovie.name} Added To Favorites!`);
+      this.savedMovies = this.favoriteMovies;
+      msgName = "Favorites";
       newMovie.movieStatus = true;
     }
 
     // -----------------------------------
     // check if the new movie already exits
-    const movieExists = this.savedMovies.some(movie => movie.name === newMovie.name);
-    console.log(movieExists)
+    let movieExists = this.savedMovies.some(movie => movie.name === newMovie.name);
+    console.log(this.savedMovies)
     if (!movieExists) {
       console.log("Added")
       // send data to dataBase
@@ -90,7 +94,8 @@ export class MoviesRequestsService {
       console.log(this.savedMovies)
       console.log("###########")
       // SEND MOVIES
-      this.http.put<Movie[]>(url, this.savedMovies).subscribe()
+      this.http.put<Movie[]>(url + `?auth=${idToken}`, this.savedMovies).subscribe()
+      this.toastr.success(`${newMovie.name} Added To ${msgName}!`);
     } else {
       console.log("Movie already added")
     }
@@ -98,20 +103,73 @@ export class MoviesRequestsService {
 
   // pipe to control key in response Data
   getMovies(url: string) {
-    return this.http.get<Movie[]>(url)
+    // return this.http.get<Movie[]>(url);
+
+    const idToken = window.localStorage.getItem("idToken");
+    return this.http.get<Movie[]>(url + `?auth=${idToken}`);
+
+    // if (idToken !== null) {
+    //   // const headers = new HttpHeaders().set("auth", `${idToken}`, )
+    //   const headers = new HttpHeaders({
+    //     'Content-Type': 'application/json',
+    //     'auth': `Bearer ${idToken}`
+    //   });
+    //   // return this.http.get<Movie[]>(url, {headers});
+    //   return this.http.get<Movie[]>(url + `?auth=${idToken}`);
+    // } else {
+    //   // idToken False
+    //   return this.http.get<Movie[]>(url);
+    // }
+    // return this.loginService.User.pipe(
+    //   take(1),
+    //   exhaustMap(user => {
+    //     console.log("USER", user);
+    //     const idToken = user.idToken;
+
+    //     if (user && user.idToken) {
+
+    //       return this.http.get<Movie[]>(url, {
+    //         params: new HttpParams().set('auth', idToken)
+    //       });
+    //     } else {
+    //       // Handle the case when user or idToken is null
+    //       // For example, you can redirect to the login page or handle it in some way.
+    //       // You might want to throw an error, log a message, or handle it based on your application's logic.
+    //       console.error('User or idToken is null.');
+    //       // Alternatively, you can return an observable with an error or empty data.
+    //       // return of([]); // Assuming RxJS's `of` function is imported
+    //       return throwError('User or idToken is null.'); // Assuming RxJS's `throwError` function is imported
+    //     }
+    // }))
   }
   draftList: any[] = [];
   deleteMovie(movie: Movie, componentName: string) {
-
+    const idToken = window.localStorage.getItem("idToken");
+    const WATCHLIST = "watchlist"
+    const FAVORITE = "favorite"
+    const WATCHED = "watched"
     // know which component we work with and get it's movie
     this.identfiyWhichComponent(componentName)
     // add the movies i want to delete to one list
     this.draftList.push(movie)
+    console.log("From draftList: " , this.draftList)
+
     // delete the movies
     for (let m of this.draftList) {
-      this.savedMovies = this.savedMovies.filter((moviee) => moviee.name !== m.name)
+      if (componentName === WATCHED) {
+        this.watchedMovies = this.savedMovies.filter((moviee) => moviee.name !== m.name);
+        this.savedMovies = this.watchedMovies;
+      } else if (componentName === WATCHLIST) {
+        this.watchlistMovies = this.savedMovies.filter((moviee) => moviee.name !== m.name);
+        this.savedMovies = this.watchlistMovies;
+      } else if (componentName === FAVORITE) {
+        this.favoriteMovies = this.savedMovies.filter((moviee) => moviee.name !== m.name);
+        this.savedMovies = this.favoriteMovies;
+      }
     }
-    this.http.put(this.url, this.savedMovies).subscribe()
+    console.log("From Delete: " , this.savedMovies)
+
+    this.http.put(this.url + `?auth=${idToken}`, this.savedMovies).subscribe()
     this.toastr.error(`${movie.name} Removed!`);
   }
 
@@ -122,9 +180,9 @@ export class MoviesRequestsService {
     const WATCHED = "watched"
     const WATCHLIST = "watchlist"
     const FAVORITE = "favorite"
-    const watchedUrl = "https://watched-movies-36f2a-default-rtdb.firebaseio.com/watched.json";
-    const watchlistUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/movies.json";
-    const favoritesUrl = "https://favorite-movies-f80e3-default-rtdb.firebaseio.com/favorites.json";
+    const watchedUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/watched.json";
+    const watchlistUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/watchlist.json";
+    const favoritesUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/favorites.json";
     if (componentName === WATCHED) {
       this.savedMovies = this.watchedMovies;
       this.url = watchedUrl;

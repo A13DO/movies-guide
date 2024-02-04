@@ -1,13 +1,24 @@
 
-
-
-
-
-
+- NEW TASKS
+-- responsive #done (expect small fix in details page)
+-- fix when delete action message #done
+-- add actions and show btns only in SingedIn Mode.
+-- use ngDestroy to unsubscribe
+-- fix swiper Movie-Details
+-- icon toggle change
+-- search responsive
+-- rating style
+-- MAKE ALL LISTS IN THE SAME REALTIME DATABASE
+-- card size fix in responsive
 ##to do list
+---- Coming Soon style (like google search)
+---- sign in token #done
+---- fix add to watched
+---- add orderd numbers on top movies
+
 
 - person-details-page
--- get movie status (watched..etc)
+-- get movie status (watched..etc) #done
 
 - search
 -- error page dont reload in second search #done
@@ -19,10 +30,10 @@
 - home
 -- background hover change #done
 -- add loading screen #done
--- responsive Movie-Details page
+-- authentication #done
+-- pagenation #done
+-- responsive Movie-Details page #done
 -- add rating (progress length = rate )
--- authentication
--- pagenation
 ACCESSABLiTY
 
 LAZY LOADING

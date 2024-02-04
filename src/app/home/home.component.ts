@@ -1,20 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Movie } from '../shared/movie.module';
+import { LoginService } from '../login/login.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent{
-  constructor() {}
+export class HomeComponent implements OnInit{
+  constructor(private loginService: LoginService) {}
   watchlistMovies: Movie[] = [];
-  // ngOnInit() {
-  //   this.watchlistService.movies.subscribe(
-  //     (      movies: Movie[]) => {
-  //     console.log("movies")
-  //     console.log(movies)
-  //     this.watchlistMovies = movies;
-  //   })
-  // }
+  expireTime: any;
+  ngOnInit() {
+    this.expireTime = window.localStorage.getItem("expiresIn")
+    this.loginService.setLogoutTimer(+this.expireTime)
+  }
   }

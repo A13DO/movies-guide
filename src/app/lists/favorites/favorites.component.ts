@@ -9,19 +9,37 @@ import { MoviesRequestsService } from '../../shared/movies-requests.service';
   styleUrls: ['./favorites.component.css']
 })
 export class FavoritesComponent implements OnInit {
-  constructor(private watchlistService: MoviesRequestsService) {}
+  constructor(private requestService: MoviesRequestsService) {}
   mySub: Subscription = new Subscription;
   favoriteMovies: Movie[] = [];
-  favoritesUrl = "https://favorite-movies-f80e3-default-rtdb.firebaseio.com/favorites.json"
+  watchedIds!: number[];
+  watchlistIds!: number[];
+  favoriteIds!: number[];
+  watchlistUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/watchlist.json";
+  watchedUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/watched.json";
+  favoritesUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/favorites.json";
   FAVORITE = "favorite"
   ngOnInit() {
     console.log('Hello From Watchlist')
     this.mySub =
-    this.watchlistService.getMovies(this.favoritesUrl).subscribe(
+    this.requestService.getMovies(this.favoritesUrl).subscribe(
       movies => {
         this.favoriteMovies = movies
-      console.log(movies)
     })
+    // ================= Get Watched Status ====================
+    this.requestService.getMovies(this.watchedUrl)
+    .subscribe(
+      watchedMovies => {
+        this.watchedIds = watchedMovies.map(obj => obj.id);
+      }
+    )
+    // ================= Get Watchlist Status ==================
+    this.requestService.getMovies(this.watchlistUrl)
+    .subscribe(
+      watchlistMovies => {
+        this.watchlistIds = watchlistMovies.map(obj => obj.id);
+      }
+    )
   }
   ngOnDestroy() {
 

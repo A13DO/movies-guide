@@ -8,6 +8,8 @@
     [watchlistButton]="true"
     [deleteButton]="true"
     [componentName]="FAVORITE"
+    [watchedStatus]="watchedIds && watchedIds.includes(movieEl.id) ? true : false"
+    [watchlistStatus]="watchlistIds && watchlistIds.includes(movieEl.id) ? true : false"
     ></app-movie-card>
   </div>
 <app-loading></app-loading>

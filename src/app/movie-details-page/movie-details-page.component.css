@@ -43,6 +43,7 @@
   width: 100%;
   align-items: flex-start;
 }
+
 /* Poster */
 .poster {
   width: 220px;
@@ -77,6 +78,9 @@
  display: flex;
  align-items: center;
  gap: 10px;
+}
+.movie-info .holder .title-holder{
+  display: none;
 }
 .title-holder .movie-name {
   color: white;
@@ -174,6 +178,7 @@ a {
 .options {
   /* margin: 80px 0 0 35px; */
   min-width: 200px;
+  max-width: 220px;
   height: 170px;
   font-size: 14px;
   display: flex;
@@ -182,6 +187,18 @@ a {
   gap: 5px;
   background-color: #394756;
   border-radius: 5px;
+}
+.movie-info .holder .options{
+  display: none;
+  margin-top: 30px;
+}
+@media (max-width: 1200px) {
+  .movie-info .holder .options{
+    display: flex;
+  }
+  .movie-info .options{
+    display: none;
+  }
 }
 .options .buttons {
   width: 100%;
@@ -213,6 +230,15 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+@media (max-width: 1200px) {
+  .movie-info .holder .options{
+    display: flex;
+  }
+  .movie-info .options{
+    display: none;
+  }
+
 }
 /*
 // Image
@@ -301,4 +327,83 @@ button .red-color {
 /* #40bcf4 */
 button .blue-color {
   color: #40bcf4 !important;
+}
+
+@media (max-width: 1400px) {
+  .movie-info {
+    top: 340px;
+  }
+}
+@media (max-width: 1200px) {
+  .movie-info {
+    top: 300px;
+  }
+}
+@media (max-width: 991px) {
+  .movie-info {
+    top: 140px;
+  }
+}
+@media (max-width: 767px) {
+  .movie-info {
+    top: 60px;
+    flex-direction: column;
+  }
+  .movie-info .holder {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .movie-info .holder .options {
+    display: none;
+  }
+  .movie-info .holder .title-holder{
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .movie-info .holder .title-holder p {
+    word-wrap: break-word;
+    width: 128px;
+  }
+  .movie-info .holder .title-holder .release-date {
+    color: #9bbdd0;
+    font-size: 16px;
+  }
+  .movie-info .holder .title-holder .trailer-link {
+    align-self: start;
+  }
+  .poster{
+    width: 120px;
+    margin-bottom: 20px;
+    margin-right: 10px;
+  }
+  .description{
+    width: 100%;
+  }
+  .description .title-holder{
+    display: none;
+  }
+}
+@media (max-width: 533px) {
+  .movie-info {
+    top: 45px;
+  }
+}
+@media (max-width: 533px) {
+  .movie-info {
+    top: 45px;
+  }
+}
+@media (max-width: 485px) {
+  .movie-info {
+    top: 15px;
+  }
+}
+@media (max-width: 391px) {
+  .movie-info {
+    top: -15px;
+  }
 }

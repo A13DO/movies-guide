@@ -14,6 +14,9 @@ import { faHeart, faPlus } from '@fortawesome/free-solid-svg-icons';
 })
 export class MovieDetailsPageComponent implements OnInit {
   highlight: any;
+  watchedIds!: number[];
+  watchlistIds!: number[];
+  favoriteIds!: number[];
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -24,7 +27,7 @@ export class MovieDetailsPageComponent implements OnInit {
   faLove = faHeart;
   faEye = faEye;
 movie!: Movie;
-movieInfo: any = [];
+movieInfo: any;
 directorName!: string;
 movieCast: any = [];
 movieCrew: any = [];
@@ -46,9 +49,9 @@ exitButton!: any;
 WATCHED = "watched"
 WATCHLIST = "watchlist"
 FAVORITE = "favorite"
-watchedUrl = "https://watched-movies-36f2a-default-rtdb.firebaseio.com/watched.json"
-watchlistUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/movies.json"
-favoritesUrl = "https://favorite-movies-f80e3-default-rtdb.firebaseio.com/favorites.json"
+watchedUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/watched.json"
+watchlistUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/watchlist.json"
+favoritesUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/favorites.json"
 
 // -----------
 currentMovie: any = {};
@@ -57,7 +60,6 @@ watchedToggleClass!: boolean;
 favoriteToggleClass!: boolean;
 watchlistToggleClass!: boolean;
 ngOnInit(): void {
-
 
   // http://localhost:4200/movie/drive
   // #name
@@ -132,74 +134,116 @@ ngOnInit(): void {
   this.modal = document.querySelector('.modal');
   this.modalImage = document.querySelector('.modal-image');
   this.exitButton = document.querySelector('.exit-button');
-
-    this.filmPoster.addEventListener('click', () => {
-      this.modal.style.display = 'flex';
+  // Check if Signed in to set buttons status
+  let isSignedIn = window.localStorage.getItem("isSignedIn");
+  if (!isSignedIn) {
+    this.watchedToggleClass = false;
+    this.watchlistToggleClass = false;
+    this.favoriteToggleClass = false;
+  } else {
+    // ================= Get Watched Status ====================
+    this.requestService.getMovies(this.watchedUrl)
+    .subscribe(
+      watchedMovies => {
+        this.watchedIds = watchedMovies.map(obj => obj.id);
+        // Check if movie exists in watched movies
+        this.watchedToggleClass = this.watchedIds && this.watchedIds.includes(+this.MovieId);
+      }
+    )
+    // ================= Get Watchlist Status ==================
+    this.requestService.getMovies(this.watchlistUrl)
+    .subscribe(
+      watchlistMovies => {
+        this.watchlistIds = watchlistMovies.map(obj => obj.id);
+      // Check if movie exists in watchlist movies
+      this.watchlistToggleClass = this.watchlistIds && this.watchlistIds.includes(+this.MovieId);
+      }
+    )
+    // ================= Get Favorite Status ====================
+    this.requestService.getMovies(this.favoritesUrl)
+    .subscribe(
+      favoriteMovies => {
+        this.favoriteIds = favoriteMovies.map(obj => obj.id);
+        // Check if movie exists in favorite movies
+        this.favoriteToggleClass = this.favoriteIds && this.favoriteIds.includes(+this.MovieId);
+        console.log("NIGGA: TRUE");
+      }
+    )
+      this.filmPoster.addEventListener('click', () => {
+        this.modal.style.display = 'flex';
+      });
+    this.modal.addEventListener('click', (event: { target: any; }) => {
+      if (event.target === this.modal || event.target === this.exitButton) {
+        this.modal.style.display = 'none';
+      }
     });
-  this.modal.addEventListener('click', (event: { target: any; }) => {
-    if (event.target === this.modal || event.target === this.exitButton) {
-      this.modal.style.display = 'none';
-    }
-  });
+  }
   // Reload
   this.router.events.subscribe(event => {
     if (event instanceof NavigationEnd) {
       location.reload();
     }
   });
-// ================= Get Watched Status ====================
-  this.requestService.getMovies(this.watchedUrl)
-  .subscribe(
-    watchedMovies => {
-    // Check if movie exists in watched movies
-    for (let movie of watchedMovies) {
-    movie.id == this.currentMovie.id ? this.watchedToggleClass = true : this.watchedToggleClass = false;
-    };
-    }
-  )
-// ================= Get Watchlist Status ==================
-  this.requestService.getMovies(this.watchlistUrl)
-  .subscribe(
-    watchlistMovies => {
-    // Check if movie exists in watchlist movies
-      for (let movie of watchlistMovies) {
-        movie.id == this.currentMovie.id ? this.watchlistToggleClass = true : this.watchlistToggleClass = false;
-      }
-    }
-  )
-// ================= Get Favorite Status ====================
-  this.requestService.getMovies(this.favoritesUrl)
-  .subscribe(
-    favoriteMovies => {
-    // Check if movie exists in favorite movies
-      for (let movie of favoriteMovies) {
-        movie.id == this.currentMovie.id ? this.favoriteToggleClass = true : this.favoriteToggleClass = false;
-      }
-    }
-  )
-}
 
+
+}
 // ================= Buttons ====================
 addToWatched() {
-  // add to watched database
-  this.requestService.saveMovies(this.currentMovie, this.watchedUrl, this.WATCHED);
-  // toggle
-  const componentName = this.WATCHED;
-  (this.watchedToggleClass? (this.watchedToggleClass = false, this.requestService.deleteMovie(this.currentMovie, componentName)) : this.watchedToggleClass = true);
+  let isSignedIn = window.localStorage.getItem("isSignedIn");
+  if (isSignedIn == "true") {
+    const componentName = "watched";
+    // toggle
+    if (this.watchedToggleClass) {
+      this.watchedToggleClass = false;
+      this.requestService.deleteMovie(this.currentMovie, componentName);
+    } else if (this.watchedToggleClass == false){
+      this.watchedToggleClass = true;
+      // Send Http Request
+      this.requestService.saveMovies(this.currentMovie, this.watchedUrl, this.WATCHED);
+    }
+  } else if (!isSignedIn) {
+    this.router.navigate(["/login"]);
+  }
+
+  // // add to watched database
+  // this.requestService.saveMovies(this.currentMovie, this.watchedUrl, this.WATCHED);
+  // // toggle
+  // const componentName = this.WATCHED;
+  // (this.watchedToggleClass? (this.watchedToggleClass = false, this.requestService.deleteMovie(this.currentMovie, componentName)) : this.watchedToggleClass = true);
 }
 addToWatchlist() {
-  // add to watchlist database
-  this.requestService.saveMovies(this.currentMovie, this.watchlistUrl, this.WATCHLIST);
-  // toggle
-  const componentName = this.WATCHLIST;
-  (this.watchlistToggleClass? (this.watchlistToggleClass = false, this.requestService.deleteMovie(this.currentMovie, componentName)) : this.watchlistToggleClass = true);
+  let isSignedIn = window.localStorage.getItem("isSignedIn");
+  if (isSignedIn == "true") {
+    const componentName = "watchlist";
+    // toggle
+    if (this.watchlistToggleClass) {
+      this.watchlistToggleClass = false;
+      this.requestService.deleteMovie(this.currentMovie, componentName);
+    } else if (this.watchlistToggleClass == false){
+      this.watchlistToggleClass = true;
+      // Send Http Request
+      this.requestService.saveMovies(this.currentMovie, this.watchlistUrl, this.WATCHLIST);
+    }
+  } else if (!isSignedIn) {
+    this.router.navigate(["/login"]);
+  }
 }
 addToFavorites() {
-  // add to favorites database
-  this.requestService.saveMovies(this.currentMovie, this.favoritesUrl, this.FAVORITE);
-  // toggle
-  const componentName = this.FAVORITE;
-  (this.favoriteToggleClass? (this.favoriteToggleClass = false, this.requestService.deleteMovie(this.currentMovie, componentName)) : this.favoriteToggleClass = true);
+  let isSignedIn = window.localStorage.getItem("isSignedIn");
+  if (isSignedIn == "true") {
+    const componentName = "favorite";
+    // toggle
+    if (this.favoriteToggleClass) {
+      this.favoriteToggleClass = false;
+      this.requestService.deleteMovie(this.currentMovie, componentName);
+    } else if (this.favoriteToggleClass == false){
+      this.favoriteToggleClass = true;
+      // Send Http Request
+      this.requestService.saveMovies(this.currentMovie, this.favoritesUrl, this.FAVORITE);
+    }
+  } else if (!isSignedIn) {
+    this.router.navigate(["/login"]);
+  }
 }
 // ================= Buttons ====================
 reloadPage() {

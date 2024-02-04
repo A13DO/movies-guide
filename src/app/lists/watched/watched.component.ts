@@ -9,17 +9,34 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./watched.component.css']
 })
 export class WatchedComponent implements OnInit, OnDestroy{
-  watchedUrl = "https://watched-movies-36f2a-default-rtdb.firebaseio.com/watched.json"
   watchedMovies: Movie[] = []
   mySub: Subscription = new Subscription;
-
+  watchlistIds!: number[];
+  favoriteIds!: number[];
+  watchlistUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/watchlist.json";
+  watchedUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/watched.json";
+  favoritesUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/favorites.json";
   WATCHED = "watched"
 
-  constructor(private requestMovies: MoviesRequestsService) {}
+  constructor(private requestService: MoviesRequestsService) {}
   ngOnInit(){
-    this.mySub = this.requestMovies.getMovies(this.watchedUrl).subscribe(
+    this.mySub = this.requestService.getMovies(this.watchedUrl).subscribe(
       movies => {
         this.watchedMovies = movies;
+      }
+    )
+    // ================= Get Watchlist Status ==================
+    this.requestService.getMovies(this.watchlistUrl)
+    .subscribe(
+      watchlistMovies => {
+        this.watchlistIds = watchlistMovies.map(obj => obj.id);
+      }
+    )
+    // ================= Get Favorite Status ====================
+    this.requestService.getMovies(this.favoritesUrl)
+    .subscribe(
+      favoriteMovies => {
+        this.favoriteIds = favoriteMovies.map(obj => obj.id);
       }
     )
   }

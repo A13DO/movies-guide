@@ -6,6 +6,9 @@ ul {
   display: flex;
   flex-direction: row;
 }
+:host ::ng-deep app-movie-card img {
+  width: 120px !important;
+}
 .details .title {
   display: flex;
   align-items: center;

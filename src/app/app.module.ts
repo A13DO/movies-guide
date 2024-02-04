@@ -41,6 +41,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     LoadingModule,
     MovieCardModule,
     BrowserAnimationsModule,
+    // MatFormFieldModule,
     SwiperModule,
     ToastrModule.forRoot({
       timeOut: 2000,

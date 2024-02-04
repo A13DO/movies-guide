@@ -7,6 +7,7 @@ import { LoadingModule } from "../loading/loading.module";
 import { MovieTrailerComponent } from "./movie-trailer/movie-trailer.component";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { MovieCardModule } from "../home/movies-list/movie-card/movie-card.module";
+import { SwiperModule } from "../swiper/swiper.module";
 
 
 const routes: Routes = [
@@ -32,6 +33,7 @@ const routes: Routes = [
     FontAwesomeModule,
     LoadingModule,
     MovieCardModule,
+    SwiperModule,
   ]
 })
 

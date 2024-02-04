@@ -18,7 +18,13 @@ export class PersonDetailsComponent implements OnInit {
   id: any;
   personDetails: any;
   personMovies: Movie[] = [];
-
+  watchedIds!: number[];
+  favoriteIds!: number[];
+  watchlistIds!: number[];
+  watchedUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/watched.json"
+  watchlistUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/watchlist.json"
+  favoritesUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/favorites.json"
+  // backdropDiv: any;
   path: string = "https://www.themoviedb.org/t/p/original/";
   profilePic!: string;
   ngOnInit(): void {
@@ -61,6 +67,44 @@ export class PersonDetailsComponent implements OnInit {
           this.personDetails = details;
           this.profilePic = this.path + details.profile_path;
           console.log(details)
+        }
+      )
+      this.requestsService.getMovies(this.watchedUrl)
+      .subscribe(
+        watchedMovies => {
+          if (watchedMovies) {
+            this.watchedIds = watchedMovies.map(obj => obj.id);
+            console.log('watchedIds initialized:', this.watchedIds);
+          } else{
+            // this.watchedIds = []
+            console.log('The array is null or undefined.');
+        }
+        }
+      )
+      // Get Favorite Status
+      this.requestsService.getMovies(this.favoritesUrl)
+      .subscribe(
+        favoriteMovies => {
+          if (favoriteMovies) {
+            this.favoriteIds = favoriteMovies.map(obj => obj.id);
+            // console.log(this.favoriteIds);
+          } else if (!favoriteMovies){
+            this.favoriteIds = [];
+            console.log('The array is null or undefined.');
+          }
+        }
+      )
+      // Get Watchlist Status
+      this.requestsService.getMovies(this.watchlistUrl)
+      .subscribe(
+        watchlistMovies => {
+          if (watchlistMovies) {
+            this.watchlistIds = watchlistMovies.map(obj => obj.id);
+            // console.log(this.watchlistIds);
+          } else if (!watchlistMovies){
+            this.watchlistIds = [];
+            console.log('The array is null or undefined.');
+          };
         }
       )
   }

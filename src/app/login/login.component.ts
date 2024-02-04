@@ -15,6 +15,10 @@ export class LoginComponent {
     const password = form.controls['password'];
     console.log("Password: ", password.value, "Status: ", password.status);
     // console.log(form);
-    this.loginService.signIn(email.value, password.value).subscribe()
+    this.loginService.signIn(email.value, password.value).subscribe(
+      res => {
+        console.log("response: ", res);
+      }
+    )
   }
 }

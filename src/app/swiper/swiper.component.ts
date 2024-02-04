@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Swiper } from 'swiper';
 // core version + navigation, pagination modules:
 // import function to register Swiper custom elements
 import { register } from 'swiper/element/bundle';
@@ -26,9 +25,9 @@ export class SwiperComponent implements OnInit {
   @Output() backdrop: EventEmitter<any> = new EventEmitter();
   @Output() defaultBackdrop: EventEmitter<any> = new EventEmitter();
   idArray: any;
-  watchedUrl = "https://watched-movies-36f2a-default-rtdb.firebaseio.com/watched.json";
-  favoritesUrl = "https://favorite-movies-f80e3-default-rtdb.firebaseio.com/favorites.json";
-  watchlistUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/movies.json";
+  watchedUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/watched.json";
+  favoritesUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/favorites.json";
+  watchlistUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/watchlist.json";
   // backdropDiv: any;
   ngOnInit(): void {
     this.SliderMovies = this.movies;
@@ -84,4 +83,18 @@ export class SwiperComponent implements OnInit {
   onMouseLeave() {
     this.defaultBackdrop.emit()
   }
+
+    // // Configure Swiper
+    // config: SwiperConfigInterface = {
+    //   effect: 'coverflow',
+    //   grabCursor: true,
+    //   centeredSlides: true,
+    //   slidesPerView: 4,
+    //   slidesPerGroup: 4,
+    //   speed: 1000,
+    //   navigation: {
+    //     nextEl: '.next-btn',
+    //     prevEl: '.prev-btn',
+    //   },
+    // };
 }

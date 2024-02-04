@@ -16,10 +16,9 @@ export class MoviesListComponent implements OnInit, OnDestroy {
 
   constructor(private moviesRequests: MoviesRequestsService) {}
   TMDBMoives: any;
-  watchedUrl = "https://watched-movies-36f2a-default-rtdb.firebaseio.com/watched.json"
-  watchlistUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/movies.json"
-  favoritesUrl = "https://favorite-movies-f80e3-default-rtdb.firebaseio.com/favorites.json"
-  // trendinMoives: any;
+  watchedUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/watched.json"
+  watchlistUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/watchlist.json"
+  favoritesUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/favorites.json"
   trendingMoives: Movie[] = [];
   topRatedMoives: Movie[] = [];
   upcomingMoives: Movie[] = [];
@@ -35,11 +34,6 @@ export class MoviesListComponent implements OnInit, OnDestroy {
   movieName!: string;
   sub!: Subscription;
   scrollPosition!: number;
-  // TMDB
-  // Get Trending Movie WHEN LOAD
-  // to-do list
-  //  - we need to know the push mehod we use to add to Moive[]
-  //  - choose the detalis we need to be able to add movies wit my data Movie[]
   @ViewChild('moviesList')
   moviesList!: ElementRef;
 
@@ -49,49 +43,47 @@ export class MoviesListComponent implements OnInit, OnDestroy {
     this.moviesList.nativeElement.scrollTop = this.moviesList.nativeElement.scrollHeight;
   }
   ngOnInit(): void {
-        // Get Watched Status
-        this.moviesRequests.getMovies(this.watchedUrl)
-        .subscribe(
-
-          watchedMovies => {
-          if (watchedMovies) {
-            this.watchedIds = watchedMovies.map(obj => obj.id);
-            console.log(this.watchedIds);
-          } else if (!watchedMovies) {
-            // this.watchedIds = [];
-            console.log('The array is null or undefined.');
-          }
-          }
-        )
-        // Get Favorite Status
-        this.moviesRequests.getMovies(this.favoritesUrl)
-        .subscribe(
-          favoriteMovies => {
-            // favoriteMovies = [];
-            if (favoriteMovies) {
-              this.favoriteIds = favoriteMovies.map(obj => obj.id);
-              console.log(this.favoriteIds);
-            } else if (!favoriteMovies){
-              // this.favoriteIds = [];
-              console.log('The array is null or undefined.');
-            }
-          }
-        )
-        // Get Watchlist Status
-        this.moviesRequests.getMovies(this.watchlistUrl)
-        .subscribe(
-          watchlistMovies => {
-            // watchlistMovies = [];
-
-            if (watchlistMovies) {
-              this.watchlistIds = watchlistMovies.map(obj => obj.id);
-              console.log(this.watchlistIds);
-            } else if (!watchlistMovies){
-              // this.watchlistIds = [];
-              console.log('The array is null or undefined.');
-            };
-          }
-        )
+    // Get Watched Status
+    this.moviesRequests.getMovies(this.watchedUrl)
+    .subscribe(
+      watchedMovies => {
+      if (watchedMovies) {
+        this.watchedIds = watchedMovies.map(obj => obj.id);
+        console.log(this.watchedIds);
+      } else if (!watchedMovies) {
+        // this.watchedIds = [];
+        console.log('The array is null or undefined.');
+      }
+      }
+    )
+    // Get Favorite Status
+    this.moviesRequests.getMovies(this.favoritesUrl)
+    .subscribe(
+      favoriteMovies => {
+        // favoriteMovies = [];
+        if (favoriteMovies) {
+          this.favoriteIds = favoriteMovies.map(obj => obj.id);
+          console.log(this.favoriteIds);
+        } else if (!favoriteMovies){
+          // this.favoriteIds = [];
+          console.log('The array is null or undefined.');
+        }
+      }
+    )
+    // Get Watchlist Status
+    this.moviesRequests.getMovies(this.watchlistUrl)
+    .subscribe(
+      watchlistMovies => {
+        // watchlistMovies = []
+        if (watchlistMovies) {
+          this.watchlistIds = watchlistMovies.map(obj => obj.id);
+          console.log(this.watchlistIds);
+        } else if (!watchlistMovies){
+          // this.watchlistIds = [];
+          console.log('The array is null or undefined.');
+        };
+      }
+    )
     this.getUpcomingMovies(1);
     // console.log(this.backdropDiv);
 
@@ -113,7 +105,6 @@ export class MoviesListComponent implements OnInit, OnDestroy {
           })
         }
         console.log(this.trendingMoives);
-
       }
     )
     this.getTopRatedMoviess(this.topRatedPageNum)

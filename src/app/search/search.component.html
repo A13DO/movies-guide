@@ -17,6 +17,9 @@
         [watchedButton]="true"
         [watchlistButton]="true"
         [favoriteButton]="true"
+        [watchedStatus]="watchedIds && watchedIds.includes(searchMovie.id) ? true : false"
+        [favoriteStatus]="favoriteIds && favoriteIds.includes(searchMovie.id) ? true : false"
+        [watchlistStatus]="watchlistIds && watchlistIds.includes(searchMovie.id) ? true : false"
         ></app-movie-card>
         <div class="details">
           <div class="title">

@@ -4,8 +4,46 @@
   </div>
   <div class="movie-info">
     <div class="holder">
+      <!-- appear in Mobile Size Only -->
+      <div class="title-holder">
+        <!-- <h3 class="movie-name">{{ MovieName }}</h3> -->
+        <h3 class="movie-name">{{ movieInfo.title }} <span class="release-date">{{ currentMovie.year }}</span></h3>
+        <p>Director by: <strong class="director-name" (click)="goToDirectorPage($event)">{{ directorName }}</strong></p>
+        <button class="trailer-link" (click)="showTrailer()">Trailer</button>
+      </div>
       <img class="poster" [src]="movieInfo.poster_path" alt="image">
-
+      <!-- appear in Mobile Size Only -->
+      <div class="options">
+        <div class="buttons">
+          <button class="watched-button option-btn" (click)="addToWatched()">
+            <fa-icon
+            class="button-icon"
+            [ngClass]="{ 'green-color' : watchedToggleClass }"
+            style="color: rgb(161, 163, 160);"
+            [icon]="faAdd">
+          </fa-icon>
+          </button>
+          <button class="favorite-button option-btn" (click)="addToFavorites()">
+            <fa-icon
+            class="button-icon"
+            [ngClass]="{ 'red-color' : favoriteToggleClass }"
+            style="color: rgb(161, 163, 160);"
+            [icon]="faLove">
+            </fa-icon>
+          </button>
+          <button class="watchlist-button option-btn" (click)="addToWatchlist()">
+            <fa-icon
+            class="button-icon"
+            [ngClass]="{ 'blue-color' : watchlistToggleClass }"
+            style="color: rgb(161, 163, 160);"
+            [icon]="faEye">
+            </fa-icon>
+          </button>
+        </div>
+        <hr>
+        <!-- <a class="trailer-link" [href]="fullTrailerLink" target="_blank">Trailer</a> -->
+        <button class="trailer-link" (click)="showTrailer()">Trailer</button>
+      </div>
     </div>
     <div class="modal">
       <img [src]="fullSPosterlink" class="modal-image">
@@ -39,7 +77,10 @@
       </div>
       <h6>SIMILAR FILMS</h6>
       <hr class="cast-line">
-      <div class="similar-films slider">
+      <app-swiper
+      [movies]="recommendedMovies"
+      ></app-swiper>
+      <!-- <div class="similar-films slider">
         <i class="fa-solid fa-chevron-left left" (click)="slideLeft()"></i>
         <i class="fa-solid fa-chevron-right right" (click)="slideRight()"></i>
         <div class="slider-holder">
@@ -50,15 +91,15 @@
               [watchedButton]="true"
               [watchlistButton]="true"
               [favoriteButton]="true"
+              [watchedStatus]="watchedIds && watchedIds.includes(recMovie.id) ? true : false"
+              [favoriteStatus]="favoriteIds && favoriteIds.includes(recMovie.id) ? true : false"
+              [watchlistStatus]="watchlistIds && watchlistIds.includes(recMovie.id) ? true : false"
               ></app-movie-card>
             </li>
           </ul>
         </div>
-      </div>
+      </div> -->
       <!-- ============================== -->
-
-
-
     </div>
     <div class="options">
       <div class="buttons">
