@@ -3,6 +3,7 @@ import { Movie } from '../../shared/movie.module';
 import { MoviesRequestsService } from '../../shared/movies-requests.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/login/login.service';
+import { LinksService } from 'src/app/shared/links.service';
 
 @Component({
   selector: 'app-watchlist',
@@ -10,13 +11,13 @@ import { LoginService } from 'src/app/login/login.service';
   styleUrls: ['./watchlist.component.css']
 })
 export class WatchlistComponent implements OnInit, OnDestroy{
+  constructor(private requestService: MoviesRequestsService, private loginService: LoginService, private linksService: LinksService) {}
   watchedIds!: number[];
   favoriteIds!: number[];
-  watchlistUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/watchlist.json";
-  watchedUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/watched.json";
-  favoritesUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/favorites.json";
+  watchedUrl = this.linksService.watchedUrl;
+  watchlistUrl = this.linksService.watchlistUrl;
+  favoritesUrl = this.linksService.favoritesUrl;
   // i need store to watchlist movies
-  constructor(private requestService: MoviesRequestsService, private loginService: LoginService) {}
   watchlistMovies: any;
   Sub: Subscription = new Subscription;
   WATCHLIST = "watchlist"

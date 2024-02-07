@@ -4,17 +4,16 @@ import { Subject, exhaustMap, take, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { LoginService } from '../login/login.service';
+import { LinksService } from './links.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MoviesRequestsService {
-  constructor(private http: HttpClient, private toastr: ToastrService, private loginService: LoginService ) {
-    const watchlistUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/watchlist.json";
-    const watchedUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/watched.json";
-    const favoritesUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/favorites.json";
-
-
+  constructor(private http: HttpClient, private toastr: ToastrService, private loginService: LoginService, private linksService: LinksService ) {
+    const watchlistUrl = this.linksService.watchedUrl;
+    const watchedUrl = this.linksService.watchlistUrl;
+    const favoritesUrl = this.linksService.favoritesUrl;
     interface MovieWatchlist {
       isWatched: boolean;
       isFavorited: boolean;
@@ -107,40 +106,6 @@ export class MoviesRequestsService {
 
     const idToken = window.localStorage.getItem("idToken");
     return this.http.get<Movie[]>(url + `?auth=${idToken}`);
-
-    // if (idToken !== null) {
-    //   // const headers = new HttpHeaders().set("auth", `${idToken}`, )
-    //   const headers = new HttpHeaders({
-    //     'Content-Type': 'application/json',
-    //     'auth': `Bearer ${idToken}`
-    //   });
-    //   // return this.http.get<Movie[]>(url, {headers});
-    //   return this.http.get<Movie[]>(url + `?auth=${idToken}`);
-    // } else {
-    //   // idToken False
-    //   return this.http.get<Movie[]>(url);
-    // }
-    // return this.loginService.User.pipe(
-    //   take(1),
-    //   exhaustMap(user => {
-    //     console.log("USER", user);
-    //     const idToken = user.idToken;
-
-    //     if (user && user.idToken) {
-
-    //       return this.http.get<Movie[]>(url, {
-    //         params: new HttpParams().set('auth', idToken)
-    //       });
-    //     } else {
-    //       // Handle the case when user or idToken is null
-    //       // For example, you can redirect to the login page or handle it in some way.
-    //       // You might want to throw an error, log a message, or handle it based on your application's logic.
-    //       console.error('User or idToken is null.');
-    //       // Alternatively, you can return an observable with an error or empty data.
-    //       // return of([]); // Assuming RxJS's `of` function is imported
-    //       return throwError('User or idToken is null.'); // Assuming RxJS's `throwError` function is imported
-    //     }
-    // }))
   }
   draftList: any[] = [];
   deleteMovie(movie: Movie, componentName: string) {
@@ -180,9 +145,9 @@ export class MoviesRequestsService {
     const WATCHED = "watched"
     const WATCHLIST = "watchlist"
     const FAVORITE = "favorite"
-    const watchedUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/watched.json";
-    const watchlistUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/watchlist.json";
-    const favoritesUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/favorites.json";
+    const watchlistUrl = this.linksService.watchedUrl;
+    const watchedUrl = this.linksService.watchlistUrl;
+    const favoritesUrl = this.linksService.favoritesUrl;
     if (componentName === WATCHED) {
       this.savedMovies = this.watchedMovies;
       this.url = watchedUrl;

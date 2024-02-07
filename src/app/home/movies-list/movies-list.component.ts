@@ -2,7 +2,8 @@ import { Movie } from './../../shared/movie.module';
 import { map, Subscription } from 'rxjs';
 import { MoviesRequestsService } from './../../shared/movies-requests.service';
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
-
+import { jwtDecode } from 'jwt-decode';
+import { LinksService } from 'src/app/shared/links.service';
 
 @Component({
   selector: 'app-movies-list',
@@ -14,11 +15,11 @@ export class MoviesListComponent implements OnInit, OnDestroy {
   favoriteIds!: number[];
   watchlistIds!: number[];
 
-  constructor(private moviesRequests: MoviesRequestsService) {}
+  constructor(private moviesRequests: MoviesRequestsService, private linksService: LinksService) {}
   TMDBMoives: any;
-  watchedUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/watched.json"
-  watchlistUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/watchlist.json"
-  favoritesUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/favorites.json"
+  watchedUrl = this.linksService.watchedUrl;
+  watchlistUrl = this.linksService.watchlistUrl;
+  favoritesUrl = this.linksService.favoritesUrl;
   trendingMoives: Movie[] = [];
   topRatedMoives: Movie[] = [];
   upcomingMoives: Movie[] = [];

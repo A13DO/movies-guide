@@ -4,6 +4,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { register } from 'swiper/element/bundle';
 import { Movie } from '../shared/movie.module';
 import { MoviesRequestsService } from '../shared/movies-requests.service';
+import { LinksService } from '../shared/links.service';
 // register Swiper custom elements
 register();
 
@@ -13,7 +14,7 @@ register();
   styleUrls: ['./swiper.component.css']
 })
 export class SwiperComponent implements OnInit {
-  constructor(private moviesRequests: MoviesRequestsService) {}
+  constructor(private moviesRequests: MoviesRequestsService, private linksService: LinksService) {}
 
 
   watchedIds!: number[];
@@ -25,9 +26,9 @@ export class SwiperComponent implements OnInit {
   @Output() backdrop: EventEmitter<any> = new EventEmitter();
   @Output() defaultBackdrop: EventEmitter<any> = new EventEmitter();
   idArray: any;
-  watchedUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/watched.json";
-  favoritesUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/favorites.json";
-  watchlistUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/watchlist.json";
+  watchlistUrl = this.linksService.watchedUrl;
+  watchedUrl = this.linksService.watchlistUrl;
+  favoritesUrl = this.linksService.favoritesUrl;
   // backdropDiv: any;
   ngOnInit(): void {
     this.SliderMovies = this.movies;

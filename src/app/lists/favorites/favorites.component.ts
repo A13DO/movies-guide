@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Movie } from '../../shared/movie.module';
 import { MoviesRequestsService } from '../../shared/movies-requests.service';
+import { LinksService } from 'src/app/shared/links.service';
 
 @Component({
   selector: 'app-favorites',
@@ -9,15 +10,15 @@ import { MoviesRequestsService } from '../../shared/movies-requests.service';
   styleUrls: ['./favorites.component.css']
 })
 export class FavoritesComponent implements OnInit {
-  constructor(private requestService: MoviesRequestsService) {}
+  constructor(private requestService: MoviesRequestsService, private linksService: LinksService) {}
   mySub: Subscription = new Subscription;
   favoriteMovies: Movie[] = [];
   watchedIds!: number[];
   watchlistIds!: number[];
   favoriteIds!: number[];
-  watchlistUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/watchlist.json";
-  watchedUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/watched.json";
-  favoritesUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/favorites.json";
+  watchedUrl = this.linksService.watchedUrl;
+  watchlistUrl = this.linksService.watchlistUrl;
+  favoritesUrl = this.linksService.favoritesUrl;
   FAVORITE = "favorite"
   ngOnInit() {
     console.log('Hello From Watchlist')

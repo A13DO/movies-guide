@@ -1,3 +1,4 @@
+import { LinksService } from './../../../shared/links.service';
 import { MoviesRequestsService } from '../../../shared/movies-requests.service';
 import { Component, Input, OnInit, OnDestroy, OnChanges, SimpleChanges } from '@angular/core';
 import { Movie } from 'src/app/shared/movie.module';
@@ -7,6 +8,7 @@ import { faEye } from '@fortawesome/free-regular-svg-icons';
 import { faHeart, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { jwtDecode } from 'jwt-decode';
 // import
 @Component({
   selector: 'app-movie-card',
@@ -28,14 +30,18 @@ export class MovieCardComponent implements OnInit, OnChanges, OnDestroy{
   faAdd = faPlus;
   faLove = faHeart;
   faEye = faEye;
-  constructor(private router: Router, private requestService: MoviesRequestsService, private http: HttpClient){}
+  constructor(
+    private router: Router,
+    private requestService: MoviesRequestsService,
+    private linksService: LinksService
+    ){}
   // Firebase add movies.json to add file
   startTime: any;
   endTime: any;
   // watchedUrl = "https://watched-movies-36f2a-default-rtdb.firebaseio.com/watched.json"
-  watchedUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/watched.json"
-  watchlistUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/watchlist.json"
-  favoritesUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/favorites.json"
+  watchedUrl = this.linksService.watchedUrl;
+  watchlistUrl = this.linksService.watchlistUrl;
+  favoritesUrl = this.linksService.favoritesUrl;
   // favoritesUrl = "https://favorite-movies-f80e3-default-rtdb.firebaseio.com/favorites.json"
   // Get From FireBase
   watchedToggleClass: boolean = false;

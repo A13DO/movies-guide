@@ -2,9 +2,11 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 import { BehaviorSubject, Observable, Subject, map, tap } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { getAuth, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { getAuth, signOut } from 'firebase/auth';
 import { Router } from '@angular/router';
 import { initializeApp } from "firebase/app";
+import { jwtDecode } from "jwt-decode";
+
 export interface AuthResponseData  {
   kind?: string;
   idToken: string;
@@ -13,6 +15,7 @@ export interface AuthResponseData  {
   expiresIn: string;
   localId: string;
   registered?: boolean;
+  uid?: string;
 }
 // Initialize Firebase
 const firebaseConfig = {
@@ -35,12 +38,13 @@ const auth = getAuth(app);
 export class LoginService {
   [x: string]: any;
   public isSignedIn: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+
   public User = new BehaviorSubject<any>(null);
 
   constructor(private router: Router, private http: HttpClient) {}
   expirationTime: any;
-  signIn(email: string, password: string) {
 
+  signIn(email: string, password: string) {
     // APi SignIN
     return this.http
     .post<AuthResponseData>(
@@ -52,6 +56,8 @@ export class LoginService {
     ).pipe(
       tap(res => {
         this.expirationTime = +res.expiresIn * 1000;
+        let uid = jwtDecode(res.idToken);
+        res.uid = uid.sub;
         this.User.next(res);
         window.localStorage.setItem("expiresIn", this.expirationTime);
         window.localStorage.setItem("isSignedIn", "true");
@@ -62,7 +68,9 @@ export class LoginService {
         }
       )
     )
+
   }
+
   signOut() {
     signOut(auth).then(() => {
       this.isSignedIn.next(false);
