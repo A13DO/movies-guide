@@ -13,7 +13,13 @@ form {
   border-radius: 15px;
   background-color: #1d232a;
 }
-
+input {
+  background-color: #111418;
+  border-color: #1d232a;
+}
+input:focus {
+  background-color: #111418;
+}
 .btn {
   width: 100%;
   background-color: #111418;

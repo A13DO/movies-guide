@@ -1,6 +1,24 @@
 <div class="container">
   <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
-
+    <p>{{ isSignInMode ? 'Login' : 'Sign Up'}}</p>
+    <!-- <label *ngIf="!isSignInMode" for="name">first</label>
+    <input
+    *ngIf="!isSignInMode"
+    class="form-control"
+    name="text"
+    type="text"
+    required
+    ngModel
+    >
+    <label *ngIf="!isSignInMode" for="name">last</label>
+    <input
+    *ngIf="!isSignInMode"
+    class="form-control"
+    name="text"
+    type="text"
+    required
+    ngModel
+    > -->
     <label for="email">Email</label>
     <input
     class="form-control"
@@ -18,6 +36,8 @@
     required
     ngModel
     >
-    <button class="btn" type="submit">Log In</button>
+    <button class="btn" type="submit">{{ isSignInMode ? 'Login' : 'Sign Up'}}</button>
+    <span>-- or --</span>
+    <button class="btn" type="button" (click)="onSwitchMode()">{{ isSignInMode ? 'Switch to Sign Up' : 'Switch to Login'}}</button>
   </form>
 </div>

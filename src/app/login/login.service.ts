@@ -43,7 +43,32 @@ export class LoginService {
 
   constructor(private router: Router, private http: HttpClient) {}
   expirationTime: any;
+  signUp(email: string, password: string) {
+    // APi SignIN
+    return this.http
+    .post<AuthResponseData>(
+      'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAxx0R6kyNn3v7u7l35lAwrWis8mv5fkMQ', {
+        email: email,
+        password: password,
+        returnSecureToken: true
+      }
+    ).pipe(
+      tap(res => {
+        this.expirationTime = +res.expiresIn * 1000;
+        let uid = jwtDecode(res.idToken);
+        res.uid = uid.sub;
+        this.User.next(res);
+        window.localStorage.setItem("expiresIn", this.expirationTime);
+        window.localStorage.setItem("isSignedIn", "true");
+        window.localStorage.setItem("idToken", res.idToken);
+        // this.setLogoutTimer()
+        this.router.navigate(["/home"]);
+        window.location.reload()
+        }
+      )
+    )
 
+  }
   signIn(email: string, password: string) {
     // APi SignIN
     return this.http
