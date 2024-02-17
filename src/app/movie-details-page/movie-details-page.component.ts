@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 import { DomSanitizer } from '@angular/platform-browser';
 import { faEye } from '@fortawesome/free-regular-svg-icons';
 import { faHeart, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { LinksService } from '../shared/links.service';
 
 @Component({
   selector: 'app-movie-details-page',
@@ -18,6 +19,7 @@ export class MovieDetailsPageComponent implements OnInit {
   watchlistIds!: number[];
   favoriteIds!: number[];
   constructor(
+    private linksService: LinksService,
     private route: ActivatedRoute,
     private router: Router,
     private requestService: MoviesRequestsService,
@@ -49,9 +51,9 @@ exitButton!: any;
 WATCHED = "watched"
 WATCHLIST = "watchlist"
 FAVORITE = "favorite"
-watchedUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/watched.json"
-watchlistUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/watchlist.json"
-favoritesUrl = "https://movies-guide-eb5a7-default-rtdb.firebaseio.com/favorites.json"
+watchedUrl = this.linksService.watchedUrl;
+watchlistUrl = this.linksService.watchlistUrl;
+favoritesUrl = this.linksService.favoritesUrl;
 
 // -----------
 currentMovie: any = {};

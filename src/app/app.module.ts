@@ -20,6 +20,7 @@ import { LoadingModule } from './loading/loading.module';
 import { SwiperModule } from './swiper/swiper.module';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     PersonDetailsComponent,
     NavMenuComponent,
     LoginComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

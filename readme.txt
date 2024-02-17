@@ -1,20 +1,33 @@
 
-- NEW TASKS
 -- responsive #done (expect small fix in details page)
 -- fix when delete action message #done
--- add actions and show btns only in SingedIn Mode.
+-- MAKE ALL LISTS IN THE SAME REALTIME DATABASE #done
+---- add actions and show btns only in SingedIn Mode #solved.
+
+- NEW TASKS
 -- use ngDestroy to unsubscribe
 -- fix swiper Movie-Details
 -- icon toggle change
 -- search responsive
 -- rating style
--- MAKE ALL LISTS IN THE SAME REALTIME DATABASE
--- card size fix in responsive
-##to do list
----- Coming Soon style (like google search)
----- sign in token #done
+---- FIX CARD IN RESPONSIVE
 ---- fix add to watched
 ---- add orderd numbers on top movies
+---- Coming Soon style (like google search)
+---- remove rename movies-list to home and remove home component.
+---- ADD FOOTER AND ADJUST COMPONENTS SIZES.
+---- ADD SEARCH IN MOBILE MODE.
+---- ADD INCORRECT EMAIL OR PASSWORD WHEN LOGIN.
+---- CLEAN THE CODE.
+
+user profile?
+--- sign up with username and details (pfp..etc)
+--- add profile btn with pfp icon
+add ratings when adding to watchedlist?
+
+
+##to do list
+---- sign in token #done
 
 
 - person-details-page
@@ -58,6 +71,34 @@ LAZY LOADING
           this.personMovies.sort((a, b) => b.rating - a.rating);
 
 
+
+
+
+
+
+TYPESCRIPT:
+
+this.moviesRequests.getTrendingMovies()
+.subscribe(
+  data => {
+    Tmovies = this.trendingMoives;
+  }
+)
+
+HTML: *ngFor="let movieEl of Tmovies"
+
+
+To ----------->
+TYPESCRIPT:
+
+trendMovies$: Observable<>
+
+
+trendMovies$ = this.moviesRequests.getTrendingMovies()
+
+
+
+HTML: *ngFor="let movieEl of trendMovies$ | async"
 
 
 

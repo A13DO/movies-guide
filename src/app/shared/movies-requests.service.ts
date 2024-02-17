@@ -102,8 +102,6 @@ export class MoviesRequestsService {
 
   // pipe to control key in response Data
   getMovies(url: string) {
-    // return this.http.get<Movie[]>(url);
-
     const idToken = window.localStorage.getItem("idToken");
     return this.http.get<Movie[]>(url + `?auth=${idToken}`);
   }

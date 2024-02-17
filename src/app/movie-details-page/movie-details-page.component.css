@@ -345,6 +345,9 @@ button .blue-color {
   }
 }
 @media (max-width: 767px) {
+  .backdrop-holder {
+    top: -215px;
+  }
   .movie-info {
     top: 60px;
     flex-direction: column;

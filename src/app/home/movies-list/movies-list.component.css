@@ -162,3 +162,64 @@ ul {
   color: #213836;
 }
 /* Slider */
+
+
+
+
+/* Footer */
+.site-footer {
+  background-color: #333;
+  color: #fff;
+  padding: 50px 0;
+
+}
+
+.site-footer h3 {
+  color: #fff;
+}
+
+.site-footer p {
+  color: #ccc;
+}
+
+.site-footer ul {
+  list-style: none;
+  padding: 0;
+}
+
+.site-footer ul li {
+  margin-bottom: 10px;
+}
+
+.site-footer ul li a {
+  color: #ccc;
+  text-decoration: none;
+}
+
+.site-footer ul li a:hover {
+  color: #fff;
+}
+
+.social-icons {
+  list-style: none;
+  padding: 0;
+}
+
+.social-icons li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.social-icons li:last-child {
+  margin-right: 0;
+}
+
+.social-icons li a {
+  color: #ccc;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.social-icons li a:hover {
+  color: #fff;
+}

@@ -67,8 +67,11 @@ export class LoginService {
         }
       )
     )
-
   }
+  // saveUserName(user_id: string) {
+  //   this.http.post<string>(`https://movies-guide-eb5a7-default-rtdb.firebaseio.com/${user_id}`, '')
+  // }
+
   signIn(email: string, password: string) {
     // APi SignIN
     return this.http

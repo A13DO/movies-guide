@@ -1,20 +1,20 @@
 <div class="container">
   <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
     <p>{{ isSignInMode ? 'Login' : 'Sign Up'}}</p>
-    <!-- <label *ngIf="!isSignInMode" for="name">first</label>
+    <!-- <label *ngIf="!isSignInMode" for="first-name">first</label>
     <input
     *ngIf="!isSignInMode"
     class="form-control"
-    name="text"
+    name="first-name"
     type="text"
     required
     ngModel
     >
-    <label *ngIf="!isSignInMode" for="name">last</label>
+    <label *ngIf="!isSignInMode" for="last-name">last</label>
     <input
     *ngIf="!isSignInMode"
     class="form-control"
-    name="text"
+    name="last-name"
     type="text"
     required
     ngModel

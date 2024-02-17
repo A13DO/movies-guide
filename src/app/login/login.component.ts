@@ -17,7 +17,6 @@ export class LoginComponent {
     console.log("Email: ", email.value, "Status: ", email.status);
     const password = form.controls['password'];
     console.log("Password: ", password.value, "Status: ", password.status);
-    // console.log(form);
     if (this.isSignInMode) {
       this.loginService.signIn(email.value, password.value).subscribe(
         res => {
@@ -30,6 +29,13 @@ export class LoginComponent {
           console.log("response: ", res);
         }
       )
+      // username
+      const first = form.controls['first-name'];
+      const last = form.controls['last-name'];
+      console.log(first.value, last.value);
+
+
+
     }
   }
   onSwitchMode() {

@@ -11,6 +11,9 @@ import { SearchComponent } from '../search/search.component';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit{
+showSearch() {
+  this.searchBar.nativeElement.style.display = 'block';;
+}
   constructor(
     private moviesRequests: MoviesRequestsService,
     private router: Router,
