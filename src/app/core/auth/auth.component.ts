@@ -8,6 +8,7 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./auth.component.css']
 })
 export class LoginComponent {
+  errorMessage: string = "";
   constructor(private authService: AuthService) {}
   isSignInMode: boolean = true;
   signInText: string = "Sign In";
@@ -21,21 +22,26 @@ export class LoginComponent {
       this.authService.signIn(email.value, password.value).subscribe(
         res => {
           console.log("response: ", res);
+        },
+        error => {
+          this.errorMessage = error.message;
+          console.log("error: ", error);
         }
       )
     } else if (!this.isSignInMode) {
       this.authService.signUp(email.value, password.value).subscribe(
         res => {
           console.log("response: ", res);
+        },
+        error => {
+          this.errorMessage = error.message;
+          console.error("error: ", this.errorMessage);
         }
       )
       // username
       const first = form.controls['first-name'];
       const last = form.controls['last-name'];
       console.log(first.value, last.value);
-
-
-
     }
   }
   onSwitchMode() {

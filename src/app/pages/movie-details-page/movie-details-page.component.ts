@@ -5,6 +5,7 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { DomSanitizer } from '@angular/platform-browser';
 import { faEye } from '@fortawesome/free-regular-svg-icons';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { faHeart, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { LinksService } from '../../core/services/links.service';
 
@@ -28,6 +29,7 @@ export class MovieDetailsPageComponent implements OnInit {
   faAdd = faPlus;
   faLove = faHeart;
   faEye = faEye;
+  faStar = faStar;
 movie!: Movie;
 movieInfo: any;
 directorName!: string;
@@ -88,7 +90,7 @@ ngOnInit(): void {
       this.currentMovie.name = movieDetails.title;
       this.currentMovie.id = movieDetails.id;
       this.currentMovie.overview = movieDetails.overview;
-      this.currentMovie.rating = movieDetails.vote_average;
+      this.currentMovie.rating = parseFloat(movieDetails.vote_average.toFixed(1));
       this.currentMovie.year = (new Date(movieDetails.release_date)).getFullYear().toString();
       this.currentMovie.posterimagePath = movieDetails.poster_path;
       console.log(this.currentMovie)

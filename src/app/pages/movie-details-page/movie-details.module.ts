@@ -8,7 +8,7 @@ import { MovieTrailerComponent } from "./movie-trailer/movie-trailer.component";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { MovieCardModule } from "../../shared/components/movie-card/movie-card.module";
 import { SwiperModule } from "../../shared/components/swiper/swiper.module";
-
+import { MatIconModule } from '@angular/material/icon';
 
 const routes: Routes = [
   {
@@ -34,6 +34,7 @@ const routes: Routes = [
     LoadingModule,
     MovieCardModule,
     SwiperModule,
+    MatIconModule
   ]
 })
 

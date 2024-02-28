@@ -36,6 +36,7 @@
     required
     ngModel
     >
+    <small>{{ errorMessage }} </small>
     <button class="btn" type="submit">{{ isSignInMode ? 'Login' : 'Sign Up'}}</button>
     <span>-- or --</span>
     <button class="btn" type="button" (click)="onSwitchMode()">{{ isSignInMode ? 'Switch to Sign Up' : 'Switch to Login'}}</button>

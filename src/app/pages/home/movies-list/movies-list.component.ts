@@ -64,8 +64,6 @@ export class MoviesListComponent implements OnInit, OnDestroy {
     this.updateSwiperOptions();
   }
   ngOnInit(): void {
-
-
     // Get Watched Status
     this.moviesRequests.getMovies(this.watchedUrl)
     .subscribe(

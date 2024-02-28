@@ -42,7 +42,7 @@
         </div>
         <hr>
         <!-- <a class="trailer-link" [href]="fullTrailerLink" target="_blank">Trailer</a> -->
-        <button class="trailer-link" (click)="showTrailer()">Trailer</button>
+        <button class="trailer-link" (click)="showTrailer()"><span class="material-symbols-outlined">play_arrow</span>Trailer</button>
       </div>
     </div>
     <div class="modal">
@@ -58,7 +58,9 @@
       </div>
       <p class="tagline"><strong>{{ movieInfo.tagline }}</strong></p>
       <p class="overview">{{ movieInfo.overview }}</p>
-      <p>Rate: {{ movieInfo.vote_average }}</p>
+      <p>Rate: {{ movieInfo.vote_average.toFixed(1) }}
+        <fa-icon style="color: #ffd700bd;" [icon]="faStar"></fa-icon>
+      </p>
       <!-- <p>release: {{ currentMovie.year }}</p> -->
       <p>Time: {{ movieInfo.runtime }} mins</p>
       <div class="genres">
@@ -80,26 +82,6 @@
       <app-swiper
       [movies]="recommendedMovies"
       ></app-swiper>
-      <!-- <div class="similar-films slider">
-        <i class="fa-solid fa-chevron-left left" (click)="slideLeft()"></i>
-        <i class="fa-solid fa-chevron-right right" (click)="slideRight()"></i>
-        <div class="slider-holder">
-          <ul class="trending slider-movies" [ngStyle]="{'left': getSlideValue()}">
-            <li *ngFor="let recMovie of recommendedMovies" class="slider-movie">
-              <app-movie-card
-              [movie]="recMovie"
-              [watchedButton]="true"
-              [watchlistButton]="true"
-              [favoriteButton]="true"
-              [watchedStatus]="watchedIds && watchedIds.includes(recMovie.id) ? true : false"
-              [favoriteStatus]="favoriteIds && favoriteIds.includes(recMovie.id) ? true : false"
-              [watchlistStatus]="watchlistIds && watchlistIds.includes(recMovie.id) ? true : false"
-              ></app-movie-card>
-            </li>
-          </ul>
-        </div>
-      </div> -->
-      <!-- ============================== -->
     </div>
     <div class="options">
       <div class="buttons">
@@ -130,13 +112,11 @@
       </div>
       <hr>
       <!-- <a class="trailer-link" [href]="fullTrailerLink" target="_blank">Trailer</a> -->
-      <button class="trailer-link" (click)="showTrailer()">Trailer</button>
+      <button class="trailer-link" (click)="showTrailer()">
+        <span class="material-symbols-outlined">play_arrow</span>Trailer
+      </button>
     </div>
   </div>
 </div>
 <app-movie-trailer *ngIf="embedLink" [trailerLink]="embedLink" (close)="onCloseTrailer()"></app-movie-trailer>
 <app-loading></app-loading>
-
-<span class="material-icons">
-
-  </span>

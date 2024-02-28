@@ -1,6 +1,8 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
-import { BehaviorSubject, Observable, Subject, map, tap } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, map, tap, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+
 import { Injectable } from '@angular/core';
 import { getAuth, signOut } from 'firebase/auth';
 import { Router } from '@angular/router';
@@ -64,8 +66,18 @@ export class AuthService {
         // this.setLogoutTimer()
         this.router.navigate(["/home"]);
         window.location.reload()
+        }),
+      catchError(err => {
+        let errorMessage = 'An unknown error occurred';
+        if (err.error.code === 'INVALID_LOGIN_CREDENTIALS') {
+          errorMessage = 'Invalid email or password';
+        } else if (err.error.code === 'INVALID_EMAIL') {
+          errorMessage = 'Invalid email';
+        } else if (err.error.code === 'MISSING_PASSWORD') {
+          errorMessage = 'Invalid password';
         }
-      )
+        return throwError(() => errorMessage);
+      })
     )
   }
   // saveUserName(user_id: string) {
@@ -94,11 +106,21 @@ export class AuthService {
         this.router.navigate(["/home"]);
         window.location.reload()
         }
-      )
+      ),
+      catchError(err => {
+        let errorMessage = 'An unknown error occurred';
+        console.log("AC ERROR", err.error.error.message);
+        if (err.error.error.message === 'INVALID_LOGIN_CREDENTIALS') {
+          errorMessage = 'Invalid email or password';
+        } else if (err.error.error.message === 'INVALID_EMAIL') {
+          errorMessage = 'Invalid email';
+        } else if (err.error.error.message === 'MISSING_PASSWORD') {
+          errorMessage = 'Invalid password';
+        }
+        return throwError(() => errorMessage);
+      })
     )
-
   }
-
   signOut() {
     signOut(auth).then(() => {
       this.isSignedIn.next(false);

@@ -23,7 +23,9 @@
   /* top: -122px;
   z-index: -10; */
 }
-
+.rating .true {
+  color: #ffbf00;
+}
 .backdrop-holder::before {
   content: "";
   position: absolute;
@@ -214,6 +216,7 @@ a {
   width: fit-content;
   padding: 5px;
   align-self: center;
+  display: flex;
 }
 
 .option-btn {

@@ -10,14 +10,14 @@
 
 - NEW TASKS
 -- use ngDestroy to unsubscribe
+-- rating style#DONE
+---- Coming Soon style #DONE
 -- fix swiper Movie-Details
--- rating style
----- add orderd numbers on top movies
----- remove rename movies-list to home and remove home component.
+---- add orderd numbers on top movies?
+---- remove rename movies-list to home and remove home component?
 ---- CLEAN THE CODE.
 
 ---- ADD INCORRECT EMAIL OR PASSWORD WHEN LOGIN.
----- Coming Soon style
 
 ---- ADD FOOTER AND ADJUST COMPONENTS SIZES.
 ---- RESPONISVE IN PERSON_PAGE
@@ -27,6 +27,7 @@ user profile?
 --- add profile btn with pfp icon
 add ratings when adding to watchedlist?
 
+################ RECORD THE VIDEO ################
 
 ##to do list
 ---- sign in token #done
