@@ -1,0 +1,80 @@
+/* .swiper {
+  width: 600px;
+  height: 300px;
+} */
+
+swiper-container {
+  width: 100%;
+  padding: 20px;
+}
+
+/* swiper-slide  app-movie-card{
+  max-width: 120px;
+} */
+swiper-slide img {
+  width: 100%;
+}
+:host ::ng-deep app-movie-card .movie-card {
+  /* in silder only */
+  width: 120px ;
+}
+:host ::ng-deep app-movie-card {
+  /* in silder only */
+  width: 120px!important;
+}
+swiper-container swiper-slide:first-child {
+  margin-left: 15px !important;
+}
+
+
+@media (max-width: 469px) {
+  :host ::ng-deep app-movie-card .movie-card .card-options {
+    left: 25% !important;
+    justify-self: unset;
+    gap: 0;
+  }
+  :host ::ng-deep app-movie-card .movie-card::after {
+    width: calc(50% + 6px) !important;
+    left: 25%;
+  }
+  :host ::ng-deep app-movie-card .movie-card .card-options .button-icon {
+    font-size: 14px;
+  }
+}
+@media (max-width: 767px) {
+  swiper-container {
+    width: 100% !important;
+    padding: 20px;
+  }
+  :host ::ng-deep app-movie-card .movie-card {
+    /* in silder only */
+    width: 155px;
+
+  }
+  :host ::ng-deep app-movie-card .movie-card::after {
+    width: calc(63% + 6px) !important;
+    left: 31.5%;
+  }
+
+  :host ::ng-deep app-movie-card .movie-card .card-options {
+    left: 31.5%;
+  }
+}
+@media (max-width: 933px) {
+  :host ::ng-deep app-movie-card .movie-card {
+    /* in silder only */
+    width: 155px;
+  }
+}
+
+
+/* Add any custom styles for your Swiper container and slides */
+.swiper-container {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  background-size: cover;
+  background-position: center;
+}

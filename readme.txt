@@ -3,23 +3,25 @@
 -- fix when delete action message #done
 -- MAKE ALL LISTS IN THE SAME REALTIME DATABASE #done
 ---- add actions and show btns only in SingedIn Mode #solved.
+---- ADD SEARCH IN MOBILE MODE. #done
+-- search responsive #done
+---- FIX CARD IN RESPONSIVE #done
+---- fix add to watched #done?
 
 - NEW TASKS
 -- use ngDestroy to unsubscribe
 -- fix swiper Movie-Details
--- icon toggle change
--- search responsive
 -- rating style
----- FIX CARD IN RESPONSIVE
----- fix add to watched
 ---- add orderd numbers on top movies
----- Coming Soon style (like google search)
 ---- remove rename movies-list to home and remove home component.
----- ADD FOOTER AND ADJUST COMPONENTS SIZES.
----- ADD SEARCH IN MOBILE MODE.
----- ADD INCORRECT EMAIL OR PASSWORD WHEN LOGIN.
 ---- CLEAN THE CODE.
 
+---- ADD INCORRECT EMAIL OR PASSWORD WHEN LOGIN.
+---- Coming Soon style
+
+---- ADD FOOTER AND ADJUST COMPONENTS SIZES.
+---- RESPONISVE IN PERSON_PAGE
+-- icon toggle change?
 user profile?
 --- sign up with username and details (pfp..etc)
 --- add profile btn with pfp icon
@@ -99,6 +101,8 @@ trendMovies$ = this.moviesRequests.getTrendingMovies()
 
 
 HTML: *ngFor="let movieEl of trendMovies$ | async"
+
+
 
 
 

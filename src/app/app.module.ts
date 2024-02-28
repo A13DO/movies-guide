@@ -3,24 +3,24 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { HeaderComponent } from './header/header.component';
-import { MoviesListComponent } from './home/movies-list/movies-list.component';
+import { HomeComponent } from './pages/home/home.component';
+import { HeaderComponent } from './core/header/header.component';
+import { NavMenuComponent } from './core/nav-menu/nav-menu.component';
+import { MoviesListComponent } from './pages/home/movies-list/movies-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { SearchComponent } from './search/search.component';
-import { PersonDetailsComponent } from './person-details/person-details.component';
-import { MovieTrailerComponent } from './movie-details-page/movie-trailer/movie-trailer.component';
-import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { HttpInterceptproviders } from './http-interceptor';
-import { LoginComponent } from './login/login.component';
+import { SearchComponent } from './pages/search/search.component';
+import { PersonDetailsComponent } from './pages/person-details/person-details.component';
+import { MovieTrailerComponent } from './pages/movie-details-page/movie-trailer/movie-trailer.component';
+import { HttpInterceptproviders } from './core/interceptors';
+import { LoginComponent } from './core/auth/auth.component';
 import { FormsModule } from '@angular/forms';
-import { MovieCardModule } from './home/movies-list/movie-card/movie-card.module';
-import { LoadingModule } from './loading/loading.module';
-import { SwiperModule } from './swiper/swiper.module';
+import { MovieCardModule } from './shared/components/movie-card/movie-card.module';
+import { LoadingModule } from './shared/components/loading/loading.module';
+import { SwiperModule } from './shared/components/swiper/swiper.module';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FooterComponent } from './footer/footer.component';
+import { FooterComponent } from './core/footer/footer.component';
 
 @NgModule({
   declarations: [

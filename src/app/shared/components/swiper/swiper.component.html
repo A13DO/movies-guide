@@ -1,0 +1,29 @@
+<!-- navigation ="true" -->
+<swiper-container
+[navigation]="{
+  prevEl: 'prev-btn',
+  nextEl: 'next-btn'
+}"
+[slidesPerView]= "options.slidesPerView"
+[slidesPerGroup]= "options.slidesPerGroup"
+speed="1000"
+[style]="{width: options.width}"
+>
+<!-- pagination = "true" -->
+ <!-- [spaceBetween]="25" -->
+  <swiper-slide  *ngFor="let movieEl of SliderMovies">
+    <app-movie-card
+    [movie]="movieEl"
+    [watchedButton]="true"
+    [watchlistButton]="true"
+    [favoriteButton]="true"
+    (mouseenter)="showImage($event)"
+    (mouseleave)="onMouseLeave()"
+    [watchedStatus]="watchedIds && watchedIds.includes(movieEl.id) ? true : false"
+    [favoriteStatus]="favoriteIds && favoriteIds.includes(movieEl.id) ? true : false"
+    [watchlistStatus]="watchlistIds && watchlistIds.includes(movieEl.id) ? true : false"
+    ></app-movie-card>
+  </swiper-slide>
+  <div class="prev-btn" prevEl></div>
+  <div class="next-btn" nextEl></div>
+</swiper-container>

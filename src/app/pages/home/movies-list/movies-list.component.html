@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="landing">
+    <!-- <img class="backdrop" src="https://images2.alphacoders.com/870/870886.jpg" alt="image"> -->
+    <!-- <img class="backdrop" [src]="backgroundImage" alt="image"> -->
+    <div class="backdrop" id="backdrop"></div>
+    <!-- <img class="backdrop" src="https://r4.wallpaperflare.com/wallpaper/302/568/1003/bladerunner-blade-runner-blade-runner-2049-ana-de-armas-ryan-gosling-hd-wallpaper-6a3307091772b89eed7897de78f35c64.jpg" alt="image"> -->
+  </div>
+  <div class="page-holder">
+    <!-- Trending -->
+    <app-swiper
+    [movies]="trendingMoives"
+    (backdrop)="changeBackdrop($event)"
+    (defaultBackdrop)="onMouseLeave()"
+    ></app-swiper>
+    <!-- Comeing Soon-->
+  <section>
+    <h3 class="title">Comeing Soon</h3>
+    <hr>
+    <app-swiper
+    [options]="swiperOptions"
+    [movies]="upcomingMoives"
+    (backdrop)="changeBackdrop($event)"
+    (defaultBackdrop)="onMouseLeave()"
+    ></app-swiper>
+  </section>
+  <!-- Top Rated-->
+  <section>
+    <h3 class="title">Top Rated</h3>
+    <hr>
+    <div>
+      <div class="list" #moviesList>
+        <app-movie-card
+        *ngFor="let movieEl of topRatedMoives"
+        [movie]="movieEl"
+        [watchedButton]="true"
+        [watchlistButton]="true"
+        [favoriteButton]="true"
+        [watchedStatus]="watchedIds && watchedIds.includes(movieEl.id) ? true : false"
+        [favoriteStatus]="favoriteIds && favoriteIds.includes(movieEl.id) ? true : false"
+        [watchlistStatus]="watchlistIds && watchlistIds.includes(movieEl.id) ? true : false"
+        ></app-movie-card>
+      </div>
+    </div>
+  <hr>
+  <div class="pagination">
+    <button id="pervPageBtn"  (click)="pervPage()" [disabled]="(topRatedPageNum == 1)">&lt;</button>
+    <button id="pageOneBtn" (click)="topRatedPageOne()" [ngStyle]="{'backgroundColor': topRatedPageNum == 1 ? '#1d232a' : 'transparent'}">1</button>
+    <button id="pageTwoBtn"  (click)="topRatedPageTwo()" [ngStyle]="{'backgroundColor': topRatedPageNum == 2 ? '#1d232a' : 'transparent'}">2</button>
+    <button id="pageThreeBtn"  (click)="topRatedPageThree()" [ngStyle]="{'backgroundColor': topRatedPageNum == 3 ? '#1d232a' : 'transparent'}">3</button>
+    <button id="pageFourBtn"  (click)="topRatedPageFour($event)" [ngStyle]="{'backgroundColor': topRatedPageNum == 4 ? '#1d232a' : 'transparent'}">4</button>
+    <button id="nextPageBtn"  (click)="nextPage()" [disabled]="(topRatedPageNum == 4)">&gt;</button>
+  </div>
+  </section>
+  </div>
+</div>
