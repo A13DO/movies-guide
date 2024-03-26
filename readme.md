@@ -58,31 +58,3 @@ To run the application, you will need to have Node.js and Angular CLI installed 
 ## License
 This project is licensed under the MIT License. See the LICENSE file for details.
 
-
-Architecture
-Explain the overall architecture of the project, including key components, modules, and their interactions.
-
-## Project Structure
-
-movie-guide/
-├── src/
-│   ├── app/
-│   │   ├── header/              #
-│   │   ├── auth/                # Authentication module
-│   │   ├── core/                # Core services (API service, AuthGuard)
-│   │   ├── home/                # Home page module
-│   │   ├── movie-details/       # Movie details module (lazy-loaded)
-│   │   ├── person-details/      # Person details module (lazy-loaded)
-│   │   ├── nav-menu/            # 
-│   │   ├── search/              # Search module (lazy-loaded)
-│   │   ├── lists/               # Lists module (watchlist, watchedlist, favorites) (lazy-loaded)
-│   │   └── shared/              # Shared components, services, and utilities
-│   ├── assets/                  # Static assets (images, fonts, etc.)
-│   ├── environments/            # Environment configurations
-│   ├── firebase/                # Firebase configuration
-│   └── ...
-├── node_modules/
-├── package.json
-├── angular.json
-├── tsconfig.json
-└── README.md
