@@ -37,10 +37,14 @@ Visit the live version of this project [DEMO HERE](https://movies-guide-eb5a7.we
 
 ## Getting Started
 
-#Prerequisites
-- Install Node.js and MongoDB
-- Install Angular CLI: npm i -g @angular/cli
-- From project root folder install all the dependencies: npm i
+*Prerequisites*
+
+1. Install Angular CLI:
+   ```bash
+   npm install -g @angular/cli
+2. From project root folder install all the dependencies: npm i
+   ```bash
+   npm i
   
 1. Clone this repository to your local machine.
 2. Navigate to the project directory in your terminal.
