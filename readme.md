@@ -37,8 +37,7 @@ Visit the live version of this project [DEMO HERE](https://movies-guide-eb5a7.we
 
 ## Getting Started
 
-To run the application, you will need to have Node.js and Angular CLI installed on your computer. Once you have installed these dependencies, follow these steps:
-###Prerequisites
+#Prerequisites
 - Install Node.js and MongoDB
 - Install Angular CLI: npm i -g @angular/cli
 - From project root folder install all the dependencies: npm i
