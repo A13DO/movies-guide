@@ -38,7 +38,6 @@ Visit the live version of this project [DEMO HERE](https://movies-guide-eb5a7.we
 ## Getting Started
 
 *Prerequisites*
-
 1. Install Angular CLI:
    ```bash
    npm install -g @angular/cli
@@ -46,19 +45,16 @@ Visit the live version of this project [DEMO HERE](https://movies-guide-eb5a7.we
 *Run*
 1. Clone this repository** to your local machine:
    ```bash
-   git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY-NAME.git
+   git clone https://github.com/A13DO/movies-guide.git
 2. Navigate to the project directory in your terminal:
-
    ```bash
     cd YOUR-REPOSITORY-NAME
 3. Install the required dependencies by running:
    ```bash
    npm i
-
 4. Start the development server:
    ```bash
    ng serve
-
 
 ## License
 This project is licensed under the MIT License. See the LICENSE file for details.
