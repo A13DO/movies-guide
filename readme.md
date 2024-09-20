@@ -42,13 +42,22 @@ Visit the live version of this project [DEMO HERE](https://movies-guide-eb5a7.we
 1. Install Angular CLI:
    ```bash
    npm install -g @angular/cli
-2. From project root folder install all the dependencies: npm i
+
+*Run*
+1. Clone this repository** to your local machine:
+   ```bash
+   git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY-NAME.git
+2. Navigate to the project directory in your terminal:
+
+   ```bash
+    cd YOUR-REPOSITORY-NAME
+3. Install the required dependencies by running:
    ```bash
    npm i
-  
-1. Clone this repository to your local machine.
-2. Navigate to the project directory in your terminal.
-3
+
+4. Start the development server:
+   ```bash
+   ng serve
 
 
 ## License
