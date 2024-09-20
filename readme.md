@@ -48,7 +48,7 @@ Visit the live version of this project [DEMO HERE](https://movies-guide-eb5a7.we
    git clone https://github.com/A13DO/movies-guide.git
 2. Navigate to the project directory in your terminal:
    ```bash
-    cd YOUR-REPOSITORY-NAME
+    cd movies-guide-main
 3. Install the required dependencies by running:
    ```bash
    npm i
