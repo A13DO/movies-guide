@@ -6,7 +6,6 @@ Visit the live version of this project [DEMO HERE](https://movies-guide-eb5a7.we
 - [Usage](#usage)
 - [Technologies Used](#technologies-used)
 - [Getting Started](#getting-started)
-- [Credits](#credits)
 - [License](#license)
 
 ## Features
@@ -39,15 +38,14 @@ Visit the live version of this project [DEMO HERE](https://movies-guide-eb5a7.we
 ## Getting Started
 
 To run the application, you will need to have Node.js and Angular CLI installed on your computer. Once you have installed these dependencies, follow these steps:
-
+###Prerequisites
+- Install Node.js and MongoDB
+- Install Angular CLI: npm i -g @angular/cli
+- From project root folder install all the dependencies: npm i
+  
 1. Clone this repository to your local machine.
 2. Navigate to the project directory in your terminal.
 3
-
-
-## Credits
-- The Movie Database (TMDb) API: Provides movie data for the website.
-- Firebase: Provides authentication and data storage services.
 
 
 ## License
