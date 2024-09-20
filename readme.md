@@ -1,15 +1,11 @@
-## Overview
-This is a web application for movie enthusiasts to keep track of their favorite movies, create watchlists, and mark movies as watched. The application allows users to search for movies, view movie details, watch trailers, and read about the cast and crew.
-
 ## Live Web Project
 Visit the live version of this project [DEMO HERE](https://movies-guide-eb5a7.web.app/).
 
 ## Table of Contents
-
 - [Features](#features)
+- [Usage](#usage)
 - [Technologies Used](#technologies-used)
 - [Getting Started](#getting-started)
-- [Usage](#usage)
 - [Credits](#credits)
 - [License](#license)
 
@@ -31,13 +27,14 @@ Visit the live version of this project [DEMO HERE](https://movies-guide-eb5a7.we
 
 
 ## Technologies Used
-- Angular: Frontend framework for building the website.
-- Firebase: Authentication and Firestore for user authentication and data storage.
-- TMDb API: Fetches movie data for displaying on the website.
-- Bootstrap
-- Font Awesome
-- Swiper
-- ngx-toastr
+- **[Angular](https://angular.io/)**: Frontend framework for building the website.
+- **[Firebase](https://firebase.google.com/)**: User authentication and real-time data storage.
+- **[TMDb API](https://www.themoviedb.org/documentation/api)**: Provides movie data for the application.
+- **[Bootstrap](https://getbootstrap.com/)**: CSS framework for responsive design.
+- **[Font Awesome](https://fontawesome.com/)**: Library for scalable vector icons.
+- **[Swiper](https://swiperjs.com/)**: Touch slider for carousels and galleries.
+- **[ngx-toastr](https://github.com/scttcper/ngx-toastr)**: Notifications for user feedback.
+
 
 ## Getting Started
 
