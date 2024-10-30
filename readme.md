@@ -1,7 +1,8 @@
 ## Live Web Project
 Visit the live version of this project [DEMO HERE](https://movies-guide-eb5a7.web.app/).
 
-![FlimLog](https://github.com/user-attachments/assets/5d62c92e-d61a-4cb3-ade1-290b31ff5f39)
+![FlimLog](https://github.com/user-attachments/assets/e958ab05-0d38-4070-bc12-1175781d6c86)
+
 
 ## Table of Contents
 - [Features](#features)
