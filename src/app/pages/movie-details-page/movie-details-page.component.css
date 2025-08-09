@@ -12,7 +12,7 @@
   background-color: transparent;
 }
 .backdrop-holder {
-  position: absolute;
+  position: relative;
   width: 100%;
   top: -160px;
   z-index: -10;
@@ -88,11 +88,10 @@
     );
 }
 .movie-info {
-  position: absolute;
+  position: relative;
   display: flex;
   z-index: 10;
-  /* top: 471px; */
-  top: 390px;
+  top: -300px;
   width: 100%;
   align-items: flex-start;
 }
@@ -385,17 +384,17 @@ button .blue-color {
 
 @media (max-width: 1400px) {
   .movie-info {
-    top: 340px;
+    top: -340px;
   }
 }
 @media (max-width: 1200px) {
   .movie-info {
-    top: 300px;
+    top: -300px;
   }
 }
 @media (max-width: 991px) {
   .movie-info {
-    top: 140px;
+    top: -230px;
   }
 }
 @media (max-width: 767px) {
@@ -403,7 +402,7 @@ button .blue-color {
     top: -215px;
   }
   .movie-info {
-    top: 60px;
+    top: -240px;
     flex-direction: column;
   }
   .movie-info .holder {

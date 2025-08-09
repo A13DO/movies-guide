@@ -7,6 +7,13 @@
   left: 0px;
   justify-content: space-around;
   transition: 0.5s;
+  /* sdsadasdasdasdasdasdasd */
+  position: relative;
+  width: 100vw;
+  min-height: 82.5vh;
+  top: 0;
+  left: 0;
+  transition: 0.5s;
 }
 
 .nav-menu {
@@ -20,8 +27,8 @@
 }
 
 .holder {
-  position: absolute;
-  flex-basis: 60%;
+  /* position: absolute;
+  flex-basis: 60%; */
   justify-content: center;
   /* left: 230px; */
 }
