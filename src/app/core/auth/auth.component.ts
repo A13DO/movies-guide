@@ -5,39 +5,39 @@ import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.css']
+  styleUrls: ['./auth.component.css'],
 })
 export class LoginComponent {
-  errorMessage: string = "";
+  errorMessage: string = '';
   constructor(private authService: AuthService) {}
   isSignInMode: boolean = true;
-  signInText: string = "Sign In";
-  signUpText: string = "Sign Up";
+  signInText: string = 'Sign In';
+  signUpText: string = 'Sign Up';
   onSubmit(form: NgForm) {
     const email = form.controls['email'];
-    console.log("Email: ", email.value, "Status: ", email.status);
+    console.log('Email: ', email.value, 'Status: ', email.status);
     const password = form.controls['password'];
-    console.log("Password: ", password.value, "Status: ", password.status);
+    console.log('Password: ', password.value, 'Status: ', password.status);
     if (this.isSignInMode) {
       this.authService.signIn(email.value, password.value).subscribe(
-        res => {
-          console.log("response: ", res);
+        (res) => {
+          console.log('response: ', res);
         },
-        error => {
+        (error) => {
           this.errorMessage = error.message;
-          console.log("error: ", error);
+          console.log('error: ', error);
         }
-      )
+      );
     } else if (!this.isSignInMode) {
       this.authService.signUp(email.value, password.value).subscribe(
-        res => {
-          console.log("response: ", res);
+        (res) => {
+          console.log('response: ', res);
         },
-        error => {
+        (error) => {
           this.errorMessage = error.message;
-          console.error("error: ", this.errorMessage);
+          console.error('error: ', this.errorMessage);
         }
-      )
+      );
       // username
       const first = form.controls['first-name'];
       const last = form.controls['last-name'];
@@ -46,5 +46,9 @@ export class LoginComponent {
   }
   onSwitchMode() {
     this.isSignInMode = !this.isSignInMode;
+  }
+  isShowEmail: boolean = true;
+  toggleDefaultEmail() {
+    this.isShowEmail = !this.isShowEmail;
   }
 }
