@@ -1,16 +1,10 @@
-<p>Your Watchlist</p>
+<h5>Your Watchlist</h5>
 <hr>
-  <div class="list">
-    <app-movie-card
-    *ngFor="let movie of watchlistMovies"
-    [movie]="movie"
-    [watchedButton]="true"
-    [favoriteButton]="true"
-    [deleteButton]="true"
-    [componentName]="WATCHLIST"
+<div class="list">
+  <app-movie-card *ngFor="let movie of watchlistMovies" [movie]="movie" [watchedButton]="true" [favoriteButton]="true"
+    [deleteButton]="true" [componentName]="WATCHLIST"
     [watchedStatus]="watchedIds && watchedIds.includes(movie.id) ? true : false"
-    [favoriteStatus]="favoriteIds && favoriteIds.includes(movie.id) ? true : false"
-    >
-    </app-movie-card>
-  </div>
-  <app-loading></app-loading>
+    [favoriteStatus]="favoriteIds && favoriteIds.includes(movie.id) ? true : false">
+  </app-movie-card>
+</div>
+<app-loading></app-loading>

@@ -12,7 +12,12 @@ import { Movie } from 'src/app/core/interfaces/movie.module';
 import { MoviesListComponent } from '../../../pages/home/movies-list/movies-list.component';
 import { Subscription } from 'rxjs';
 import { faEye } from '@fortawesome/free-regular-svg-icons';
-import { faHeart, faStar, faPlus } from '@fortawesome/free-solid-svg-icons';
+import {
+  faHeart,
+  faStar,
+  faPlus,
+  faTrash,
+} from '@fortawesome/free-solid-svg-icons';
 
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -39,6 +44,8 @@ export class MovieCardComponent implements OnInit, OnChanges, OnDestroy {
   faLove = faHeart;
   faEye = faEye;
   faStar = faStar;
+  faTrash = faTrash;
+
   constructor(
     private router: Router,
     private requestService: MoviesRequestsService,
