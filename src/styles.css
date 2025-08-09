@@ -5,10 +5,15 @@ body {
   /* background-color: #020024; */
   /* background: rgb(10,5,92); */
   /* background: radial-gradient(circle, rgba(10,5,92,1) 0%, rgba(26,25,41,1) 72%, rgba(0,0,0,1) 100%); */
-  background: radial-gradient(circle, rgba(9,4,85,1) 0%, rgba(26,25,41,1) 72%, rgba(0,0,0,1) 100%);
+  background: radial-gradient(
+    circle,
+    rgba(9, 4, 85, 1) 0%,
+    rgba(26, 25, 41, 1) 72%,
+    rgba(0, 0, 0, 1) 100%
+  );
   background: #111418;
   color: white;
-  font-family: monospace;
+  /* font-family: monospace; */
 }
 
 ul {

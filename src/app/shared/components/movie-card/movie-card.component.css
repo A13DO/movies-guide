@@ -12,8 +12,7 @@ body {
 } */
 img {
   min-height: 120px;
- }
-
+}
 
 .rating {
   position: absolute;
@@ -22,11 +21,17 @@ img {
   font-size: 14px;
   display: flex;
   justify-content: center;
-  width: 35px;
+  width: 50px;
+  font-weight: 600;
+  font-family: "Rajdhani", sans-serif;
+  letter-spacing: 1.5px;
   /* transform: skewX(-43deg) rotate(0deg); */
 }
+.rating fa-icon {
+  margin-right: 3px;
+}
 /* .poster { */
-  /*
+/*
   width: 150px;
   height: 190px;
   */
@@ -65,7 +70,7 @@ img {
   z-index: 2;
 }
 .movie-card::after {
-  content: '';
+  content: "";
   position: absolute;
   width: calc(100% + 6px);
   height: calc(100% + 6px);
@@ -96,7 +101,6 @@ button .red-color {
 button .blue-color {
   color: #40bcf4 !important;
 }
-
 
 .disable-cover {
   display: none;
@@ -129,9 +133,7 @@ button .blue-color {
   .movie-card .card-options {
     display: flex;
     bottom: 0;
-}
-
-
+  }
 }
 @media (max-width: 468px) {
   img {

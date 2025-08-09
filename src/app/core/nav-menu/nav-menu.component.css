@@ -32,7 +32,6 @@
   }
 } */
 
-
 .links {
   display: flex;
   flex-direction: column;
@@ -41,6 +40,8 @@
   align-items: center;
   margin: 0;
   padding: 0;
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 600;
 }
 .link {
   width: 100%;
@@ -73,37 +74,32 @@
 }
 
 .links a:hover::after {
-	width: 99%;
+  width: 99%;
 }
-
 
 * {
   box-sizing: border-box;
 }
 
-
-
 a {
-	transition: color ease-out 0.25s;
+  transition: color ease-out 0.25s;
 }
 
 a:link,
 a:visited {
-	color: #19A69A;
-	text-decoration: none;
+  color: #19a69a;
+  text-decoration: none;
 }
 
 a:hover {
-	color: #5BCDC3;
-	text-decoration: none;
+  color: #5bcdc3;
+  text-decoration: none;
 }
-
 
 a:active {
-	color: #000;
-	text-decoration: none;
+  color: #000;
+  text-decoration: none;
 }
-
 
 .nav {
   height: 60px;
@@ -120,103 +116,103 @@ a:active {
 }
 
 #gnavi {
-	float: left;
+  float: left;
 }
 
-#gnavi .nav-btn{
+#gnavi .nav-btn {
   cursor: pointer;
 }
 
 #gnavi .nav-btn .bars {
-	display: inline-block;
-	padding:0 20px;
-	width: 58px;
-	height: 28px;
-	overflow: hidden;
-	position: relative;
-	vertical-align: middle;
+  display: inline-block;
+  padding: 0 20px;
+  width: 58px;
+  height: 28px;
+  overflow: hidden;
+  position: relative;
+  vertical-align: middle;
 }
 
 #gnavi .nav-btn .bars .bar {
-	display: block;
-	position: absolute;
-	width: 18px;
-	height: 2px;
-	background-color: white;
-	transition: 375ms;
-	transition-property: top, opacity;
+  display: block;
+  position: absolute;
+  width: 18px;
+  height: 2px;
+  background-color: white;
+  transition: 375ms;
+  transition-property: top, opacity;
 }
 
 #gnavi .nav-btn .bars .bar:nth-child(1) {
-	top: 6px;
-	opacity: 1;
-	transition-delay: 125ms;
+  top: 6px;
+  opacity: 1;
+  transition-delay: 125ms;
 }
 
 #gnavi .nav-btn .bars .bar:nth-child(2) {
-	top: 12px;
-	transition-delay: 80ms;
+  top: 12px;
+  transition-delay: 80ms;
 }
 
 #gnavi .nav-btn .bars .bar:nth-child(3) {
-	top: 18px;
-	transition-delay: 40ms;
+  top: 18px;
+  transition-delay: 40ms;
 }
 
 #gnavi .nav-btn .bars .bar:nth-child(4) {
-	top: 24px;
-	opacity: 0;
-	transition-delay: 0ms;
+  top: 24px;
+  opacity: 0;
+  transition-delay: 0ms;
 }
 
 #gnavi .nav-btn:hover .bars .bar:nth-child(1) {
-	top: 0px;
-	opacity: 0;
-	transition-delay: 0ms;
+  top: 0px;
+  opacity: 0;
+  transition-delay: 0ms;
 }
 
 #gnavi .nav-btn:hover .bars .bar:nth-child(2) {
-	top: 6px;
-	transition-delay: 40ms;
+  top: 6px;
+  transition-delay: 40ms;
 }
 
 #gnavi .nav-btn:hover .bars .bar:nth-child(3) {
-	top: 12px;
-	transition-delay: 80ms;
+  top: 12px;
+  transition-delay: 80ms;
 }
 
 #gnavi .nav-btn:hover .bars .bar:nth-child(4) {
-	top: 18px;
-	opacity: 1;
-	transition-delay: 125ms;
+  top: 18px;
+  opacity: 1;
+  transition-delay: 125ms;
 }
 
 #gnavi.nav-open .nav-btn .bars .bar:nth-child(1) {
-	top: 12px;
-	transform-origin:50% 50%;
-	transform: rotate(45deg) scaleX(1.442);
-	opacity: 1;
-	transition-delay: 0ms;
-	transition-property: top, transform;
+  top: 12px;
+  transform-origin: 50% 50%;
+  transform: rotate(45deg) scaleX(1.442);
+  opacity: 1;
+  transition-delay: 0ms;
+  transition-property: top, transform;
 }
 
 #gnavi.nav-open .nav-btn .bars .bar:nth-child(2) {
-	top: 12px;
-	opacity: 0;
-	transition-delay: 0ms;
+  top: 12px;
+  opacity: 0;
+  transition-delay: 0ms;
 }
 
 #gnavi.nav-open .nav-btn .bars .bar:nth-child(3) {
-	top: 12px;
-	transform-origin:50% 50%;
-	transform: rotate(-45deg) scaleX(1.442);
-	transition-delay: 0ms;
-	transition-property: top, transform;
+  top: 12px;
+  transform-origin: 50% 50%;
+  transform: rotate(-45deg) scaleX(1.442);
+  transition-delay: 0ms;
+  transition-property: top, transform;
 }
 
 #gnavi.nav-open .nav-btn .bars .bar:nth-child(4) {
-	top: 24px;
-	opacity: 0;
-	transition: 0ms;
-	transition-delay: 0ms;
+  top: 24px;
+  opacity: 0;
+  transition: 0ms;
+  transition-delay: 0ms;
 }
