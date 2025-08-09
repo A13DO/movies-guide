@@ -1,0 +1,46 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+footer {
+  background-color: #1d232a;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+  background: url("/assets/footer_bg.jpg");
+}
+.logo {
+  width: 40px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  font-family: "Rajdhani", sans-serif;
+  font-weight: bold;
+  font-size: 18px;
+  text-decoration: none;
+}
+.logo img {
+  width: 100%;
+}
+
+.social-icons {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.social-icons li {
+  display: inline-block;
+  margin-right: 10px;
+}
+.social-icons li a {
+  color: #ccc;
+  text-decoration: none;
+  font-size: 25px;
+}
+.logo {
+  color: white;
+  cursor: pointer;
+}

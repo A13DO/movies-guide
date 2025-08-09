@@ -4,8 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
-import { HeaderComponent } from './core/header/header.component';
-import { NavMenuComponent } from './core/nav-menu/nav-menu.component';
+import { HeaderComponent } from './core/layout/header/header.component';
+import { NavMenuComponent } from './core/layout/nav-menu/nav-menu.component';
 import { MoviesListComponent } from './pages/home/movies-list/movies-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -20,7 +20,7 @@ import { LoadingModule } from './shared/components/loading/loading.module';
 import { SwiperModule } from './shared/components/swiper/swiper.module';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FooterComponent } from './core/footer/footer.component';
+import { FooterComponent } from './core/layout/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -47,11 +47,11 @@ import { FooterComponent } from './core/footer/footer.component';
     SwiperModule,
     ToastrModule.forRoot({
       timeOut: 2000,
-      positionClass: 'toast-top-left'
+      positionClass: 'toast-top-left',
     }),
   ],
   providers: [SearchComponent, HttpInterceptproviders],
   bootstrap: [AppComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class AppModule { }
+export class AppModule {}

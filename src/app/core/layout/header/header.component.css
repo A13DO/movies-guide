@@ -22,11 +22,25 @@
   background-color: #1d232a;
   justify-content: space-between;
   border-radius: 8px;
-
 }
 .logo {
   color: white;
   cursor: pointer;
+}
+.logo {
+  width: 40px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  font-family: "Rajdhani", sans-serif;
+  font-weight: bold;
+  font-size: 18px;
+  /* margin: auto; */
+  /* margin-top: 20px; */
+}
+.logo img {
+  width: 100%;
 }
 .search-holder {
   display: flex;
@@ -59,7 +73,6 @@
   color: #807769;
   color: #5c6179 !important;
   /* border: #4d4d4d 1px solid;*/
-
 }
 .bar-holder .search-bar:focus {
   outline: none;
@@ -133,7 +146,6 @@ a {
 }
 .links .link a {
   color: #aaa59d;
-
 }
 .links .link a::after {
   content: "";
@@ -150,7 +162,7 @@ a {
   opacity: 0;
   display: block;
 }
-.links .link a:hover::after{
+.links .link a:hover::after {
   opacity: 1;
 }
 .links .link a:hover {
@@ -158,8 +170,8 @@ a {
 }
 @media (max-width: 486px) {
   .style-2 > .container > .links {
-    left: 35.5% ;
-    top: 190px ;
+    left: 35.5%;
+    top: 190px;
   }
 }
 @media (max-width: 768px) {
@@ -182,20 +194,34 @@ a {
     height: 35px !important;
   }
   .bar-holder {
-    background-color: transparent
+    background-color: transparent;
   }
 }
 
 .search-icon:checked .search-bar {
   display: block;
 }
-
-
-
-
-
-
-
+button.login,
+button.logout {
+  color: #fff;
+  border-radius: 3px;
+  font-weight: 700;
+  border: none;
+  padding: 5px 20px;
+  transition: 0.2s;
+}
+button.login {
+  background-color: #007e15;
+}
+button.logout {
+  background-color: #890000;
+}
+button.login:hover {
+  background-color: #019219;
+}
+button.logout:hover {
+  background-color: #ac0101;
+}
 /* .row {
   background-color: transparent;
 } */

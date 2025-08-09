@@ -14,7 +14,7 @@
 .backdrop-holder {
   position: absolute;
   width: 100%;
-  top: -148px;
+  top: -160px;
   z-index: -10;
 }
 .backdrop {
@@ -157,6 +157,7 @@
 }
 .tagline {
   text-transform: uppercase;
+  font-family: "Rajdhani", sans-serif;
 }
 .description {
   display: flex;
@@ -263,13 +264,15 @@ a {
 .trailer-link {
   text-decoration: none;
   background-color: #22282f;
-  font-size: 14px;
+  font-size: 16px;
   color: #bbb5aa;
   border-radius: 5px;
   width: fit-content;
   padding: 5px;
+  font-weight: bold;
   align-self: center;
   display: flex;
+  font-family: "Rajdhani", sans-serif;
 }
 
 .option-btn {

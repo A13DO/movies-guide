@@ -16,33 +16,25 @@
       <div class="options">
         <div class="buttons">
           <button class="watched-button option-btn" (click)="addToWatched()">
-            <fa-icon
-            class="button-icon"
-            [ngClass]="{ 'green-color' : watchedToggleClass }"
-            style="color: rgb(161, 163, 160);"
-            [icon]="faAdd">
-          </fa-icon>
+            <fa-icon class="button-icon" [ngClass]="{ 'green-color' : watchedToggleClass }"
+              style="color: rgb(161, 163, 160);" [icon]="faAdd">
+            </fa-icon>
           </button>
           <button class="favorite-button option-btn" (click)="addToFavorites()">
-            <fa-icon
-            class="button-icon"
-            [ngClass]="{ 'red-color' : favoriteToggleClass }"
-            style="color: rgb(161, 163, 160);"
-            [icon]="faLove">
+            <fa-icon class="button-icon" [ngClass]="{ 'red-color' : favoriteToggleClass }"
+              style="color: rgb(161, 163, 160);" [icon]="faLove">
             </fa-icon>
           </button>
           <button class="watchlist-button option-btn" (click)="addToWatchlist()">
-            <fa-icon
-            class="button-icon"
-            [ngClass]="{ 'blue-color' : watchlistToggleClass }"
-            style="color: rgb(161, 163, 160);"
-            [icon]="faEye">
+            <fa-icon class="button-icon" [ngClass]="{ 'blue-color' : watchlistToggleClass }"
+              style="color: rgb(161, 163, 160);" [icon]="faEye">
             </fa-icon>
           </button>
         </div>
         <hr>
         <!-- <a class="trailer-link" [href]="fullTrailerLink" target="_blank">Trailer</a> -->
-        <button class="trailer-link" (click)="showTrailer()"><span class="material-symbols-outlined">play_arrow</span>Trailer</button>
+        <button class="trailer-link" (click)="showTrailer()"><span
+            class="material-symbols-outlined">play_arrow</span>Trailer</button>
       </div>
     </div>
     <div class="modal">
@@ -79,34 +71,23 @@
       </div>
       <h6>SIMILAR FILMS</h6>
       <hr class="cast-line">
-      <app-swiper
-      [movies]="recommendedMovies"
-      ></app-swiper>
+      <app-swiper [movies]="recommendedMovies"></app-swiper>
     </div>
     <div class="options">
       <div class="buttons">
         <button class="watched-button option-btn" (click)="addToWatched()">
-          <fa-icon
-          class="button-icon"
-          [ngClass]="{ 'green-color' : watchedToggleClass }"
-          style="color: rgb(161, 163, 160);"
-          [icon]="faAdd">
-        </fa-icon>
+          <fa-icon class="button-icon" [ngClass]="{ 'green-color' : watchedToggleClass }"
+            style="color: rgb(161, 163, 160);" [icon]="faAdd">
+          </fa-icon>
         </button>
         <button class="favorite-button option-btn" (click)="addToFavorites()">
-          <fa-icon
-          class="button-icon"
-          [ngClass]="{ 'red-color' : favoriteToggleClass }"
-          style="color: rgb(161, 163, 160);"
-          [icon]="faLove">
+          <fa-icon class="button-icon" [ngClass]="{ 'red-color' : favoriteToggleClass }"
+            style="color: rgb(161, 163, 160);" [icon]="faLove">
           </fa-icon>
         </button>
         <button class="watchlist-button option-btn" (click)="addToWatchlist()">
-          <fa-icon
-          class="button-icon"
-          [ngClass]="{ 'blue-color' : watchlistToggleClass }"
-          style="color: rgb(161, 163, 160);"
-          [icon]="faEye">
+          <fa-icon class="button-icon" [ngClass]="{ 'blue-color' : watchlistToggleClass }"
+            style="color: rgb(161, 163, 160);" [icon]="faEye">
           </fa-icon>
         </button>
       </div>

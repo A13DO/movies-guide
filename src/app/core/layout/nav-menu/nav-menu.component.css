@@ -25,7 +25,14 @@
     display: none;
   }
 }
-
+.logo {
+  width: 50px;
+  margin: auto;
+  margin-top: 20px;
+}
+.logo img {
+  width: 100%;
+}
 /* @media (max-width: 800px) {
   .links {
     display: block;

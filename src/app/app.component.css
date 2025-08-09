@@ -24,7 +24,6 @@
   flex-basis: 60%;
   justify-content: center;
   /* left: 230px; */
-
 }
 @media (max-width: 767px) {
   .page-holder {
@@ -36,7 +35,6 @@
   background-color: #333;
   color: #fff;
   padding: 50px 0;
-
 }
 
 .site-footer h3 {

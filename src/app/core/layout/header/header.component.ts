@@ -1,9 +1,9 @@
 import { Auth } from '@firebase/auth';
-import { AuthService } from '../auth/services/auth.service';
+import { AuthService } from '../../auth/services/auth.service';
 import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
-import { MoviesRequestsService } from '../services/movies-requests.service';
+import { MoviesRequestsService } from '../../services/movies-requests.service';
 import { NavigationEnd, Router } from '@angular/router';
-import { SearchComponent } from '../../pages/search/search.component';
+import { SearchComponent } from '../../../pages/search/search.component';
 
 @Component({
   selector: 'app-header',
